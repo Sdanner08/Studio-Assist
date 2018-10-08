@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Sdanner08/Studio-Assist#readme",
   "dependencies": {
+    "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "mongoose": "^5.3.1"
+    "mongoose": "^5.3.1",
+    "path": "^0.12.7"
   }
 }
