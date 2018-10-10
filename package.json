@@ -18,9 +18,14 @@
   },
   "homepage": "https://github.com/Sdanner08/Studio-Assist#readme",
   "dependencies": {
+    "aws-sdk": "^2.330.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^6.1.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "mongoose": "^5.3.1",
+    "multer": "^1.4.0",
+    "multer-s3": "^2.7.0",
     "path": "^0.12.7"
   }
 }

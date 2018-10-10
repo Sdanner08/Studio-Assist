@@ -1,4 +1,5 @@
 const db = require("../models");
+const bcrypt = require('bcryptjs')
 
 module.exports = {
 
@@ -17,9 +18,35 @@ module.exports = {
     //@desc Create instructor 
     //@acess 
     create(req, res) {
-        db.Instructor.create(req.body, () => {
-            console.log("Post route to create instructor hit")
-        })
+        db.Instructor.findOne({ username: req.body.username }).then(
+            user => {
+                if (user) {
+                    res.status(400).json({ username: "Username Already Exists" })
+                }
+                else {
+                    const newInstructor = {
+                        firstName: req.body.firstName,
+                        lastName: req.body.lastName,
+                        username: req.body.username,
+                        password: req.body.password,
+                        picture: req.body.picture
+                    }
+                    bcrypt.genSalt(10, (err, salt) => {
+                        bcrypt.hash(newInstructor.password, salt, (err, hash) => {
+                            if (err) {
+                                res.send(err)
+                            }
+                            else {
+                                newInstructor.password = hash
+                                db.Instructor.create(newInstructor, (err, resp) => {
+                                    res.status(200).json(resp)
+                                })
+                            }
+                        })
+                    })
+                }
+            }
+        )
     }
 
 }
