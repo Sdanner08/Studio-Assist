@@ -56,7 +56,7 @@ const AddClassModal = props => (
                     </div>
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-primary" onClick={props.onSave}>Save changes</button>
+                    <button type="button" className="btn btn-primary" onClick={props.onSave}>Save Class</button>
                     <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={props.onClose}>Close</button>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import ClassList from '../../components/classList/classList';
 import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
-import API from "../../utils/API";;
+import API from "../../utils/API";
 
 class Classes extends Component {
 
