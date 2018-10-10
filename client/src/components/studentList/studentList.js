@@ -13,13 +13,13 @@ class StudentList extends Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"><a href="#">1</a></th>
+                            <th scope="row"><a href="#">Saajan</a></th>
                         </tr>
                         <tr>
-                            <th scope="row">2</th>
+                            <th scope="row">Shane</th>
                         </tr>
                         <tr>
-                            <th scope="row">3</th>
+                            <th scope="row">Manuel</th>
                         </tr>
                     </tbody>
                 </table>
