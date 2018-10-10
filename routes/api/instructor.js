@@ -2,11 +2,17 @@ const router = require("express").Router();
 const instructorController = require("../../controllers/instructorController");
 
 
-// api/instructor
+//@route GET api/instructor/
+//@desc gets all instructors
+//@acess 
 router.get("/", instructorController.findAll)
 
 
 // /api/instructor
+
+//@route POST api/instructor/
+//@desc Creates a new instructor
+//@acess 
 router.post("/", instructorController.create)
 
 module.exports = router;

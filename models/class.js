@@ -17,6 +17,18 @@ const classSchema = new Schema({
         type: String,
         ref: "Instructor"
     },
+    attendance: [
+        {
+            date: Date,
+            absentStudents: [
+                {
+                    type: String,
+                    ref: "Student"
+                }
+            ]
+
+        }
+    ],
     schedule: String //may change to different type
 });
 

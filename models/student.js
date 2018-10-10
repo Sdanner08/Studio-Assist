@@ -18,9 +18,11 @@ const studentSchema = new Schema({
             type: String,
             ref: "Class"
         }
-    ]
-
-
+    ],
+    active: {
+        type: Boolean,
+        default: true
+    }
 });
 
 
