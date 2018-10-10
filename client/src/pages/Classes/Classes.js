@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ClassList from '../../components/studentList/studentList';
+import ClassList from '../../components/classList/classList';
 
 class Classes extends Component {
     render() {
