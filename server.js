@@ -3,7 +3,7 @@ const express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    PORT = process.env.PORT || 3000,
+    PORT = process.env.PORT || 5000,
     routes = require("./routes/index"),
     path = require("path"); //temp for testing only
 
