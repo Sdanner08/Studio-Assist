@@ -9,19 +9,23 @@ import { Link } from "react-router-dom";
 
 
 class Classes extends Component {
-
-    state = {
-        classes: [],
-        nameOfClass: "",
-        maxCapacity: "",
-        room: "",
-        ageGroup: "",
-        cost: "",
-        students: [],
-        instructor: "",
-        schedule: "",
-        showModal: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            classes: [],
+            nameOfClass: "",
+            maxCapacity: "",
+            room: "",
+            ageGroup: "",
+            cost: "",
+            students: [],
+            instructor: "",
+            schedule: "",
+            showModal: false
+        }
+        this.loadClasses()
     }
+
 
     componentDidMount() {
         this.loadClasses();
@@ -29,7 +33,8 @@ class Classes extends Component {
 
     loadClasses = () => {
         API.getClasses()
-            .then(res =>
+            .then(res => {
+
                 this.setState({
                     classes: res.data,
                     nameOfClass: "",
@@ -41,9 +46,14 @@ class Classes extends Component {
                     instructor: "",
                     schedule: ""
                 })
+            }
             )
             .catch(err => console.log(err));
     };
+
+    renderClasses() {
+        var classes = this.state.classes
+    }
 
     deleteClass = id => {
         API.deleteClass(id)
@@ -105,17 +115,7 @@ class Classes extends Component {
         return (
             <div className="container">
                 {this.state.classes.length ? (
-                    <ClassList>
-                        {this.state.classes.map(classes => (
-                            <ListItem key={classes._id}>
-                                <Link to={"/classes/" + classes._id}>
-                                <strong>
-                                    {classes.nameOfClass}
-                                </strong>
-                                </Link>
-                            </ListItem>
-                        ))}
-                    </ClassList>
+                    <ClassList classes={this.state.classes} />
                 ) : (
                         <h3>No results to display</h3>
                     )}

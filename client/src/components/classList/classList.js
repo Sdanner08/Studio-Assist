@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
+import ListItem from '../../components/classList/listItem'
+import getClasses from '../../utils/API'
 import "./classList.css";
+import Classes from '../../pages/Classes/Classes';
 
-class ClassList extends Component {
-    render() {
-        return (
-            <div>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Class</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row"><a href="/students">Test Class</a></th>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+
+const ClassList = (props) => {
+    const listItem = props.classes.map(Classes => {
+        return <ListItem Classes={Classes} key={Classes._id} ></ListItem>
+    })
+
+    return (
+        <div>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Class</th>
+                        <th scope="col">Max Capacity</th>
+                        <th scope="col">Room</th>
+                        <th scope="col">Age Group</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {listItem}
+                </tbody>
+            </table>
+        </div>
+    )
+
+
 }
+
 
 export default ClassList;
