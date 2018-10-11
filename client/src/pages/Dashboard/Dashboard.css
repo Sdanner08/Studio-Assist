@@ -1,0 +1,16 @@
+#main{
+    float: left;
+    width: 50%;
+}
+#calender{
+    float: right;
+    width: 50%;
+}
+#header{
+    padding: 20px;
+}
+#bottom{
+    padding: 30px;
+    clear: both;
+    text-align: center;
+}

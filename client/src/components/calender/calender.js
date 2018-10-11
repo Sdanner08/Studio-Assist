@@ -1,43 +1,58 @@
 import React, { Component } from 'react';
-import Modal from"./modal.js";
+import Modal from './AddTaskModal';
+//import DeleteModal from './DeleTaskModal';
 import "./calender.css";
+//import DeleteBtn from './../DeleteBtn/DeleteBtn';
+import AddBtn from './../AddBtn/AddBtn';
+import API from "../../utils/API";
 
 class Calender extends Component {
 
-      // Setting the initial values of this.state.username and this.state.password
-//   state = {
-//     username: "",
-//     password: ""
-//   };
+    state = {
+        showModal: false
+    }
 
-//   // handle any changes to the input fields
-//   handleInputChange = event => {
-//     // Pull the name and value properties off of the event.target (the element which triggered the event)
-//     const { name, value } = event.target;
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
 
-//     // Set the state for the appropriate input field
-//     this.setState({
-//       [name]: value
-//     });
-//   };
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if(this.state.firstName && this.state.lastName) {
+            API.saveStudent({
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                picture: this.state.picture,
+                birthday: this.state.birthday
+            })
+              .then(res => this.loadStudents())
+              .catch(err => console.log(err));
+        }
+    }
 
-constructor(props) {
-    super(props);
+    showModal = event => {
+        this.setState({ showModal: true });
+    }
 
-    this.state = { isOpen: false };
-  }
+    hideModal = event => {
+        this.setState({ showModal: false });
+    }
 
-  toggleModal = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-  // When the form is submitted, prevent the default event and alert the username and password
-  handleFormSubmit = event => {
-    event.preventDefault();
-    return(Modal)
-  };
     render() {
+        var modal;
+        if (this.state.showModal) {
+            modal =
+                <Modal
+                    onChange={this.handleInputChange}
+                    onClose={this.hideModal}
+                    onSave={this.handleFormSubmit}
+                />;
+        } else {
+            modal = "";
+        }
         return (
             <div id="calenderLayout" class="container-fluid">
                 <table className="table table-striped">
@@ -152,7 +167,8 @@ constructor(props) {
                         </tr>
                     </tbody>
                 </table>
-                <button onClick={this.toggleModal}>Add Task</button>
+                <AddBtn onClick={this.showModal}>Add Task</AddBtn>
+                {modal}
             </div>
         )
     }
