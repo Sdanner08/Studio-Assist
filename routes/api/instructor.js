@@ -7,6 +7,8 @@ const instructorController = require("../../controllers/instructorController");
 //@acess 
 router.get("/", instructorController.findAll)
 
+router.get("/:id", instructorController.findOne)
+
 
 // /api/instructor
 

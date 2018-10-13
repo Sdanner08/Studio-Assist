@@ -12,13 +12,14 @@ const ClassList = (props) => {
 
     return (
         <div>
-            <table className="table table-striped">
+            <table className="table table-striped mt-4">
                 <thead>
                     <tr>
                         <th scope="col">Class</th>
                         <th scope="col">Max Capacity</th>
                         <th scope="col">Room</th>
                         <th scope="col">Age Group</th>
+                        <th scope="col"></th>
                     </tr>
 
                 </thead>

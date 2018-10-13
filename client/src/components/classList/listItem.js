@@ -6,7 +6,7 @@ export const ListItem = props => (
     <td scope="row">{props.Classes.maxCapacity}</td>
     <td scope="row">{props.Classes.room}</td>
     <td scope="row">{props.Classes.ageGroup}</td>
-    <td scope="row"><a className="btn btn-sm btn-default" href={`/classes/${props.Classes._id}`}>View</a></td>
+    <td scope="row"><a className="btn btn-sm btn-primary" href={`/classes/${props.Classes._id}`}>View</a></td>
 
   </tr>
 );

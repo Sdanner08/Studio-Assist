@@ -9,7 +9,7 @@ const express = require('express'),
 
 require('dotenv').config()
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/studioAssist", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://manuel:studio1@ds131313.mlab.com:31313/studioassist", { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
