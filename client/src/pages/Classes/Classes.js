@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import ClassList from '../../components/classList/classList';
-import ListItem from '../../components/classList/listItem'
 import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 
 class Classes extends Component {
@@ -21,14 +20,15 @@ class Classes extends Component {
             students: [],
             instructor: "",
             schedule: "",
-            showModal: false
+            showModal: false,
+            instructors: []
         }
-        this.loadClasses()
     }
 
 
     componentDidMount() {
         this.loadClasses();
+        this.loadInstructors();
     }
 
     loadClasses = () => {
@@ -51,9 +51,10 @@ class Classes extends Component {
             .catch(err => console.log(err));
     };
 
-    renderClasses() {
-        var classes = this.state.classes
+    loadInstructors = () => {
+        API.getInstructors().then(instructors => { this.setState({ instructors: instructors.data }) })
     }
+
 
     deleteClass = id => {
         API.deleteClass(id)
@@ -106,7 +107,7 @@ class Classes extends Component {
                     room={this.state.room}
                     ageGroup={this.state.ageGroup}
                     cost={this.state.cost}
-                    instructor={this.state.instructor}
+                    instructors={this.state.instructors}
                     schedule={this.state.schedule}
                 />;
         } else {

@@ -8,10 +8,16 @@ module.exports = {
     //@desc Tests the posts route
     //@acess 
     findAll(req, res) {
-        db.Instructor.find({}, (resp) => {
+        db.Instructor.find({}, (err, resp) => {
             res.json(resp)
         })
 
+    },
+
+    findOne(req, res) {
+        db.Instructor.find({ _id: req.params.id }).then(resp => {
+            res.json(resp)
+        })
     },
 
     //@route POST api/instructor/
