@@ -27,6 +27,7 @@ module.exports = {
     //@desc Create a new class
     //@acess 
     create(req, res) {
+        console.log(req.body)
         const Class = {
             nameOfClass: req.body.nameOfClass,
             maxCapacity: req.body.maxCapacity,

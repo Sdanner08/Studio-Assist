@@ -7,7 +7,7 @@ const AddClassModal = props => {
 
     const instructors = props.instructors.map(ins => {
         return (
-            <option>{ins.firstName + " " + ins.lastName}</option>
+            <option value={ins._id} key={ins._id}>{ins.firstName + " " + ins.lastName}</option>
         )
     })
 
@@ -61,7 +61,7 @@ const AddClassModal = props => {
                             placeholder="Instructor (required)" />
                     </div> */}
 
-                            <select className="form-control" id="exampleFormControlSelect1" onChange={props.onChange}>
+                            <select className="form-control" name="instructor" onChange={props.onChange}>
                                 {instructors}
                             </select>
                         </div>

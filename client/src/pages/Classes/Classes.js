@@ -70,8 +70,10 @@ class Classes extends Component {
     };
 
     handleFormSubmit = event => {
+
         event.preventDefault();
         if (this.state.nameOfClass && this.state.maxCapacity) {
+            debugger;
             API.saveClass({
                 nameOfClass: this.state.nameOfClass,
                 maxCapacity: this.state.maxCapacity,
@@ -108,6 +110,7 @@ class Classes extends Component {
                     ageGroup={this.state.ageGroup}
                     cost={this.state.cost}
                     instructors={this.state.instructors}
+                    instructor={this.state.instructor}
                     schedule={this.state.schedule}
                 />;
         } else {
