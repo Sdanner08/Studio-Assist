@@ -5,31 +5,37 @@ import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 
 class Classes extends Component {
-
-    state = {
-        classes: [],
-        nameOfClass: "",
-        maxCapacity: "",
-        room: "",
-        ageGroup: "",
-        cost: "",
-        students: [],
-        instructor: "",
-        schedule: "",
-        showModal: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            classes: [],
+            nameOfClass: "",
+            maxCapacity: "",
+            room: "",
+            ageGroup: "",
+            cost: "",
+            students: [],
+            instructor: "",
+            schedule: "",
+            showModal: false,
+            instructors: []
+        }
     }
+
 
     componentDidMount() {
         this.loadClasses();
+        this.loadInstructors();
     }
 
     loadClasses = () => {
         API.getClasses()
-            .then(res =>
+            .then(res => {
+
                 this.setState({
                     classes: res.data,
                     nameOfClass: "",
@@ -41,9 +47,15 @@ class Classes extends Component {
                     instructor: "",
                     schedule: ""
                 })
+            }
             )
             .catch(err => console.log(err));
     };
+
+    loadInstructors = () => {
+        API.getInstructors().then(instructors => { this.setState({ instructors: instructors.data }) })
+    }
+
 
     deleteClass = id => {
         API.deleteClass(id)
@@ -96,7 +108,7 @@ class Classes extends Component {
                     room={this.state.room}
                     ageGroup={this.state.ageGroup}
                     cost={this.state.cost}
-                    instructor={this.state.instructor}
+                    instructors={this.state.instructors}
                     schedule={this.state.schedule}
                 />;
         } else {
@@ -105,17 +117,7 @@ class Classes extends Component {
         return (
             <div className="container">
                 {this.state.classes.length ? (
-                    <ClassList>
-                        {this.state.classes.map(classes => (
-                            <ListItem key={classes._id}>
-                                <Link to={"/classes/" + classes._id}>
-                                <strong>
-                                    {classes.nameOfClass}
-                                </strong>
-                                </Link>
-                            </ListItem>
-                        ))}
-                    </ClassList>
+                    <ClassList classes={this.state.classes} />
                 ) : (
                         <h3>No results to display</h3>
                     )}

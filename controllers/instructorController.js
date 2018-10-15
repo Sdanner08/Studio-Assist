@@ -8,16 +8,23 @@ module.exports = {
     //@desc Tests the posts route
     //@acess 
     findAll(req, res) {
-        db.Instructor.find({}, (resp) => {
+        db.Instructor.find({}, (err, resp) => {
             res.json(resp)
         })
 
+    },
+
+    findOne(req, res) {
+        db.Instructor.find({ _id: req.params.id }).then(resp => {
+            res.json(resp)
+        })
     },
 
     //@route POST api/instructor/
     //@desc Create instructor 
     //@acess 
     create(req, res) {
+        //check to see if the username give already exists
         db.Instructor.findOne({ username: req.body.username }).then(
             user => {
                 if (user) {
@@ -31,6 +38,7 @@ module.exports = {
                         password: req.body.password,
                         picture: req.body.picture
                     }
+                    //Encrypt the passworkd and replace it i the newInstructor object
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newInstructor.password, salt, (err, hash) => {
                             if (err) {

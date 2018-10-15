@@ -5,7 +5,8 @@ import Classes from './pages/Classes/Classes';
 import Students from './pages/Students/Students'
 import Dashboard from './pages/Dashboard/Dashboard';
 import Payment from './pages/Payment/Payment';
-import './App.css';
+import ClassDetails from './pages/Classes/ClassDetails'
+
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
           <Switch>
             {/* <Route exact path="/" component={Dashboard} /> */}
             <Route exact path="/classes" component={Classes} />
+            <Route exact path="/classes/:id" component={ClassDetails} />
             <Route exact path="/students" component={Students} />
             <Route exact path="/payment" component={Payment} />
             <Route exact path="/" component={Dashboard} />

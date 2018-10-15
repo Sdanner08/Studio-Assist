@@ -17,6 +17,7 @@ module.exports = {
         let id = req.params.id
         db.Class.findOne({ _id: id })
             .populate("students")
+            .populate("instructor")
             .exec((err, classes) => {
                 res.json(classes)
             })
@@ -31,7 +32,8 @@ module.exports = {
             maxCapacity: req.body.maxCapacity,
             room: req.body.room,
             ageGroup: req.body.ageGroup,
-            cost: req.body.cost
+            cost: req.body.cost,
+            instructor: req.body.instructor
         }
         db.Class.create(Class, (err, Class) => {
             res.json(Class)
