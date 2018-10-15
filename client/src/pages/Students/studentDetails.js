@@ -14,9 +14,10 @@ class StudentDetails extends Component {
             age: "",
             id: "",
             classesEnrolled: [],
-            parents: []
-            // showModal: false,
-            // classes: []
+            parents: [],
+            showModal: false,
+            classes: [],
+            selectedClass: ""
         }
     }
 
@@ -48,7 +49,12 @@ class StudentDetails extends Component {
     }
 
     handleFormSubmit = event => {
+        console.log(this.state.selectedClass)
         event.preventDefault();
+        API.enrollAClass(this.state.selectedClass, this.state.id)
+            .then(res => {
+                this.loadStudent()
+            })
     }
 
     handleInputChange = event => {
@@ -84,6 +90,7 @@ class StudentDetails extends Component {
                     onClose={this.hideModal}
                     onSave={this.handleFormSubmit}
                     classes={this.state.classes}
+                    id={this.state.id}
                 />
         } else {
             modal = "";

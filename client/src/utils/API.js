@@ -48,5 +48,8 @@ export default {
   // Saves an instructor to the database
   saveInstructor: function (instructorData) {
     return axios.post("/api/instructors", instructorData);
+  },
+  enrollAClass: function (classId, studentId) {
+    return axios.post("/api/students/registerClass/", { classId, studentId })
   }
 };

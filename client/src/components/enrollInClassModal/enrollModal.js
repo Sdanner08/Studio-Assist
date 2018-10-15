@@ -7,7 +7,7 @@ const EnrollModal = props => {
 
     const classes = props.classes.map(classes => {
         return (
-            <option value={classes._id} key={classes._id}>{`${classes.nameOfClass} ${classes.ageGroup}`}</option>
+            <option value={classes._id} key={classes._id}>{`${classes.nameOfClass} Ages:${classes.ageGroup}`}</option>
         )
     })
 
@@ -15,7 +15,6 @@ const EnrollModal = props => {
 
 
         <div className="modal fade show" role="dialog" style={{ display: "block" }}>
-            {console.log(props.classes)}
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -26,7 +25,7 @@ const EnrollModal = props => {
                     </div>
                     <div className="modal-body">
                         <div className="form-group">
-                            <select className="form-control" name="instructor" onChange={props.onChange}>
+                            <select className="form-control" name="selectedClass" onChange={props.onChange}>
                                 <option disabled selected>Please choose an Class</option>
                                 {classes}
                             </select>
