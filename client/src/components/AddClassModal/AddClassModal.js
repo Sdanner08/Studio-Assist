@@ -1,8 +1,5 @@
 import React from "react";
 
-
-
-
 const AddClassModal = props => {
 
     const instructors = props.instructors.map(ins => {
@@ -10,7 +7,6 @@ const AddClassModal = props => {
             <option value={ins._id} key={ins._id}>{ins.firstName + " " + ins.lastName}</option>
         )
     })
-
 
     return (
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import API from "../../utils/API";
 import ClassesEnrolled from '../../components/singleStudent/classesEnrolled'
 import EnrollModal from '../../components/enrollInClassModal/enrollModal'
+import DeleteBtn from '../../components/DeleteBtn/DeleteBtn'
 
 class StudentDetails extends Component {
     constructor(props) {
@@ -47,7 +48,6 @@ class StudentDetails extends Component {
     }
 
     handleFormSubmit = event => {
-
         event.preventDefault();
     }
 
@@ -57,6 +57,15 @@ class StudentDetails extends Component {
             [name]: value
         });
     };
+
+    handleDelete() {
+        API.deleteStudent(this.state.id)
+            .then(res => {
+                const { history } = this.props;
+                history.push("/students")
+            })
+            .catch(err => console.log(err));
+    }
 
     showModal = event => {
         this.setState({ showModal: true });
@@ -91,6 +100,8 @@ class StudentDetails extends Component {
                 </div>
                 <button className="btn btn-success" onClick={this.showModal}>Enroll</button>
                 {modal}
+
+                <DeleteBtn onClick={this.handleDelete()}>Remove Student</DeleteBtn>
             </div>
         )
     }
