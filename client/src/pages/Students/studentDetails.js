@@ -108,7 +108,7 @@ class StudentDetails extends Component {
                 <button className="btn btn-success" onClick={this.showModal}>Enroll</button>
                 {modal}
 
-                <DeleteBtn onClick={this.handleDelete()}>Remove Student</DeleteBtn>
+                <DeleteBtn onClick={() => this.handleDelete()}>Remove Student</DeleteBtn>
             </div>
         )
     }
