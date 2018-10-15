@@ -13,7 +13,7 @@ class ClassList extends Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"><a href="#">1</a></th>
+                            <th scope="row"><a href="/students">Test Class</a></th>
                         </tr>
                         <tr>
                             <th scope="row">2</th>

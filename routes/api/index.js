@@ -5,8 +5,8 @@ const instructorRoutes = require('./instructor')
 
 
 
-router.use("/class", classRoutes);
-router.use("/student", studentRoutes);
-router.use("/instructor", instructorRoutes)
+router.use("/classes", classRoutes);
+router.use("/students", studentRoutes);
+router.use("/instructors", instructorRoutes)
 
 module.exports = router;
