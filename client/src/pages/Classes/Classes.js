@@ -35,7 +35,6 @@ class Classes extends Component {
     loadClasses = () => {
         API.getClasses()
             .then(res => {
-
                 this.setState({
                     classes: res.data,
                     nameOfClass: "",
@@ -71,6 +70,7 @@ class Classes extends Component {
     };
 
     handleFormSubmit = event => {
+
         event.preventDefault();
         if (this.state.nameOfClass && this.state.maxCapacity) {
             API.saveClass({
@@ -109,6 +109,7 @@ class Classes extends Component {
                     ageGroup={this.state.ageGroup}
                     cost={this.state.cost}
                     instructors={this.state.instructors}
+                    instructor={this.state.instructor}
                     schedule={this.state.schedule}
                 />;
         } else {
@@ -123,7 +124,6 @@ class Classes extends Component {
                     )}
 
                 <AddBtn onClick={this.showModal}>Add Class</AddBtn>
-                <DeleteBtn>Remove Class</DeleteBtn>
                 {modal}
             </div>
 

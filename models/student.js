@@ -6,6 +6,7 @@ const studentSchema = new Schema({
     lastName: String,
     picture: String, //S3 Bucket image url
     birthday: Date,
+    age: Number,
     parents: [
         {
             firstName: String,

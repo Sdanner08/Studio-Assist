@@ -8,11 +8,14 @@ import API from "../../utils/API";
 class Students extends Component {
 
     state = {
+        students: [],
         firstName: "",
         lastName: "",
         picture: "",
         birthday: "",
-        parents: [],
+        parentLastName: "",
+        parentFirstName: "",
+        phone: "",
         classesEnrolled: [],
         showModal: false
     }
@@ -30,8 +33,9 @@ class Students extends Component {
                     lastName: "",
                     picture: "",
                     birthday: "",
-                    parents: [],
-                    classesEnrolled: []
+                    parentFirstName: "",
+                    parentLastName: "",
+                    phone: "",
                 })
             )
             .catch(err => console.log(err));
@@ -52,15 +56,19 @@ class Students extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if(this.state.firstName && this.state.lastName) {
+        if (this.state.firstName && this.state.lastName) {
             API.saveStudent({
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 picture: this.state.picture,
-                birthday: this.state.birthday
+                birthday: this.state.birthday,
+                phone: this.state.phone,
+                parentFirstName: this.state.parentFirstName,
+                parentLastName: this.state.parentLastName
+
             })
-              .then(res => this.loadStudents())
-              .catch(err => console.log(err));
+                .then(res => this.loadStudents())
+                .catch(err => console.log(err));
         }
     }
 
@@ -84,13 +92,22 @@ class Students extends Component {
                     lastName={this.state.lastName}
                     picture={this.state.picture}
                     birthday={this.state.birthday}
+                    parentLastName={this.state.parentLastName}
+                    parentFirstName={this.state.parentFirstName}
+                    phone={this.state.phone}
                 />;
         } else {
             modal = "";
         }
         return (
             <div className="container">
-                <StudentList />
+                {this.state.students.length ? (
+                    <StudentList students={this.state.students} />
+                ) : (<h3>No Students</h3>
+
+                    )}
+
+
                 <AddBtn onClick={this.showModal}>Add Student</AddBtn>
                 <DeleteBtn>Remove Student</DeleteBtn>
                 {modal}

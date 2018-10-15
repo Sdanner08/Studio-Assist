@@ -7,7 +7,7 @@ const AddClassModal = props => {
 
     const instructors = props.instructors.map(ins => {
         return (
-            <option>{ins.firstName + " " + ins.lastName}</option>
+            <option value={ins._id} key={ins._id}>{ins.firstName + " " + ins.lastName}</option>
         )
     })
 
@@ -43,10 +43,14 @@ const AddClassModal = props => {
                                 placeholder="Room" />
                         </div>
                         <div className="form-group">
-                            <input className="form-control" type="text" value={props.ageGroup}
-                                onChange={props.onChange}
-                                name="ageGroup"
-                                placeholder="Age Group" />
+                            <select className="form-control" name="ageGroup" onChange={props.onChange}>
+                                <option disabled selected>Please choose an age group</option>
+                                <option value="3-4">3-4</option>
+                                <option value="5-7">5-7</option>
+                                <option value="8-12">8-12</option>
+                                <option value="8-12">13-16</option>
+                                <option value="8-12">17-18</option>
+                            </select>
                         </div>
                         <div className="form-group">
                             <input className="form-control" type="number" step="any" min="1" value={props.cost}
@@ -55,13 +59,8 @@ const AddClassModal = props => {
                                 placeholder="Cost (required)" />
                         </div>
                         <div className="form-group">
-                            {/* <input className="form-control" type="text" value={props.instructor}
-                            onChange={props.onChange}
-                            name="instructor"
-                            placeholder="Instructor (required)" />
-                    </div> */}
-
-                            <select className="form-control" id="exampleFormControlSelect1" onChange={props.onChange}>
+                            <select className="form-control" name="instructor" onChange={props.onChange}>
+                                <option disabled selected>Please choose an Instructor</option>
                                 {instructors}
                             </select>
                         </div>
