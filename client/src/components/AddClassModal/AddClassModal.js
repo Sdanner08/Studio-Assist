@@ -44,8 +44,8 @@ const AddClassModal = props => {
                                 <option value="3-4">3-4</option>
                                 <option value="5-7">5-7</option>
                                 <option value="8-12">8-12</option>
-                                <option value="8-12">13-16</option>
-                                <option value="8-12">17-18</option>
+                                <option value="13-16">13-16</option>
+                                <option value="17-18">17-18</option>
                             </select>
                         </div>
                         <div className="form-group">

@@ -37,7 +37,7 @@ class StudentDetails extends Component {
     }
 
     loadClasses() {
-        API.getClasses()
+        API.getClassesByAge(this.state.id, this.state.age)
             .then(classes => {
                 this.setState({ classes: classes.data })
             })
@@ -74,6 +74,7 @@ class StudentDetails extends Component {
     }
 
     showModal = event => {
+        this.loadClasses();
         this.setState({ showModal: true });
     }
 
