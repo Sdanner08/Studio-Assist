@@ -77,7 +77,8 @@ module.exports = {
             if (!err) {
                 if (!resp.length) {
                     db.Student.update({ _id: studentId }, { $push: { classesEnrolled: classId } }, (err, student) => {
-                        db.Class.update({ _id: classId }, { $push: { students: studentId } }, (err, registedClass) => {
+                        db.Class.update({ _id: classId }, { $push: { students: studentId }, $inc:{maxCapacity: -1}}, (err, registedClass) => {
+                            console.log(err);
                             var response = {
                                 student,
                                 registedClass

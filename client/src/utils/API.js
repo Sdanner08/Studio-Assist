@@ -5,6 +5,9 @@ export default {
   getClasses: function () {
     return axios.get("/api/classes")
   },
+  getClassesByAge: function (id, age) {
+    return axios.get(`/api/classes/${id}/${age}`)
+  },
   // Gets the class with the given id
   getClass: function (id) {
     return axios.get("/api/classes/" + id);
