@@ -26,8 +26,6 @@ router.put("/:id/:insId", classController.addOrChangeInstructor)
 //@desc Update class details
 //@acess 
 
-
-
 //@route DELETE api/classes/:id
 //@desc DELETE a specific class by ID
 //@acess 

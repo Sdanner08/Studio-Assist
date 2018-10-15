@@ -29,8 +29,6 @@ const ClassList = (props) => {
             </table>
         </div>
     )
-
-
 }
 
 
