@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
+import DeleteBtn from '../../components/DeleteBtn/DeleteBtn'
 
 class ClassDetails extends Component {
     constructor(props) {
@@ -27,7 +28,16 @@ class ClassDetails extends Component {
             })
     }
 
-    handleDelete(id) {
+    handleDelete() {
+        console.log(this.state.id)
+        API.deleteClass(this.state.id)
+            .then(res => {
+                const { history } = this.props;
+                history.push("/classes")
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
     }
 
@@ -39,6 +49,7 @@ class ClassDetails extends Component {
     render() {
         return (<div>
             <div className="card mt-3">
+                {console.log(this.state)}
                 <div className="card-header bg-secondary">
                     <h1 className="display-3 text-white">{this.state.nameOfClass}</h1>
                 </div>
@@ -52,7 +63,7 @@ class ClassDetails extends Component {
 
 
 
-            <button className="btn btn-danger" onClick={this.handleDelete(this.state.id)}>Delete Class</button>
+            <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
         </div>)
     }
 }
