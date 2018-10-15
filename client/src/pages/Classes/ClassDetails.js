@@ -4,13 +4,12 @@ import API from "../../utils/API";
 class ClassDetails extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             nameOfClass: "",
             room: "",
             ageGroup: "",
-            instructors: ""
-
+            instructor: "",
+            id: ""
         }
     }
     loadClass() {
@@ -20,23 +19,40 @@ class ClassDetails extends Component {
                     nameOfClass: classResp.data.nameOfClass,
                     ageGroup: classResp.data.ageGroup,
                     room: classResp.data.room,
-                    instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName
+                    id: classResp.data._id
                 })
-
+                if (classResp.data.instructor) {
+                    this.setState({ instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName })
+                }
             })
+    }
+
+    handleDelete(id) {
+
     }
 
     componentWillMount() {
         this.loadClass()
+        // console.log(this.props.match.params.id)
+        // console.log(this.state)
     }
     render() {
-
         return (<div>
-            {}
-            <h1>Name of Class: {this.state.nameOfClass}</h1>
-            <h2>Instructor: {this.state.instructor}</h2>
-            <h2>Age Group: {this.state.ageGroup}</h2>
+            <div className="card mt-3">
+                <div className="card-header bg-secondary">
+                    <h1 className="display-3 text-white">{this.state.nameOfClass}</h1>
+                </div>
+                <div className="card-body">
 
+                    <h3>Instructor: {(this.state.instructor) ? this.state.instructor : " "}</h3>
+                    <h3>Age Group: {this.state.ageGroup}</h3>
+                </div>
+            </div>
+
+
+
+
+            <button className="btn btn-danger" onClick={this.handleDelete(this.state.id)}>Delete Class</button>
         </div>)
     }
 }

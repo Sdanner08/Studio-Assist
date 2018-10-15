@@ -34,7 +34,6 @@ class Classes extends Component {
     loadClasses = () => {
         API.getClasses()
             .then(res => {
-
                 this.setState({
                     classes: res.data,
                     nameOfClass: "",
@@ -73,7 +72,6 @@ class Classes extends Component {
 
         event.preventDefault();
         if (this.state.nameOfClass && this.state.maxCapacity) {
-            debugger;
             API.saveClass({
                 nameOfClass: this.state.nameOfClass,
                 maxCapacity: this.state.maxCapacity,
@@ -125,7 +123,6 @@ class Classes extends Component {
                     )}
 
                 <AddBtn onClick={this.showModal}>Add Class</AddBtn>
-                <DeleteBtn>Remove Class</DeleteBtn>
                 {modal}
             </div>
 

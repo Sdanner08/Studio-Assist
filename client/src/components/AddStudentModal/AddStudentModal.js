@@ -36,9 +36,27 @@ const AddStudentModal = props => (
                             name="birthday"
                             placeholder="Birthday" />
                     </div>
+                    <div className="form-group">
+                        <input className="form-control" type="text" value={props.parentFirstName}
+                            onChange={props.onChange}
+                            name="parentFirstName"
+                            placeholder="Parent First Name" />
+                    </div>
+                    <div className="form-group">
+                        <input className="form-control" type="text" value={props.parentLastName}
+                            onChange={props.onChange}
+                            name="parentLastName"
+                            placeholder="Parent Last Name" />
+                    </div>
+                    <div className="form-group">
+                        <input className="form-control" type="text" value={props.phone}
+                            onChange={props.onChange}
+                            name="phone"
+                            placeholder="Parent Phone" />
+                    </div>
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-primary" onClick={props.onSave}>Save Student</button>
+                    <button type="button" className="btn btn-primary" onClick={function (event) { props.onSave(event); props.onClose() }}>Save Student</button>
                     <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={props.onClose}>Close</button>
                 </div>
             </div>

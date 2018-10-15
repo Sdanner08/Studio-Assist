@@ -1,31 +1,30 @@
-import React, { Component } from 'react';
-// import "./studentList.css";
+import React from 'react';
+import ListItem from '../../components/studentList/listItem'
 
-class StudentList extends Component {
-    render() {
-        return (
-            <div>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Students</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row"><a href="#">Saajan</a></th>
-                        </tr>
-                        <tr>
-                            <th scope="row">Shane</th>
-                        </tr>
-                        <tr>
-                            <th scope="row">Manuel</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+const StudentList = (props) => {
+    const studentItem = props.students.map(student => {
+        return <ListItem Student={student} key={student._id} />
+    })
+
+    return (
+
+        < div >
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {studentItem}
+                </tbody>
+            </table>
+        </div >
+    )
 }
 
 export default StudentList;

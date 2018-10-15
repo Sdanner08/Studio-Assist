@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ListItem from '../../components/classList/listItem'
-import getClasses from '../../utils/API'
 import "./classList.css";
-import Classes from '../../pages/Classes/Classes';
+
 
 
 const ClassList = (props) => {

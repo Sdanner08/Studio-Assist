@@ -15,9 +15,11 @@ module.exports = {
     },
 
     findOne(req, res) {
-        db.Instructor.find({ _id: req.params.id }).then(resp => {
-            res.json(resp)
-        })
+        db.Instructor.findOne({ _id: req.params.id })
+            .populate("classes")
+            .exec((err, resp) => {
+                res.json(resp)
+            })
     },
 
     //@route POST api/instructor/

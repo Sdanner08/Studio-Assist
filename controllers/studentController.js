@@ -6,7 +6,6 @@ module.exports = {
     //@desc find all the students
     //@acess 
     findAll(req, res) {
-        console.log(process.env.SECRETACCESSKEY)
         db.Student.find({}, (err, resp) => {
             if (err) {
                 res.send(err)
@@ -36,11 +35,19 @@ module.exports = {
     //@desc Create a new students 
     //@acess 
     create(req, res) {
+        let today = new Date()
+        let birthDate = new Date(req.body.birthday)
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age = age - 1;
+        }
         const student = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             picture: req.body.picture,
             birthday: req.body.birthday,
+            age: age,
             parents: [
                 {
                     firstName: req.body.parentFirstName,

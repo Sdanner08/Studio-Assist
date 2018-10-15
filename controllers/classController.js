@@ -16,8 +16,8 @@ module.exports = {
     findOne(req, res) {
         let id = req.params.id
         db.Class.findOne({ _id: id })
+            .populate({ path: "instructor", select: "firstName lastName" })
             .populate("students")
-            .populate("instructor")
             .exec((err, classes) => {
                 res.json(classes)
             })
@@ -34,10 +34,16 @@ module.exports = {
             room: req.body.room,
             ageGroup: req.body.ageGroup,
             cost: req.body.cost,
-            instructor: req.body.instructor
         }
+        if (req.body.instructor !== "") {
+            Class.instructor = req.body.instructor
+        }
+
         db.Class.create(Class, (err, Class) => {
-            res.json(Class)
+            console.log(Class)
+            db.Instructor.updateOne({ _id: Class.instructor }, { $push: { classes: Class.id } }).then(updated => {
+                res.json({ Class, updated })
+            })
         })
     },
 

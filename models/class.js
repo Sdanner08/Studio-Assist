@@ -13,7 +13,8 @@ const classSchema = new Schema({
             ref: "Student"
         }
     ],
-    instructor: {
+    instructor:
+    {
         type: String,
         ref: "Instructor"
     },

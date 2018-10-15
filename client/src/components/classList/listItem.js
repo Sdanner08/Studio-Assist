@@ -7,7 +7,6 @@ export const ListItem = props => (
     <td>{props.Classes.room}</td>
     <td>{props.Classes.ageGroup}</td>
     <td><a className="btn btn-sm btn-primary" href={`/classes/${props.Classes._id}`}>View</a></td>
-
   </tr>
 );
 
