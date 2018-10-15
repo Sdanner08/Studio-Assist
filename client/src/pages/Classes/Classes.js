@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import ClassList from '../../components/classList/classList';
-import ListItem from '../../components/classList/listItem'
-import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
 import API from "../../utils/API";
