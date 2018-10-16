@@ -10,9 +10,11 @@ class ClassDetails extends Component {
             room: "",
             ageGroup: "",
             instructor: "",
-            id: ""
+            id: "",
+            students: []
         }
     }
+
     loadClass() {
         API.getClass(this.props.match.params.id)
             .then(classResp => {
@@ -20,7 +22,8 @@ class ClassDetails extends Component {
                     nameOfClass: classResp.data.nameOfClass,
                     ageGroup: classResp.data.ageGroup,
                     room: classResp.data.room,
-                    id: classResp.data._id
+                    id: classResp.data._id,
+                    students: classResp.data.students
                 })
                 if (classResp.data.instructor) {
                     this.setState({ instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName })
@@ -29,7 +32,6 @@ class ClassDetails extends Component {
     }
 
     handleDelete() {
-        console.log(this.state.id)
         API.deleteClass(this.state.id)
             .then(res => {
                 const { history } = this.props;
@@ -38,13 +40,10 @@ class ClassDetails extends Component {
             .catch(err => {
                 console.log(err)
             })
-
     }
 
     componentWillMount() {
         this.loadClass()
-        // console.log(this.props.match.params.id)
-        // console.log(this.state)
     }
     render() {
         return (<div>

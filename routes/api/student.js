@@ -6,6 +6,8 @@ const studentController = require("../../controllers/studentController");
 //@acess 
 router.get("/", studentController.findAll)
 
+router.get("/status/:status", studentController.findAllByStatus)
+
 //@route GET api/student/
 //@desc gets one student
 //@acess 

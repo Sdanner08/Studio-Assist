@@ -22,6 +22,7 @@ class StudentDetails extends Component {
     }
 
 
+    //loads all student details inlcuding what classes they are enrolled in
     loadStudent() {
         API.getStudent(this.props.match.params.id)
             .then(studentResp => {
@@ -36,20 +37,22 @@ class StudentDetails extends Component {
             })
     }
 
+
+    //loads available classes to enroll in
     loadClasses() {
-        API.getClassesByAge(this.state.id, this.state.age)
+        API.getClasses()
             .then(classes => {
                 this.setState({ classes: classes.data })
             })
     }
 
     componentWillMount() {
-        this.loadStudent()
-        this.loadClasses()
+        this.loadStudent()//load student details
+        this.loadClasses()//load classes available to sign up 
     }
 
+    //handle enroll class submit
     handleFormSubmit = event => {
-        console.log(this.state.selectedClass)
         event.preventDefault();
         API.enrollAClass(this.state.selectedClass, this.state.id)
             .then(res => {
@@ -64,6 +67,7 @@ class StudentDetails extends Component {
         });
     };
 
+    //de
     handleDelete() {
         API.deleteStudent(this.state.id)
             .then(res => {
@@ -74,7 +78,6 @@ class StudentDetails extends Component {
     }
 
     showModal = event => {
-        this.loadClasses();
         this.setState({ showModal: true });
     }
 

@@ -24,7 +24,7 @@ class Students extends Component {
     }
 
     loadStudents = () => {
-        API.getStudents()
+        API.getActiveStudents()
             .then(res =>
                 this.setState({
                     students: res.data,
