@@ -24,6 +24,14 @@ export default {
   getStudents: function () {
     return axios.get("/api/students")
   },
+
+  getActiveStudents: function () {
+    return axios.get("/api/students/status/active")
+  },
+
+  getInactiveStudents: function () {
+    return axios.get("/api/students/inactive")
+  },
   // Gets the student with the given id
   getStudent: function (id) {
     return axios.get("/api/students/" + id);

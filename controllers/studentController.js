@@ -15,6 +15,21 @@ module.exports = {
         })
     },
 
+    findAllByStatus(req, res) {
+        let status = req.params.status
+        if (status === "active") {
+            status = true
+        }
+        else {
+            status = false
+        }
+
+        db.Student.find({ active: status }).then(students => {
+            res.json(students)
+        })
+
+    },
+
     //@route GET api/student/:id
     //@desc Returns a specific student along with what classes they are enrolled and the class details
     //@acess 
@@ -77,7 +92,7 @@ module.exports = {
             if (!err) {
                 if (!resp.length) {
                     db.Student.update({ _id: studentId }, { $push: { classesEnrolled: classId } }, (err, student) => {
-                        db.Class.update({ _id: classId }, { $push: { students: studentId }, $inc:{maxCapacity: -1}}, (err, registedClass) => {
+                        db.Class.update({ _id: classId }, { $push: { students: studentId }, $inc: { maxCapacity: -1 } }, (err, registedClass) => {
                             console.log(err);
                             var response = {
                                 student,
