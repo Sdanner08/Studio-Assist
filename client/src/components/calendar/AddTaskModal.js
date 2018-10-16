@@ -1,8 +1,7 @@
-import React from 'react';
-//import PropTypes from 'prop-types';
-import "./calender.css";
+import React from "react";
+// import "./AddClassModal.css";
 
-const Modal = props => (
+const AddTaskModal = props => (
     <div className="modal fade show" role="dialog" style={{ display: "block" }}>
         <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -14,15 +13,17 @@ const Modal = props => (
                 </div>
                 <div className="modal-body">
                     <div className="form-group">
-                        <input className="form-control" type="text" value={props.taskName}
-                            onChange={props.taskName}
-                            name="taskName"
-                            placeholder="New Task" />
-                    </div>
-                    <div className="form-group">
-                        <input className="form-control" type="date" value={props.taskDate}
+                        <input className="form-control" type="text" value={props.nameOfTask}
                             onChange={props.onChange}
-                            name="taskDate"
+                            name="nameOfTask"
+                            placeholder="example: Dance Class" />
+                    </div>
+                </div>
+                <div className="modal-body">
+                    <div className="form-group">
+                        <input className="form-control" type="date" value={props.timeOfTask}
+                            onChange={props.onChange}
+                            name="dateOfTask"
                             placeholder="Date of Task" />
                     </div>
                 </div>
@@ -33,6 +34,6 @@ const Modal = props => (
             </div>
         </div>
     </div>
-)
+);
 
-export default Modal;
+export default AddTaskModal;

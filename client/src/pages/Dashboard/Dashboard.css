@@ -1,11 +1,12 @@
 #main{
     float: left;
-    width: 50%;
+    width: 45%;
 }
-#calender{
+#calendar{
     float: right;
     width: 50%;
 }
+
 #header{
     padding: 20px;
 }

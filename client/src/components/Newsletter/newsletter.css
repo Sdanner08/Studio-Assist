@@ -1,4 +1,12 @@
 #dash{
     float: left;
     clear: both;
+    border: solid black 2px;
+    padding: 50px;
+   
+}
+#newLImg{
+    width: 400px;
+    height: auto;
+    border-radius: 10%;
 }

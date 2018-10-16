@@ -48,5 +48,21 @@ export default {
   // Saves an instructor to the database
   saveInstructor: function (instructorData) {
     return axios.post("/api/instructors", instructorData);
-  }
+  },
+  // Gets all Tasks
+  getTasks: function () {
+    return axios.get("/api/tasks")
+  },
+  // Gets the Tasks with the given id
+  getTask: function (id) {
+    return axios.get("/api/tasks/" + id);
+  },
+  // Deletes the Tasks with the given id
+  deleteTask: function (id) {
+    return axios.delete("/api/tasks/" + id)
+  },
+  // Saves a Tasks to the database
+  saveTask: function (taskData) {
+    return axios.post("/api/tasks", taskData);
+  },
 };
