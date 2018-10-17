@@ -2,12 +2,21 @@
 #profileArea{
     margin-top: 10px;
     Padding:25px;
-    width: 50%;
     float: left;
+    background-color: black;
 }
 .Profile-image{
     border-radius: 50%;
+    height: 100px;
+    padding: 10px;
+    padding-left: 50px;
 }
+
 #profileHeader{
-   
+    text-align: center;
+}
+h3{
+    color: white;
+    font-size: 30px;
+    padding: 20px;
 }
