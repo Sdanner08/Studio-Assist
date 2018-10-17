@@ -1,48 +1,44 @@
 import React, { Component } from 'react';
-import StudentList from '../../components/studentList/studentList';
+import InstructorList from '../../components/instructorList/instructorList';
 import AddBtn from '../../components/AddBtn/AddBtn';
-import AddStudentModal from '../../components/AddStudentModal/AddStudentModal';
+import AddInstructorModal from '../../components/AddInstructorModal/AddInstructorModal';
 import API from "../../utils/API";
 
-class Students extends Component {
+class Instructors extends Component {
 
     state = {
-        students: [],
+        instructors: [],
         firstName: "",
         lastName: "",
+        username: "",
+        password: "",
         picture: "",
-        birthday: "",
-        parentLastName: "",
-        parentFirstName: "",
-        phone: "",
-        classesEnrolled: [],
+        classes: [],
         showModal: false
     }
 
     componentDidMount() {
-        this.loadStudents();
+        this.loadInstructors();
     }
 
-    loadStudents = () => {
-        API.getActiveStudents()
+    loadInstructors = () => {
+        API.getInstructors()
             .then(res =>
                 this.setState({
-                    students: res.data,
+                    instructors: res.data,
                     firstName: "",
                     lastName: "",
-                    picture: "",
-                    birthday: "",
-                    parentFirstName: "",
-                    parentLastName: "",
-                    phone: "",
+                    username: "",
+                    password: "",
+                    picture: ""
                 })
             )
             .catch(err => console.log(err));
     };
 
-    deleteStudent = id => {
-        API.deleteStudent(id)
-            .then(res => this.loadStudents())
+    deleteInstructor = id => {
+        API.deleteInstructor(id)
+            .then(res => this.loadInstructors())
             .catch(err => console.log(err));
     };
 
@@ -56,17 +52,14 @@ class Students extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.firstName && this.state.lastName) {
-            API.saveStudent({
+            API.saveInstructor({
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
-                picture: this.state.picture,
-                birthday: this.state.birthday,
-                phone: this.state.phone,
-                parentFirstName: this.state.parentFirstName,
-                parentLastName: this.state.parentLastName
-
+                username: this.state.username,
+                password: this.state.password,
+                picture: this.state.picture
             })
-                .then(res => this.loadStudents())
+                .then(res => this.loadInstructors())
                 .catch(err => console.log(err));
         }
     }
@@ -83,35 +76,33 @@ class Students extends Component {
         var modal;
         if (this.state.showModal) {
             modal =
-                <AddStudentModal
+                <AddInstructorModal
                     onChange={this.handleInputChange}
                     onClose={this.hideModal}
                     onSave={this.handleFormSubmit}
                     firstName={this.state.firstName}
                     lastName={this.state.lastName}
+                    username={this.state.username}
+                    password={this.state.password}
                     picture={this.state.picture}
-                    birthday={this.state.birthday}
-                    parentLastName={this.state.parentLastName}
-                    parentFirstName={this.state.parentFirstName}
-                    phone={this.state.phone}
                 />;
         } else {
             modal = "";
         }
         return (
             <div className="container">
-                {this.state.students.length ? (
-                    <StudentList students={this.state.students} />
-                ) : (<h3>No Students</h3>
+                {this.state.instructors.length ? (
+                    <InstructorList instructors={this.state.instructors} />
+                ) : (<h3>No Instructors</h3>
 
                     )}
 
 
-                <AddBtn onClick={this.showModal}>Add Student</AddBtn>
+                <AddBtn onClick={this.showModal}>Add Instructor</AddBtn>
                 {modal}
             </div>
         )
     }
 }
 
-export default Students;
+export default Instructors;

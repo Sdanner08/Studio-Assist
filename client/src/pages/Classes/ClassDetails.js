@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
+import DeleteBtn from '../../components/DeleteBtn/DeleteBtn'
 
 class ClassDetails extends Component {
     constructor(props) {
@@ -9,9 +10,11 @@ class ClassDetails extends Component {
             room: "",
             ageGroup: "",
             instructor: "",
-            id: ""
+            id: "",
+            students: []
         }
     }
+
     loadClass() {
         API.getClass(this.props.match.params.id)
             .then(classResp => {
@@ -19,7 +22,8 @@ class ClassDetails extends Component {
                     nameOfClass: classResp.data.nameOfClass,
                     ageGroup: classResp.data.ageGroup,
                     room: classResp.data.room,
-                    id: classResp.data._id
+                    id: classResp.data._id,
+                    students: classResp.data.students
                 })
                 if (classResp.data.instructor) {
                     this.setState({ instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName })
@@ -27,18 +31,24 @@ class ClassDetails extends Component {
             })
     }
 
-    handleDelete(id) {
-
+    handleDelete() {
+        API.deleteClass(this.state.id)
+            .then(res => {
+                const { history } = this.props;
+                history.push("/classes")
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     componentWillMount() {
         this.loadClass()
-        // console.log(this.props.match.params.id)
-        // console.log(this.state)
     }
     render() {
         return (<div>
             <div className="card mt-3">
+                {console.log(this.state)}
                 <div className="card-header bg-secondary">
                     <h1 className="display-3 text-white">{this.state.nameOfClass}</h1>
                 </div>
@@ -52,7 +62,7 @@ class ClassDetails extends Component {
 
 
 
-            <button className="btn btn-danger" onClick={this.handleDelete(this.state.id)}>Delete Class</button>
+            <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
         </div>)
     }
 }

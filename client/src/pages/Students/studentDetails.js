@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import API from "../../utils/API";
 import ClassesEnrolled from '../../components/singleStudent/classesEnrolled'
 import EnrollModal from '../../components/enrollInClassModal/enrollModal'
+import DeleteBtn from '../../components/DeleteBtn/DeleteBtn'
 
 class StudentDetails extends Component {
     constructor(props) {
@@ -13,13 +14,15 @@ class StudentDetails extends Component {
             age: "",
             id: "",
             classesEnrolled: [],
-            parents: []
-            // showModal: false,
-            // classes: []
+            parents: [],
+            showModal: false,
+            classes: [],
+            selectedClass: ""
         }
     }
 
 
+    //loads all student details inlcuding what classes they are enrolled in
     loadStudent() {
         API.getStudent(this.props.match.params.id)
             .then(studentResp => {
@@ -34,6 +37,8 @@ class StudentDetails extends Component {
             })
     }
 
+
+    //loads available classes to enroll in
     loadClasses() {
         API.getClasses()
             .then(classes => {
@@ -42,13 +47,17 @@ class StudentDetails extends Component {
     }
 
     componentWillMount() {
-        this.loadStudent()
-        this.loadClasses()
+        this.loadStudent()//load student details
+        this.loadClasses()//load classes available to sign up 
     }
 
+    //handle enroll class submit
     handleFormSubmit = event => {
-
         event.preventDefault();
+        API.enrollAClass(this.state.selectedClass, this.state.id)
+            .then(res => {
+                this.loadStudent()
+            })
     }
 
     handleInputChange = event => {
@@ -57,6 +66,16 @@ class StudentDetails extends Component {
             [name]: value
         });
     };
+
+    //de
+    handleDelete() {
+        API.deleteStudent(this.state.id)
+            .then(res => {
+                const { history } = this.props;
+                history.push("/students")
+            })
+            .catch(err => console.log(err));
+    }
 
     showModal = event => {
         this.setState({ showModal: true });
@@ -75,6 +94,7 @@ class StudentDetails extends Component {
                     onClose={this.hideModal}
                     onSave={this.handleFormSubmit}
                     classes={this.state.classes}
+                    id={this.state.id}
                 />
         } else {
             modal = "";
@@ -91,6 +111,8 @@ class StudentDetails extends Component {
                 </div>
                 <button className="btn btn-success" onClick={this.showModal}>Enroll</button>
                 {modal}
+
+                <DeleteBtn onClick={() => this.handleDelete()}>Remove Student</DeleteBtn>
             </div>
         )
     }

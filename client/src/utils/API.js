@@ -5,6 +5,9 @@ export default {
   getClasses: function () {
     return axios.get("/api/classes")
   },
+  getClassesByAge: function (id, age) {
+    return axios.get(`/api/classes/${id}/${age}`)
+  },
   // Gets the class with the given id
   getClass: function (id) {
     return axios.get("/api/classes/" + id);
@@ -20,6 +23,14 @@ export default {
   // Gets all students
   getStudents: function () {
     return axios.get("/api/students")
+  },
+
+  getActiveStudents: function () {
+    return axios.get("/api/students/status/active")
+  },
+
+  getInactiveStudents: function () {
+    return axios.get("/api/students/inactive")
   },
   // Gets the student with the given id
   getStudent: function (id) {

@@ -23,6 +23,31 @@ module.exports = {
             })
     },
 
+    //@route GET api/classes/:id/:age
+    //@desc find classes by id and age
+    //@acess 
+    findByAgeAndEnrollment(req, res) {
+        let id = req.params.id;
+        let age = req.params.age;
+        let ageQuery = "";
+        if(age >= 3 && age <= 4) {
+            ageQuery="3-4"
+        } else if (age >= 5 && age <= 7) {
+            ageQuery="5-7"
+        } else if (age >= 8 && age <= 12) {
+            ageQuery="8-12"
+        } else if (age >= 13 && age <= 16) {
+            ageQuery="13-16"
+        } else if (age >= 17 && age <= 18) {
+            ageQuery="17-18"
+        }
+        db.Class.find({ 
+            students: {$ne: id},
+            ageGroup: ageQuery,
+            maxCapacity: {$gte: 1}
+        }).then(resp => {res.json(resp)})
+    },
+
     //@route POST api/classes/
     //@desc Create a new class
     //@acess 

@@ -17,6 +17,11 @@ router.post("/", classController.create)
 //@acess 
 router.get("/:id", classController.findOne)
 
+//@route GET api/classes/:id/:age
+//@desc Get a specific class by ID and age
+//@acess 
+router.get("/:id/:age", classController.findByAgeAndEnrollment)
+
 //@route PUT api/classes/:id/:insId
 //@desc Update class to add or change instructor
 //@acess 
