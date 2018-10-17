@@ -76,4 +76,7 @@ export default {
   saveTask: function (taskData) {
     return axios.post("/api/tasks", taskData);
   },
+  enrollAClass: function (classId, studentId) {
+    return axios.post("/api/students/registerClass/", { classId, studentId })
+  }
 };
