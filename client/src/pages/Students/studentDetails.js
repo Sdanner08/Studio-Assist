@@ -15,6 +15,7 @@ class StudentDetails extends Component {
             id: "",
             classesEnrolled: [],
             parents: [],
+            phone: "",
             showModal: false,
             classes: [],
             selectedClass: ""
@@ -31,6 +32,7 @@ class StudentDetails extends Component {
                     lastName: studentResp.data.lastName,
                     birthday: studentResp.data.birthday,
                     age: studentResp.data.age,
+                    // phone: studentResp.data.phone,
                     classesEnrolled: studentResp.data.classesEnrolled,
                     id: studentResp.data._id
                 })
@@ -102,13 +104,26 @@ class StudentDetails extends Component {
 
         return (
             <div>
-                <h1>{`${this.state.firstName} ${this.state.lastName}`}</h1>
-                <div className="row">
-                    <div className="col-md-6">
-                        <h3>Class Enrolled</h3>
-                        <ClassesEnrolled classes={this.state.classesEnrolled} />
+                <div className="card mt-3">
+                    {console.log(this.state)}
+                    <div className="card-header bg-secondary">
+                        <h1 className="display-3 text-white">{`${this.state.firstName} ${this.state.lastName}`}</h1>
+                    </div>
+                    <div className="card-body">
+                        <h2>{`Birthday: ${this.state.birthday} \n`}</h2>
+                        <h2>{`Age: ${this.state.age} \n`}</h2>
+                        <h2>{`Parent: ${this.state.parentFirstName} ${this.state.parentLastName} \n`}</h2>
+                        <h2>{`Phone Number: ${this.state.phone}`}</h2>
+                        <h2>Classes Enrolled: </h2>
+
+                        <div className="row">
+                            <div className="col-md-6">
+                                <ClassesEnrolled classes={this.state.classesEnrolled} />
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <button className="btn btn-success" onClick={this.showModal}>Enroll</button>
                 {modal}
 
