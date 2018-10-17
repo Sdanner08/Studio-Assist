@@ -60,12 +60,44 @@ const AddClassModal = props => {
                                 {instructors}
                             </select>
                         </div>
-                        <div className="form-group">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="checkbox" id="monday" value="monday" />
+                            <label className="form-check-label" htmlFor="monday">Mon</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="checkbox" id="tuesday" value="tuesday" />
+                            <label className="form-check-label" htmlFor="tuesday">Tue</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="checkbox" id="wednesday" value="wednesday" />
+                            <label className="form-check-label" htmlFor="wednesday">Wed</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="checkbox" id="thursday" value="thursday" />
+                            <label className="form-check-label" htmlFor="thursday">Thur</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="checkbox" id="friday" value="friday" />
+                            <label className="form-check-label" htmlFor="friday">Fri</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="checkbox" id="saturday" value="saturday" />
+                            <label className="form-check-label" htmlFor="saturday">Sat</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="checkbox" id="sunday" value="sunday" />
+                            <label className="form-check-label" htmlFor="sunday">Sun</label>
+                        </div>
+
+                        <div className="form-group pt-3">
+                            <input type="time" className="form-control" name="bdaytime"></input>
+                        </div>
+                        {/* <div className="form-group">
                             <input className="form-control" type="text" value={props.schedule}
                                 onChange={props.onChange}
                                 name="schedule"
                                 placeholder="Schedule (required)" />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-primary" onClick={function (event) { props.onSave(event); props.onClose() }}>Save Class</button>

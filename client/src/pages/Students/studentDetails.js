@@ -42,15 +42,16 @@ class StudentDetails extends Component {
 
     //loads available classes to enroll in
     loadClasses() {
-        API.getClasses()
+        API.getClassesByAge(this.state.id, this.state.age)
             .then(classes => {
+                console.log(classes)
                 this.setState({ classes: classes.data })
             })
     }
 
     componentWillMount() {
         this.loadStudent()//load student details
-        this.loadClasses()//load classes available to sign up 
+        //load classes available to sign up 
     }
 
     //handle enroll class submit
@@ -80,6 +81,7 @@ class StudentDetails extends Component {
     }
 
     showModal = event => {
+        this.loadClasses()
         this.setState({ showModal: true });
     }
 

@@ -3,7 +3,6 @@ import ClassList from '../../components/classList/classList';
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
 import API from "../../utils/API";
-// import { Link } from "react-router-dom";
 
 
 class Classes extends Component {
@@ -22,11 +21,11 @@ class Classes extends Component {
             showModal: false,
             instructors: []
         }
+        this.loadClasses();
     }
 
 
     componentDidMount() {
-        this.loadClasses();
         this.loadInstructors();
     }
 

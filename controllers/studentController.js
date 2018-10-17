@@ -15,6 +15,10 @@ module.exports = {
         })
     },
 
+
+    //@route GET api/student/
+    //@desc find all the students by status
+    //@acess 
     findAllByStatus(req, res) {
         let status = req.params.status
         if (status === "active") {
@@ -50,6 +54,7 @@ module.exports = {
     //@desc Create a new students 
     //@acess 
     create(req, res) {
+        // console.log(req.files)
         let today = new Date()
         let birthDate = new Date(req.body.birthday)
         let age = today.getFullYear() - birthDate.getFullYear();
@@ -60,7 +65,7 @@ module.exports = {
         const student = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            picture: req.body.picture,
+            picture: `https://s3.amazonaws.com/studioassist/${req.files.originalname}`,
             birthday: req.body.birthday,
             age: age,
             parents: [
@@ -71,13 +76,14 @@ module.exports = {
                 }
             ]
         }
-        db.Student.create(student, (err, student) => {
-            if (err) {
-                res.send(err)
-            } else {
-                res.json(student)
-            }
-        })
+        console.log(student)
+        // db.Student.create(student, (err, student) => {
+        //     if (err) {
+        //         res.send(err)
+        //     } else {
+        //         res.json(student)
+        //     }
+        // })
     },
 
     //@route POST api/student/registerClass

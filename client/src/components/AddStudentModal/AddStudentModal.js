@@ -25,12 +25,6 @@ const AddStudentModal = props => (
                             placeholder="Last Name (required)" />
                     </div>
                     <div className="form-group">
-                        <input className="form-control" type="text" value={props.picture}
-                            onChange={props.onChange}
-                            name="picture"
-                            placeholder="Picture" />
-                    </div>
-                    <div className="form-group">
                         <input className="form-control" type="date" value={props.birthday}
                             onChange={props.onChange}
                             name="birthday"
@@ -53,6 +47,12 @@ const AddStudentModal = props => (
                             onChange={props.onChange}
                             name="phone"
                             placeholder="Parent Phone" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="picture">Student Picture</label>
+                        <input className="form-control-file" type="file"
+                            onChange={props.onImageChange}
+                            name="picture" />
                     </div>
                 </div>
                 <div className="modal-footer">
