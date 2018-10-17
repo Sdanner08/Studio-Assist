@@ -15,12 +15,11 @@ const ClassList = (props) => {
                 <thead>
                     <tr>
                         <th scope="col">Class</th>
-                        <th scope="col">Max Capacity</th>
+                        <th scope="col">Capacity</th>
                         <th scope="col">Room</th>
                         <th scope="col">Age Group</th>
                         <th scope="col"></th>
                     </tr>
-
                 </thead>
                 <tbody>
                     {listItem}

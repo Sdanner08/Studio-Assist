@@ -21,11 +21,11 @@ class Classes extends Component {
             showModal: false,
             instructors: []
         }
+        this.loadClasses();
     }
 
 
     componentDidMount() {
-        this.loadClasses();
         this.loadInstructors();
     }
 
