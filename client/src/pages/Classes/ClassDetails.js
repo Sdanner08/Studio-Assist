@@ -53,9 +53,9 @@ class ClassDetails extends Component {
                     <h1 className="display-3 text-white">{this.state.nameOfClass}</h1>
                 </div>
                 <div className="card-body">
-
-                    <h3>Instructor: {(this.state.instructor) ? this.state.instructor : " "}</h3>
-                    <h3>Age Group: {this.state.ageGroup}</h3>
+                    <h2>Instructor: {this.state.instructor}</h2>
+                    <h2>Room: {this.state.room}</h2>
+                    <h2>Age Group: {this.state.ageGroup}</h2>
                 </div>
             </div>
 
