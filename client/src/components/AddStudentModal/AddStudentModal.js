@@ -49,7 +49,7 @@ const AddStudentModal = props => (
                             placeholder="Parent Last Name" />
                     </div>
                     <div className="form-group">
-                        <input className="form-control" type="text" value={props.phone}
+                        <input className="form-control" type="tel" value={props.phone}
                             onChange={props.onChange}
                             name="phone"
                             placeholder="Parent Phone" />

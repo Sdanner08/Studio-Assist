@@ -6,6 +6,7 @@ import "./Dashboard.css";
 import API from "../../utils/API";
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddTaskModal from './../../components/calendar/AddTaskModal'
+import Navbar from './../../components/Navbar/navbar'
 
 class Dashboard extends Component {
     
@@ -78,9 +79,11 @@ class Dashboard extends Component {
             modal = "";
         }
         return (
+            <div>
+            <Navbar />
             <div className="container">
                 <div id="header">
-                    <h1> Welcome to Studio Assist</h1>
+                    <h1>Welcome to Studio Assist</h1>
                 </div>
                 
                 <div id="main">
@@ -95,6 +98,7 @@ class Dashboard extends Component {
                 <div id="bottom">
                     <h1>Stuff Goes HERE</h1>
                 </div>
+            </div>
             </div>
         );
     }

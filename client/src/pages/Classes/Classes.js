@@ -3,8 +3,7 @@ import ClassList from '../../components/classList/classList';
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
 import API from "../../utils/API";
-// import { Link } from "react-router-dom";
-
+import Navbar from './../../components/Navbar/navbar';
 
 class Classes extends Component {
     constructor(props) {
@@ -114,15 +113,18 @@ class Classes extends Component {
             modal = "";
         }
         return (
-            <div className="container">
-                {this.state.classes.length ? (
-                    <ClassList classes={this.state.classes} />
-                ) : (
-                        <h3>No results to display</h3>
-                    )}
+            <div>
+                <Navbar />
+                <div className="container">
+                    {this.state.classes.length ? (
+                        <ClassList classes={this.state.classes} />
+                    ) : (
+                            <h3>No results to display</h3>
+                        )}
 
-                <AddBtn onClick={this.showModal}>Add Class</AddBtn>
-                {modal}
+                    <AddBtn onClick={this.showModal}>Add Class</AddBtn>
+                    {modal}
+                </div>
             </div>
 
         );

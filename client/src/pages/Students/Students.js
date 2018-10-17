@@ -3,6 +3,7 @@ import StudentList from '../../components/studentList/studentList';
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddStudentModal from '../../components/AddStudentModal/AddStudentModal';
 import API from "../../utils/API";
+import Navbar from "../../components/Navbar/navbar"
 
 class Students extends Component {
 
@@ -99,16 +100,19 @@ class Students extends Component {
             modal = "";
         }
         return (
-            <div className="container">
-                {this.state.students.length ? (
-                    <StudentList students={this.state.students} />
-                ) : (<h3>No Students</h3>
+            <div>
+                <Navbar />
+                <div className="container">
+                    {this.state.students.length ? (
+                        <StudentList students={this.state.students} />
+                    ) : (<h3>No Students</h3>
 
-                    )}
+                        )}
 
 
-                <AddBtn onClick={this.showModal}>Add Student</AddBtn>
-                {modal}
+                    <AddBtn onClick={this.showModal}>Add Student</AddBtn>
+                    {modal}
+                </div>
             </div>
         )
     }
