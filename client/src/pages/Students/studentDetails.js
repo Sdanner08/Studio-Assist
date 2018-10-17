@@ -32,7 +32,9 @@ class StudentDetails extends Component {
                     lastName: studentResp.data.lastName,
                     birthday: studentResp.data.birthday,
                     age: studentResp.data.age,
-                    // phone: studentResp.data.phone,
+                    parentFirstName: studentResp.data.parents[0].firstName,
+                    parentLastName: studentResp.data.parents[0].lastName,
+                    phone: studentResp.data.parents[0].phone,
                     classesEnrolled: studentResp.data.classesEnrolled,
                     id: studentResp.data._id
                 })
@@ -112,7 +114,7 @@ class StudentDetails extends Component {
                         <h1 className="display-3 text-white">{`${this.state.firstName} ${this.state.lastName}`}</h1>
                     </div>
                     <div className="card-body">
-                        <h2>{`Birthday: ${this.state.birthday} \n`}</h2>
+                        <h2>{`Birthday: ${this.state.birthday.substring(0,10)} \n`}</h2>
                         <h2>{`Age: ${this.state.age} \n`}</h2>
                         <h2>{`Parent: ${this.state.parentFirstName} ${this.state.parentLastName} \n`}</h2>
                         <h2>{`Phone Number: ${this.state.phone}`}</h2>
