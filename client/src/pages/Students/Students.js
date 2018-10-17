@@ -53,6 +53,11 @@ class Students extends Component {
         });
     };
 
+    handleImageChange = event => {
+        let files = event.target.files
+        this.setState({ picture: files[0] })
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.firstName && this.state.lastName) {
@@ -63,8 +68,7 @@ class Students extends Component {
                 birthday: this.state.birthday,
                 phone: this.state.phone,
                 parentFirstName: this.state.parentFirstName,
-                parentLastName: this.state.parentLastName
-
+                parentLastName: this.state.parentLastName,
             })
                 .then(res => this.loadStudents())
                 .catch(err => console.log(err));
@@ -85,6 +89,7 @@ class Students extends Component {
             modal =
                 <AddStudentModal
                     onChange={this.handleInputChange}
+                    onImageChange={this.handleImageChange}
                     onClose={this.hideModal}
                     onSave={this.handleFormSubmit}
                     firstName={this.state.firstName}
@@ -100,6 +105,7 @@ class Students extends Component {
         }
         return (
             <div className="container">
+                {console.log(this.state)}
                 {this.state.students.length ? (
                     <StudentList students={this.state.students} />
                 ) : (<h3>No Students</h3>
