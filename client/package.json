@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "fullcalendar-reactwrapper": "^1.0.7",
     "http-proxy-middleware": "^0.19.0",
+    "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-particles-js": "^2.3.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.4",
     "react-stripe-elements": "^2.0.1"

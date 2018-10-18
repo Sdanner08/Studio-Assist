@@ -9,7 +9,7 @@ import Payment from './pages/Payment/Payment';
 import ClassDetails from './pages/Classes/ClassDetails';
 import Instructors from './pages/Instructors/Instructors'
 import InstructorDetails from './pages/Instructors/instructorDetails'
-
+import Login from './pages/Login/Login'
 
 
 class App extends Component {
@@ -17,8 +17,6 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Navbar />
-          <div className="container pt-2">
             <Switch>
               {/* <Route exact path="/" component={Dashboard} /> */}
               <Route exact path="/classes" component={Classes} />
@@ -28,9 +26,9 @@ class App extends Component {
               <Route exact path="/students" component={Students} />
               <Route exact path="/students/:id" component={StudentDetails} />
               <Route exact path="/payment" component={Payment} />
-              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/" component={Login} />
             </Switch>
-          </div>
         </div>
       </Router>
     );

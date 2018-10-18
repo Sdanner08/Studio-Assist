@@ -3,6 +3,7 @@ import InstructorList from '../../components/instructorList/instructorList';
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddInstructorModal from '../../components/AddInstructorModal/AddInstructorModal';
 import API from "../../utils/API";
+import Navbar from './../../components/Navbar/navbar';
 
 class Instructors extends Component {
 
@@ -90,16 +91,19 @@ class Instructors extends Component {
             modal = "";
         }
         return (
-            <div className="container">
-                {this.state.instructors.length ? (
-                    <InstructorList instructors={this.state.instructors} />
-                ) : (<h3>No Instructors</h3>
+            <div>
+                <Navbar />
+                <div className="container">
+                    {this.state.instructors.length ? (
+                        <InstructorList instructors={this.state.instructors} />
+                    ) : (<h3>No Instructors</h3>
 
-                    )}
+                        )}
 
 
-                <AddBtn onClick={this.showModal}>Add Instructor</AddBtn>
-                {modal}
+                    <AddBtn onClick={this.showModal}>Add Instructor</AddBtn>
+                    {modal}
+                </div>
             </div>
         )
     }

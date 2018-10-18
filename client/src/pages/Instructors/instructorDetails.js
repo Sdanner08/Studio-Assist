@@ -8,6 +8,7 @@ class InstructorDetails extends Component {
         this.state = {
             firstName: "",
             lastName: "",
+            username: "",
             picture: "",
             id: ""
         }
@@ -18,6 +19,7 @@ class InstructorDetails extends Component {
                 this.setState({
                     firstName: instructorResp.data.firstName,
                     lastName: instructorResp.data.lastName,
+                    username: instructorResp.data.username,
                     picture: instructorResp.data.picture,
                     id: instructorResp.data._id
                 })
@@ -43,13 +45,10 @@ class InstructorDetails extends Component {
         return (<div>
             <div className="card mt-3">
                 <div className="card-header bg-secondary">
-                    <h1 className="display-3 text-white">{this.state.firstName}</h1>
-                    <h1 className="display-3 text-white">{this.state.lastName}</h1>
+                    <h1 className="display-3 text-white">{`${this.state.firstName} ${this.state.lastName}`}</h1>
                 </div>
                 <div className="card-body">
-
-                    {/* <h3>Instructor: {(this.state.instructor) ? this.state.instructor : " "}</h3>
-                    <h3>Age Group: {this.state.ageGroup}</h3> */}
+                    <h2>{`Username: ${this.state.username} \n`}</h2>
                 </div>
             </div>
 
