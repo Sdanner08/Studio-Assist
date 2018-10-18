@@ -129,6 +129,7 @@ class Login extends Component {
 
                 <div id="loginArea" className="container jumbotron loginContainer">
                     <form>
+                        <img id="loginLogo" src={require("../../assets/loginLogo.png")} alt="studio assist logo" />
                         <div class="form-group">
                             <label for="exampleInputEmail1">Username</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username" />
