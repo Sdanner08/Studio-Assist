@@ -13,22 +13,22 @@ const AddTaskModal = props => (
                 </div>
                 <div className="modal-body">
                     <div className="form-group">
-                        <input className="form-control" type="text" value={props.nameOfTask}
+                        <input className="form-control" type="text" 
                             onChange={props.onChange}
-                            name="nameOfTask"
+                            name="title"
                             placeholder="example: Dance Class" />
                     </div>
                 </div>
                 <div className="modal-body">
                     <div className="form-group">
-                        <input className="form-control" type="date" value={props.timeOfTask}
+                        <input className="form-control" type="date" 
                             onChange={props.onChange}
-                            name="dateOfTask"
+                            name="start"
                             placeholder="Date of Task" />
                     </div>
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-primary" onClick={props.onSave}>Save Task</button>
+                    <button type="button" className="btn btn-primary" onClick={function (event) { props.onSave(event); props.onClose() }}>Save Task</button>
                     <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={props.onClose}>Close</button>
                 </div>
             </div>

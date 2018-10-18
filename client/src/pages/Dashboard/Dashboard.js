@@ -37,12 +37,18 @@ class Dashboard extends Component {
     };
 
     handleInputChange = event => {
-        const { title, value } = event.target;
+        const { name, value } = event.target;
         this.setState({
-            [title]: value
+            [name]: value
         });
     };
-
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.title !== prevProps.title) {
+          this.fetchData(this.props.title, this.props.start);
+        }
+      }
+//Added componentDidUpdate here******************* Didn't work but why?
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.title && this.state.start) {
@@ -51,7 +57,7 @@ class Dashboard extends Component {
                 start: this.state.start,
             
             })
-                .then(res => this.loadTasks())
+                .then(res => this.loadTasks(), this.componentDidUpdate)
                 .catch(err => console.log(err));
         }
     }
@@ -71,7 +77,7 @@ class Dashboard extends Component {
                     onChange={this.handleInputChange}
                     onClose={this.hideModal}
                     onSave={this.handleFormSubmit}
-                    title={this.state.tilte}
+                    title={this.state.title}
                     start={this.state.start}
                 />;
         } else {
@@ -93,7 +99,6 @@ class Dashboard extends Component {
                     {modal}
                 </div>
                 <div id="bottom">
-                    <h1>Stuff Goes HERE</h1>
                 </div>
             </div>
         );
