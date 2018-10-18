@@ -1,6 +1,6 @@
-const aws = require('aws-sdk'),
-    multer = require('multer'),
-    multerS3 = require('multer-s3');
+// const aws = require('aws-sdk'),
+//     multer = require('multer'),
+//     multerS3 = require('multer-s3');
 
 aws.config.update({
     secretAccessKey: process.env.SECRETACCESSKEY,

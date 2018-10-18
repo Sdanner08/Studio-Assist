@@ -55,6 +55,7 @@ class Students extends Component {
     };
 
     handleImageChange = event => {
+        debugger;
         let files = event.target.files
         this.setState({ picture: files[0] })
     }

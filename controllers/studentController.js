@@ -1,5 +1,4 @@
 const db = require("../models")
-
 module.exports = {
 
     //@route GET api/student/
@@ -14,7 +13,6 @@ module.exports = {
             }
         })
     },
-
 
     //@route GET api/student/
     //@desc find all the students by status
@@ -50,11 +48,20 @@ module.exports = {
             })
     },
 
+
+
+
+
+
+
+
+
     //@route POST api/student/
     //@desc Create a new students 
     //@acess 
     create(req, res) {
-        // console.log(req.files)
+        console.log("test")
+        console.log(req.file)
         let today = new Date()
         let birthDate = new Date(req.body.birthday)
         let age = today.getFullYear() - birthDate.getFullYear();
@@ -65,7 +72,7 @@ module.exports = {
         const student = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            picture: `https://s3.amazonaws.com/studioassist/${req.files.originalname}`,
+            // picture: `https://s3.amazonaws.com/studioassist/${req.files.originalname}`,
             birthday: req.body.birthday,
             age: age,
             parents: [

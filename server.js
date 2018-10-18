@@ -7,7 +7,7 @@ const express = require('express'),
     routes = require("./routes/index"),
     path = require("path"),//temp for testing only
     passport = require('passport'),
-    cors = require('cors');
+    cors = require('cors')
 
 require('dotenv').config()
 

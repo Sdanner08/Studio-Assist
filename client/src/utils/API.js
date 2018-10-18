@@ -42,7 +42,10 @@ export default {
   },
   // Saves a student to the database
   saveStudent: function (studentData) {
-    return axios.post("/api/students", studentData);
+    let data = new FormData()
+    data.append('file', studentData.picture, studentData.picture.name)
+
+    return axios.post("/api/students/", data);
   },
   // Gets all instructors
   getInstructors: function () {
