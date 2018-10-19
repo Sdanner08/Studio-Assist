@@ -1,11 +1,11 @@
 // import React...
 import React from 'react';
+import API from "../../utils/API";
 
 
 // ... and fullcalendar-reactwrapper.
 import FullCalendar from 'fullcalendar-reactwrapper';
 import './calendar.css';
-//import AddTaskModal from './AddTaskModal';
 
 class Calendar extends React.Component {
 	
@@ -33,6 +33,19 @@ class Calendar extends React.Component {
 			],		
 	}
   }
+	componentDidMount() {
+		this.loadTasks();
+}
+
+loadTasks = () => {
+	API.getTasks()
+			.then(res =>
+					this.setState({
+							events:res.data
+					})
+			)
+			.catch(err => console.log(err));
+};
 
   render() {
     return (

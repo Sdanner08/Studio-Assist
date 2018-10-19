@@ -1,27 +1,29 @@
 const router = require("express").Router();
-const studentController = require("../../controllers/studentController");
+const taskController = require("../../controllers/taskController");
 
 //@route GET api/student/
 //@desc gets all students
 //@acess 
-router.get("/", studentController.findAll)
+router.get("/", taskController.findAll)
 
 //@route GET api/student/
 //@desc gets one student
 //@acess 
-router.get("/:id", studentController.findOne)
+//router.get("/:id", taskController.findOne)
 
 //@route POST api/student/
 //@desc Creates a new student
 //@acess 
-router.post("/", studentController.create)
+router.post("/", taskController.create)
+
+router.get("/delete",taskController.delete);
 
 //@route POST api/student/registerClass
 //@desc Register a student for a class
 //@acess 
-router.post("/registerClass", studentController.registerAClass)
+//router.post("/registerClass", taskController.registerAClass)
 
 
-router.delete("/:id", studentController.deleteStudent)
+router.delete("/:id", taskController.deleteTask)
 
 module.exports = router;

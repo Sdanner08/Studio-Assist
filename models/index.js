@@ -3,5 +3,6 @@
 module.exports = {
     Class: require("./class"),
     Instructor: require("./instructor"),
-    Student: require("./student")
+    Student: require("./student"),
+    Task: require("./task")
 };
