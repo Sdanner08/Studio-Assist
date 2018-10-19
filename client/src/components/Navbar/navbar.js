@@ -1,9 +1,10 @@
 import React from "react";
-import "./navbar.css";
+import './navbar.css'
 
 const Navbar = (props) => (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-info">
-        <a className="navbar-brand my-2" href="/dashboard"><img src={require("../../assets/logo.png")} alt="studio assist logo" /></a>
+    <div className="navSection">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
+        <a className="navbar-brand" href="/dashboard"><img src={require("../../assets/logo.png")} alt="studio assist logo" /></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
@@ -27,6 +28,7 @@ const Navbar = (props) => (
             </ul>
         </div>
     </nav>
+    </div>
 );
 
 export default Navbar;
