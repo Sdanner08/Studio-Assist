@@ -1,5 +1,7 @@
 import React from 'react';
 import ListItem from '../../components/instructorList/listItem'
+import Wrapper from '../../components/Wrapper/Wrapper'
+
 
 const InstructorList = (props) => {
     const listItem = props.instructors.map(Instructors => {
@@ -7,21 +9,9 @@ const InstructorList = (props) => {
     })
 
     return (
-        <div>
-            <table className="table table-striped mt-4">
-                <thead>
-                    <tr>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col"># Classes Teaching</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {listItem}
-                </tbody>
-            </table>
-        </div>
+        <Wrapper>
+            {listItem}
+        </Wrapper>
     )
 }
 

@@ -5,6 +5,7 @@ import AddInstructorModal from '../../components/AddInstructorModal/AddInstructo
 import API from "../../utils/API";
 import Navbar from './../../components/Navbar/navbar';
 
+
 class Instructors extends Component {
 
     state = {
@@ -99,7 +100,6 @@ class Instructors extends Component {
                     ) : (<h3>No Instructors</h3>
 
                         )}
-
 
                     <AddBtn onClick={this.showModal}>Add Instructor</AddBtn>
                     {modal}
