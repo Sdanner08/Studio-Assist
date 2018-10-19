@@ -113,9 +113,7 @@ class Students extends Component {
                         <StudentList students={this.state.students} />
                     ) : (<h3>No Students</h3>
 
-
                         )}
-
 
                     <AddBtn onClick={this.showModal}>Add Student</AddBtn>
                     {modal}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from './components/Navbar/navbar';
 import Classes from './pages/Classes/Classes';
 import Students from './pages/Students/Students'
 import StudentDetails from './pages/Students/studentDetails'

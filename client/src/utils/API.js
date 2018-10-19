@@ -81,5 +81,8 @@ export default {
   },
   enrollAClass: function (classId, studentId) {
     return axios.post("/api/students/registerClass/", { classId, studentId })
+  },
+  login: function (loginData) {
+    return axios.post("/api/instructors/login/", loginData)
   }
 };
