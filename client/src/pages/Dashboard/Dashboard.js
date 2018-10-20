@@ -94,6 +94,7 @@ class Dashboard extends Component {
                 
                 <div id="main">
                     <Profile/>
+                    <br />
                     <Newsletter/>
                 </div>
                 <div id="calendar">
