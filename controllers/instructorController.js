@@ -26,6 +26,20 @@ module.exports = {
             })
     },
 
+
+    //@route GET api/instructor/
+    //@desc Find One Instructor by ID
+    //@acess 
+    deleteInstructor(req, res) {
+        let instructorId = req.params.id
+        db.Instructor.deleteOne({ _id: instructorId }).then(ins => {
+            db.Class.updateMany({ instructor: instructorId }, { $set: { instructor: " " } }).then(classResp => {
+                res.json("done")
+            })
+
+        })
+    },
+
     //@route POST api/instructor/login
     //@desc Login instructor/return JWT Token
     //@acess 
@@ -56,7 +70,6 @@ module.exports = {
                                             sucess: true,
                                             token: 'Bearer ' + token
                                         })
-
                                     })
                             }
                             else {
@@ -72,6 +85,8 @@ module.exports = {
     //@desc Create instructor 
     //@acess 
     create(req, res) {
+        console.log(req.body)
+        console.log("got to controller")
         //check to see if the username give already exists
         db.Instructor.findOne({ username: req.body.username }).then(
             user => {
@@ -84,8 +99,9 @@ module.exports = {
                         lastName: req.body.lastName,
                         username: req.body.username,
                         password: req.body.password,
-                        picture: req.body.picture
+                        picture: `https://s3.amazonaws.com/studioassist/${req.file.originalname}`
                     }
+                    console.log(newInstructor)
                     //Encrypt the passworkd and replace it i the newInstructor object
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newInstructor.password, salt, (err, hash) => {

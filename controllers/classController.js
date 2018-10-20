@@ -95,9 +95,9 @@ module.exports = {
     //@acess 
     deleteClass(req, res) {
         let id = req.params.id
-        db.Class.deleteOne({ _id: id }, (err, classResp) => {
+        db.Instructor.updateMany({ classes: id }, { $pull: { classes: id } }, (err, instructorResp) => {
             db.Student.updateMany({ classesEnrolled: id }, { $pull: { classesEnrolled: id } }, (err, studentResp) => {
-                db.Instructor.updateMany({ classes: id }, { $pull: { classes: id } }, (err, instructorResp) => {
+                db.Class.deleteOne({ _id: id }, (err, classResp) => {
                     let response = {
                         classResp,
                         studentResp,
@@ -105,10 +105,11 @@ module.exports = {
                     }
                     res.json(response)
                 })
-
-
             })
         })
+
+
+
     }
 
 }
