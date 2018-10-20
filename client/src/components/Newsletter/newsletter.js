@@ -6,24 +6,24 @@ class Newsletter extends Component {
     render() {
         return (
             <div id="dashSumm">
-                <div className="jumbotron jumbotron-fluid">
+                <div id="classJumbo" className="jumbotron jumbotron-fluid">
                     <div className="container">
-                        <h1 className="display-4">Fluid jumbotron</h1>
-                        <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                        <h1 id="jumboName" className="display-4">Classes</h1>
+                        <p className="lead">1</p>
                     </div>
                 </div>
 
-                <div className="jumbotron jumbotron-fluid">
+                <div id="studentJumbo" className="jumbotron jumbotron-fluid">
                     <div className="container">
-                        <h1 className="display-4">Fluid jumbotron</h1>
-                        <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                        <h1 id="jumboName" className="display-4">Students</h1>
+                        <p className="lead">2</p>
                     </div>
                 </div>
 
-                <div className="jumbotron jumbotron-fluid">
+                <div id="instructorsJumbo" className="jumbotron jumbotron-fluid">
                     <div className="container">
-                        <h1 className="display-4">Fluid jumbotron</h1>
-                        <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                        <h1 id="jumboName" className="display-4">Instructors</h1>
+                        <p className="lead">3</p>
                     </div>
                 </div>
 

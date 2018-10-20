@@ -4,10 +4,12 @@ import './listItem.css'
 export const ListItem = props => {
   return (
     <div className="card studentCard">
-      {/* <img className="card-img-top" src="..." /> */}
-      <h5 className="card-body">{`${props.Student.firstName} ${props.Student.lastName}`}</h5>
-      <p className="card-body">{`Age: ${props.Student.age}`}</p>
-      <a className="btn btn-sm btn-primary" href={`/students/${props.Student._id}`}>View</a>
+      <img className="card-img-top" src={props.Student.picture} alt="student" />
+      <div className="card-body">
+        <h4 className="card-title">{`${props.Student.firstName} ${props.Student.lastName}`}</h4>
+        <h5 className="card-title">{`Age: ${props.Student.age}`}</h5>
+        <a className="btn btn-primary" href={`/students/${props.Student._id}`}>View</a>
+      </div>
     </div>
   )
 };

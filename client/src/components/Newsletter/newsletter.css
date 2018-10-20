@@ -12,7 +12,34 @@
 }
 #dashSumm{
     padding: 10px;
-    margin-top: 80px;
-    width: 85%;
-    height: 50%;
+    width: 100%;
+    float: left;
+    clear: both;
+}
+
+ #classJumbo, #studentJumbo, #instructorsJumbo{
+    width: 90%;
+    height: 50px;
+}
+#jumboName{
+    padding: 5px;
+    margin-top: -60px;
+} 
+#classJumbo{
+    background: #67be64;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #7fce7c, #57b954);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #7fce7c, #57b954); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+#studentJumbo{
+    background: #bdaf32;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #b3a73d, #b9aa22;);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #eef2f3, #bdc3c9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+#instructorsJumbo{
+    background: #8e9eab;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #eef2f3, #bdc3c9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #eef2f3, #bdc3c9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }
