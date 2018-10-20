@@ -48,20 +48,10 @@ module.exports = {
             })
     },
 
-
-
-
-
-
-
-
-
     //@route POST api/student/
     //@desc Create a new students 
     //@acess 
     create(req, res) {
-        console.log("test")
-        console.log(req.file)
         let today = new Date()
         let birthDate = new Date(req.body.birthday)
         let age = today.getFullYear() - birthDate.getFullYear();
@@ -72,7 +62,7 @@ module.exports = {
         const student = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            // picture: `https://s3.amazonaws.com/studioassist/${req.files.originalname}`,
+            picture: `https://s3.amazonaws.com/studioassist/${req.file.originalname}`,
             birthday: req.body.birthday,
             age: age,
             parents: [
@@ -83,14 +73,13 @@ module.exports = {
                 }
             ]
         }
-        console.log(student)
-        // db.Student.create(student, (err, student) => {
-        //     if (err) {
-        //         res.send(err)
-        //     } else {
-        //         res.json(student)
-        //     }
-        // })
+        db.Student.create(student, (err, student) => {
+            if (err) {
+                res.send(err)
+            } else {
+                res.json(student)
+            }
+        })
     },
 
     //@route POST api/student/registerClass
@@ -121,7 +110,6 @@ module.exports = {
             else {
                 res.send(err)
             }
-
         })
     },
 
@@ -134,16 +122,18 @@ module.exports = {
         db.Student.updateOne({ _id: studentId }, { $set: { active: false } }, (err, resp) => {
             if (err) {
                 res.json(err)
+            } else {
+                db.Class.updateMany({ students: studentId }, { $pull: { students: studentId } }, (err, resp) => {
+                    if (err) {
+                        res.json(err)
+                    } else {
+                        res.json(resp)
+                    }
+                })
             }
         })
 
-        db.Class.updateMany({ students: studentId }, { $pull: { students: studentId } }, (err, resp) => {
-            if (err) {
-                res.json(err)
-            } else {
-                res.json(resp)
-            }
-        })
+
     }
 
 
