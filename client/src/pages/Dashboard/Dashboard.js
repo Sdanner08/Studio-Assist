@@ -9,14 +9,17 @@ import AddTaskModal from './../../components/calendar/AddTaskModal'
 import Navbar from './../../components/Navbar/navbar'
 
 class Dashboard extends Component {
-    
+
     state = {
         title: "",
         start: "",
         showModal: false
     }
 
+
     componentDidMount() {
+        let token = localStorage.getItem('jwtToken')
+        console.log(token)
         this.loadTasks();
     }
 
@@ -46,17 +49,17 @@ class Dashboard extends Component {
     componentDidUpdate(prevProps) {
         // Typical usage (don't forget to compare props):
         if (this.props.title !== prevProps.title) {
-          this.fetchData(this.props.title, this.props.start);
+            this.fetchData(this.props.title, this.props.start);
         }
-      }
-//Added componentDidUpdate here******************* Didn't work but why?
+    }
+    //Added componentDidUpdate here******************* Didn't work but why?
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.title && this.state.start) {
             API.saveTask({
                 title: this.state.title,
                 start: this.state.start,
-            
+
             })
                 .then(res => this.loadTasks(), this.componentDidUpdate)
                 .catch(err => console.log(err));
@@ -71,7 +74,7 @@ class Dashboard extends Component {
         this.setState({ showModal: false });
     }
     render() {
-    var modal;
+        var modal;
         if (this.state.showModal) {
             modal =
                 <AddTaskModal
@@ -86,25 +89,25 @@ class Dashboard extends Component {
         }
         return (
             <div>
-            <Navbar />
-            <div className="container">
-                <div id="header">
-                    <h1>Welcome to Studio Assist</h1>
+                <Navbar />
+                <div className="container">
+                    <div id="header">
+                        <h1>Welcome to Studio Assist</h1>
+                    </div>
+
+                    <div id="main">
+                        <Profile />
+                        <br />
+                        <Newsletter />
+                    </div>
+                    <div id="calendar">
+                        <Calendar />
+                        <AddBtn onClick={this.showModal}>Add Task</AddBtn>
+                        {modal}
+                    </div>
+                    <div id="bottom">
+                    </div>
                 </div>
-                
-                <div id="main">
-                    <Profile/>
-                    <br />
-                    <Newsletter/>
-                </div>
-                <div id="calendar">
-                    <Calendar/>
-                    <AddBtn onClick={this.showModal}>Add Task</AddBtn>
-                    {modal}
-                </div>
-                <div id="bottom">
-                </div>
-            </div>
             </div>
         );
     }

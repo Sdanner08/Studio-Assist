@@ -37,11 +37,11 @@ const AddInstructorModal = props => {
                                 placeholder="Password (required)" />
                         </div>
                         <div className="form-group">
-                            <input className="form-control" type="text" value={props.picture}
-                                onChange={props.onChange}
-                                name="picture"
-                                placeholder="Picture (required)" />
-                        </div>
+                        <label htmlFor="picture">Instructor Picture</label>
+                        <input className="form-control-file" type="file"
+                            onChange={props.onImageChange}
+                            name="picture" />
+                    </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-primary" onClick={function (event) { props.onSave(event); props.onClose() }}>Save Instructor</button>
