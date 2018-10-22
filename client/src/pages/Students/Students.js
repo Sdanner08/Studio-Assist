@@ -35,7 +35,7 @@ class Students extends Component {
                     birthday: "",
                     parentFirstName: "",
                     parentLastName: "",
-                    phone: "",
+                    phone: ""
                 })
             )
             .catch(err => console.log(err));
@@ -55,7 +55,6 @@ class Students extends Component {
     };
 
     handleImageChange = event => {
-        debugger;
         let files = event.target.files
         this.setState({ picture: files[0] })
     }
@@ -70,7 +69,7 @@ class Students extends Component {
                 birthday: this.state.birthday,
                 phone: this.state.phone,
                 parentFirstName: this.state.parentFirstName,
-                parentLastName: this.state.parentLastName,
+                parentLastName: this.state.parentLastName
             })
                 .then(res => this.loadStudents())
                 .catch(err => console.log(err));
