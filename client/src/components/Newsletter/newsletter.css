@@ -12,7 +12,44 @@
 }
 #dashSumm{
     padding: 10px;
-    margin-top: 80px;
-    width: 85%;
-    height: 50%;
+    height: auto;
+    clear: both;
+}
+
+ #classJumbo, #studentJumbo, #instructorsJumbo{
+
+    height: 50px;
+    width: 80%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5%;
+    font-size: 10px;
+    color: white;
+    float: left;
+}
+#decoration{
+    background-color: white;
+}
+#jumboName{
+    padding: 5px;
+    margin-top: -60px;
+    font-size: 40px;
+} 
+#classJumbo{
+    background: #f88b5d;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fe9365, #feb697);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,#fe9365, #feb697); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+#studentJumbo{
+    background: #09f8a5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0ef1a2, #0ef1a2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,  #0ef1a2, #0ef1a2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+#instructorsJumbo{
+    background: #fa5467;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fd5d71, #fe8e9b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fd5d71, #fe8e9b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }

@@ -1,6 +1,6 @@
 // import React...
 import React from 'react';
-import API from "../../utils/API";
+//import API from "../../utils/API";
 
 
 // ... and fullcalendar-reactwrapper.
@@ -12,40 +12,10 @@ class Calendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-	events:[
-				{
-					title: 'Dance Class',
-					start: '2018-10-05'
-				},
-				{
-					title: 'Dance Trip',
-					start: '2018-10-07',
-					end: '2018-10-10'
-				},
-				{
-					title: 'Jazz Class',
-					start: '2018-10-18T16:00:00'
-				},
-				{
-					title: 'PTA Meeting',
-					start: '2018-10-30T16:00:00'
-				}
-			],		
+	events:[],		
 	}
   }
-	componentDidMount() {
-		this.loadTasks();
-}
-
-loadTasks = () => {
-	API.getTasks()
-			.then(res =>
-					this.setState({
-							events:res.data
-					})
-			)
-			.catch(err => console.log(err));
-};
+	
 
   render() {
     return (
@@ -61,7 +31,7 @@ loadTasks = () => {
 	    navLinks= {true} // can click day/week names to navigate views
 	    editable= {true}
 	    eventLimit= {true} // allow "more" link when too many events
-	    events = {this.state.events}	
+	    events = {this.props.events}	
 	/>    
       </div>
     );
