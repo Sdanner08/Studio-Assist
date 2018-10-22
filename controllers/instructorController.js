@@ -57,7 +57,7 @@ module.exports = {
                     bcrypt.compare(password, instructor.password)
                         .then(isMatch => {
                             if (isMatch) {
-                                const payload = { id: instructor.id, name: `${instructor.firstName} ${instructor.lastName}` }
+                                const payload = { id: instructor.id, name: `${instructor.firstName} ${instructor.lastName}`, picture: instructor.picture }
                                 //user matched, sign token
                                 jwt.sign(
                                     payload,
@@ -101,7 +101,7 @@ module.exports = {
                         lastName: req.body.lastName,
                         username: req.body.username,
                         password: req.body.password,
-                        // picture: `https://s3.amazonaws.com/studioassist/${req.file.originalname}`
+                        picture: `https://s3.amazonaws.com/studioassist/${req.file.originalname}`
                     }
                     console.log(newInstructor)
                     //Encrypt the passworkd and replace it i the newInstructor object

@@ -1,3 +1,7 @@
 .navSection {
     margin-bottom: 120px;
 }
+
+.profilePic{
+    max-height: 50px;
+}

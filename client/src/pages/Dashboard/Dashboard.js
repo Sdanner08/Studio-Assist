@@ -16,7 +16,7 @@ class Dashboard extends Component {
         start: "",
 
         name: "",
-        showModal: fals
+        showModal: false
 
     }
 
@@ -102,6 +102,7 @@ class Dashboard extends Component {
                     {modal}
                 </div>
                 <div id="bottom">
+                </div>
                 </div>
             </div>
         );

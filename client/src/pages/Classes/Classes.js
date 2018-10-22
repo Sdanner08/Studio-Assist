@@ -4,6 +4,7 @@ import AddBtn from '../../components/AddBtn/AddBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
 import API from "../../utils/API";
 import Navbar from './../../components/Navbar/navbar';
+import './classes.css'
 
 class Classes extends Component {
     constructor(props) {
@@ -116,12 +117,14 @@ class Classes extends Component {
             <div>
                 <Navbar />
                 <div className="container">
-                <div className="row">
-                    <h1 className="mr-auto">Classes</h1>
-                    <AddBtn onClick={this.showModal}>Add Class</AddBtn>
-                </div>
+                    <div className="row">
+                        <h1 className="mr-auto">Classes</h1>
+                        <AddBtn onClick={this.showModal}>Add Class</AddBtn>
+                    </div>
                     {this.state.classes.length ? (
+                        <div className="whiteBg">
                         <ClassList classes={this.state.classes} />
+                        </div>
                     ) : (
                             <h3>No results to display</h3>
                         )}
