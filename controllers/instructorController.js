@@ -101,7 +101,7 @@ module.exports = {
                         lastName: req.body.lastName,
                         username: req.body.username,
                         password: req.body.password,
-                        picture: `https://s3.amazonaws.com/studioassist/${req.file.originalname}`
+                        // picture: `https://s3.amazonaws.com/studioassist/${req.file.originalname}`
                     }
                     console.log(newInstructor)
                     //Encrypt the passworkd and replace it i the newInstructor object

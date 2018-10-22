@@ -101,13 +101,15 @@ class Instructors extends Component {
             <div>
                 <Navbar />
                 <div className="container">
+                <div className="row">
+                    <h1 className="mr-auto">Instructors</h1>
+                    <AddBtn onClick={this.showModal}>Add Instructor</AddBtn>
+                </div>
                     {this.state.instructors.length ? (
                         <InstructorList instructors={this.state.instructors} />
                     ) : (<h3>No Instructors</h3>
 
                         )}
-
-                    <AddBtn onClick={this.showModal}>Add Instructor</AddBtn>
                     {modal}
                 </div>
             </div>
