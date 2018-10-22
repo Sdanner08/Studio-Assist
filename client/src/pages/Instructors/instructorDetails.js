@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import DeleteBtn from '../../components/DeleteBtn/DeleteBtn'
 import API from "../../utils/API";
+import EditBtn from '../../components/EditBtn/EditBtn';
+import AddInstructorModal from '../../components/AddInstructorModal/AddInstructorModal'
 
 class InstructorDetails extends Component {
     constructor(props) {
@@ -41,7 +43,53 @@ class InstructorDetails extends Component {
     componentWillMount() {
         this.loadInstructor()
     }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.nameOfClass && this.state.maxCapacity) {
+            API.saveInstructor({
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                username: this.state.username,
+                picture: this.state.picture
+            })
+                .then(res => this.loadClasses())
+                .catch(err => console.log(err));
+        }
+    }
+
+    showModal = event => {
+        this.setState({ showModal: true });
+    }
+
+    hideModal = event => {
+        this.setState({ showModal: false });
+    }
+
     render() {
+        var modal;
+        if (this.state.showModal) {
+            modal =
+                <AddInstructorModal
+                    onChange={this.handleInputChange}
+                    onClose={this.hideModal}
+                    onSave={this.handleFormSubmit}
+                    firstName={this.state.firstName}
+                    lastName={this.state.lastName}
+                    username={this.state.username}
+
+                />;
+        } else {
+            modal = "";
+        }
+
         return (<div>
             <div className="card mt-3">
                 <div className="card-header bg-secondary">
@@ -53,6 +101,8 @@ class InstructorDetails extends Component {
             </div>
 
             <DeleteBtn onClick={() => this.handleDelete()}>Remove Instructor</DeleteBtn>
+            <EditBtn onClick={this.showModal}>Edit Instructor</EditBtn>
+            {modal}
         </div>)
     }
 }
