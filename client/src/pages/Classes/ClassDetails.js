@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
-import DeleteBtn from '../../components/DeleteBtn/DeleteBtn'
+import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
+import EditBtn from '../../components/EditBtn/EditBtn';
+import AddClassModal from '../../components/AddClassModal/AddClassModal';
 
 class ClassDetails extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            classes: [],
             nameOfClass: "",
+            maxCapacity: "",
             room: "",
             ageGroup: "",
+            cost: "",
+            students: [],
             instructor: "",
-            id: "",
-            students: []
+            schedule: "",
+            showModal: false,
+            instructors: [],
+            id: ""
         }
     }
 
@@ -31,6 +39,10 @@ class ClassDetails extends Component {
             })
     }
 
+    loadInstructors = () => {
+        API.getInstructors().then(instructors => { this.setState({ instructors: instructors.data }) })
+    }
+
     handleDelete() {
         API.deleteClass(this.state.id)
             .then(res => {
@@ -45,7 +57,59 @@ class ClassDetails extends Component {
     componentWillMount() {
         this.loadClass()
     }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.nameOfClass && this.state.maxCapacity) {
+            API.saveClass({
+                nameOfClass: this.state.nameOfClass,
+                maxCapacity: this.state.maxCapacity,
+                room: this.state.room,
+                ageGroup: this.state.ageGroup,
+                cost: this.state.cost,
+                instructor: this.state.instructor,
+                schedule: this.state.schedule
+            })
+                .then(res => this.loadClasses())
+                .catch(err => console.log(err));
+        }
+    }
+
+    showModal = event => {
+        this.setState({ showModal: true });
+    }
+
+    hideModal = event => {
+        this.setState({ showModal: false });
+    }
+
     render() {
+        var modal;
+        if (this.state.showModal) {
+            modal =
+                <AddClassModal
+                    onChange={this.handleInputChange}
+                    onClose={this.hideModal}
+                    onSave={this.handleFormSubmit}
+                    nameOfClass={this.state.nameOfClass}
+                    maxCapacity={this.state.maxCapacity}
+                    room={this.state.room}
+                    ageGroup={this.state.ageGroup}
+                    cost={this.state.cost}
+                    instructors={this.state.instructors}
+                    instructor={this.state.instructor}
+                    schedule={this.state.schedule}
+                />;
+        } else {
+            modal = "";
+        }
         return (<div>
             <div className="card mt-3">
                 {console.log(this.state)}
@@ -59,10 +123,9 @@ class ClassDetails extends Component {
                 </div>
             </div>
 
-
-
-
             <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
+            <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
+            {modal}
         </div>)
     }
 }

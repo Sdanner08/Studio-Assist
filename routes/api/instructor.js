@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const instructorController = require("../../controllers/instructorController");
 const passport = require('passport')
+const upload = require('../../middleware/s3upload')
 
 
 //@route GET api/instructor/
@@ -25,13 +26,14 @@ router.get("/:id", instructorController.findOne)
 //@route POST api/instructor/
 //@desc Creates a new instructor
 //@acess 
-router.post("/", instructorController.create)
+router.post("/", upload.single('file'), instructorController.create)
 
 //@route POST api/instructor/login
 //@desc Login instructor/return JWT Token
 //@acess 
 router.post("/login", instructorController.login)
 
+router.delete("/:id", instructorController.deleteInstructor)
 
 
 
