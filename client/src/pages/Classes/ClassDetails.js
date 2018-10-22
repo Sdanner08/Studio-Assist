@@ -19,6 +19,7 @@ class ClassDetails extends Component {
             schedule: "",
             showModal: false,
             instructors: [],
+            picture: "",
             id: ""
         }
     }
@@ -31,10 +32,12 @@ class ClassDetails extends Component {
                     ageGroup: classResp.data.ageGroup,
                     room: classResp.data.room,
                     id: classResp.data._id,
-                    students: classResp.data.students
+                    students: classResp.data.students,
                 })
                 if (classResp.data.instructor) {
-                    this.setState({ instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName })
+                    this.setState({ instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName, picture: classResp.data.instructor.picture })
+                } else {
+                    this.setState ({ instructor: "", picture: "http://static.asiawebdirect.com/m/phuket/portals/phuket-com/homepage/yourguide/romantic/beaches/pagePropertiesImage/phuket-romantic-beaches.jpg"})
                 }
             })
     }
@@ -110,23 +113,31 @@ class ClassDetails extends Component {
         } else {
             modal = "";
         }
-        return (<div>
-            <div className="card mt-3">
-                {console.log(this.state)}
-                <div className="card-header bg-secondary">
-                    <h1 className="display-3 text-white">{this.state.nameOfClass}</h1>
+        return (
+            <div className="container">
+                <div className="card mt-3">
+                    {console.log(this.state)}
+                    <div className="card-header bg-primary">
+                        <h3 className="text-white">{this.state.nameOfClass}</h3>
+                    </div>
+                    <div className="card-body">
+                        <div className="container">
+                            <div className="row">
+                            <div className="detailsImage col-md-4"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt="" /></div>
+                                <div className="col-md-8">
+                                    <h2>Instructor: {this.state.instructor}</h2>
+                                    <h2>Room: {this.state.room}</h2>
+                                    <h2>Age Group: {this.state.ageGroup}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="card-body">
-                    <h2>Instructor: {this.state.instructor}</h2>
-                    <h2>Room: {this.state.room}</h2>
-                    <h2>Age Group: {this.state.ageGroup}</h2>
-                </div>
-            </div>
 
-            <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
-            <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
-            {modal}
-        </div>)
+                <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
+                <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
+                {modal}
+            </div>)
     }
 }
 

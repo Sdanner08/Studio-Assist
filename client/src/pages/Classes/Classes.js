@@ -116,13 +116,15 @@ class Classes extends Component {
             <div>
                 <Navbar />
                 <div className="container">
+                <div className="row">
+                    <h1 className="mr-auto">Classes</h1>
+                    <AddBtn onClick={this.showModal}>Add Class</AddBtn>
+                </div>
                     {this.state.classes.length ? (
                         <ClassList classes={this.state.classes} />
                     ) : (
                             <h3>No results to display</h3>
                         )}
-
-                    <AddBtn onClick={this.showModal}>Add Class</AddBtn>
                     {modal}
                 </div>
             </div>

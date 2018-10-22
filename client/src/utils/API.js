@@ -72,7 +72,7 @@ export default {
     data.append('lastName', instructorData.lastName)
     data.append('username', instructorData.username)
     data.append('password', instructorData.password)
-    return axios.post("/api/instructors", instructorData);
+    return axios.post("/api/instructors", data);
   },
   // Gets all Tasks
   getTasks: function () {
