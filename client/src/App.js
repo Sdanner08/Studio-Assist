@@ -31,7 +31,7 @@ class App extends Component {
     });
   };
 
-  handleLogin = (event, username, password) => {
+  handleLogin = (event) => {
     event.preventDefault();
 
     if (this.state.username && this.state.password) {
@@ -42,7 +42,8 @@ class App extends Component {
 
         if (data.request.status === 200) {
           localStorage.setItem('jwtToken', data.data.token);
-          // this.props.history.push("/dashboard");
+          this.setState({ redirect: true })
+          window.location.reload();
         } else if (data.request.status === 401) {
           console.log("BAD")
         }
@@ -51,12 +52,6 @@ class App extends Component {
     }
   }
 
-  renderRedirect = () => {
-    console.log(this.state.redirect)
-    if (this.state.redirect) {
-      return <Redirect to='/dashboard' />
-    }
-  }
 
   setRedirect = () => {
     this.setState({
@@ -64,23 +59,25 @@ class App extends Component {
     }, () => {
     })
   };
+
+
   render() {
     return (
       <Router>
         <div>
           <Switch>
-            {/* <Route exact path="/" component={Dashboard} /> */}
-            {!this.state.isLoggedIn ? <Route exact path="/" render={(props) => (<Login {...props} handleLogin={() => this.handleLogin} handleInputChange={() => this.handleInputChange} />)} /> : <div>
-              <Route exact path="/classes" component={Classes} />
-              <Route exact path="/classes/:id" component={ClassDetails} />
-              <Route exact path="/instructors" component={Instructors} />
-              <Route exact path="/instructors/:id" component={InstructorDetails} />
-              <Route exact path="/students" component={Students} />
-              <Route exact path="/students/:id" component={StudentDetails} />
-              <Route exact path="/payment" component={Payment} />
-              <Route exact path="/dashboard" component={Dashboard} />
-              {/* <Route component={Dashboard} /> */}
-            </div>}
+            {!this.state.isLoggedIn ? <div><Route exact path="/" render={(props) => (<Login {...props} handleLogin={() => this.handleLogin} handleInputChange={() => this.handleInputChange} />)} />
+              <Redirect from="/" to="/" /></div> :
+              <div>
+                <Route exact path="/" component={Dashboard} />
+                <Route exact path="/classes" component={Classes} />
+                <Route exact path="/classes/:id" component={ClassDetails} />
+                <Route exact path="/instructors" component={Instructors} />
+                <Route exact path="/instructors/:id" component={InstructorDetails} />
+                <Route exact path="/students" component={Students} />
+                <Route exact path="/students/:id" component={StudentDetails} />
+                {/* <Redirect from="/" to="/dashboard" /> */}
+              </div>}
           </Switch>
         </div>
       </Router>

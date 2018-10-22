@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './Login.css'
 import Particles from 'react-particles-js';
-import API from '../../utils/API';
-import { Redirect } from 'react-router-dom';
 
 const particlesOpt = {
   "particles": {
@@ -116,10 +114,6 @@ const particlesOpt = {
 }
 
 class Login extends Component {
-
-  componentWillMount() {
-    console.log(this.props)
-  }
 
   render() {
 
