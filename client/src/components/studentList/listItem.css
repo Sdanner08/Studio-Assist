@@ -1,0 +1,8 @@
+.studentImage {
+    height: 250px;
+    overflow: hidden;
+}
+
+.detailsImage {
+    max-width: 250px;
+}

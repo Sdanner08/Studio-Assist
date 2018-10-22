@@ -4,7 +4,7 @@ import './listItem.css'
 export const ListItem = props => {
   return (
     <div className="card studentCard">
-      <img className="card-img-top" src={props.Student.picture} alt="student" />
+      <div className="studentImage"><img className="card-img-top" src={props.Student.picture} alt="student" /></div>
       <div className="card-body">
         <h4 className="card-title">{`${props.Student.firstName} ${props.Student.lastName}`}</h4>
         <h5 className="card-title">{`Age: ${props.Student.age}`}</h5>
