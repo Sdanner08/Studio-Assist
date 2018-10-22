@@ -74,12 +74,18 @@ class Instructors extends Component {
         this.setState({ showModal: false });
     }
 
+    handleImageChange = event => {
+        let files = event.target.files
+        this.setState({ picture: files[0] })
+    }
+
     render() {
         var modal;
         if (this.state.showModal) {
             modal =
                 <AddInstructorModal
                     onChange={this.handleInputChange}
+                    onImageChange={this.handleImageChange}
                     onClose={this.hideModal}
                     onSave={this.handleFormSubmit}
                     firstName={this.state.firstName}

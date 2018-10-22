@@ -4,7 +4,6 @@ import Classes from './pages/Classes/Classes';
 import Students from './pages/Students/Students'
 import StudentDetails from './pages/Students/studentDetails'
 import Dashboard from './pages/Dashboard/Dashboard';
-import Payment from './pages/Payment/Payment';
 import ClassDetails from './pages/Classes/ClassDetails';
 import Instructors from './pages/Instructors/Instructors'
 import InstructorDetails from './pages/Instructors/instructorDetails'

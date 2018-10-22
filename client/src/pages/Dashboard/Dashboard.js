@@ -7,12 +7,15 @@ import API from "../../utils/API";
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddTaskModal from './../../components/calendar/AddTaskModal'
 import Navbar from './../../components/Navbar/navbar'
+import jwt_decode from 'jwt-decode'
+
 
 class Dashboard extends Component {
 
     state = {
         title: "",
         start: "",
+        name: "",
         showModal: false
     }
 
@@ -21,6 +24,8 @@ class Dashboard extends Component {
         let token = localStorage.getItem('jwtToken')
         console.log(token)
         this.loadTasks();
+        let decoded = jwt_decode(token)
+        this.setState({ name: decoded.name })
     }
 
     loadTasks = () => {
@@ -92,7 +97,7 @@ class Dashboard extends Component {
                 <Navbar />
                 <div className="container">
                     <div id="header">
-                        <h1>Welcome to Studio Assist</h1>
+                        <h1>Welcome to Studio Assist {this.state.name}</h1>
                     </div>
 
                     <div id="main">

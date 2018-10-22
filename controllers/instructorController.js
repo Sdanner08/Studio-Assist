@@ -57,7 +57,6 @@ module.exports = {
                     bcrypt.compare(password, instructor.password)
                         .then(isMatch => {
                             if (isMatch) {
-
                                 const payload = { id: instructor.id, name: `${instructor.firstName} ${instructor.lastName}` }
                                 //user matched, sign token
                                 jwt.sign(
