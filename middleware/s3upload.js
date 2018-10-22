@@ -1,11 +1,12 @@
 const AWS = require('aws-sdk'),
     multer = require('multer'),
     multerS3 = require('multer-s3'),
-    S3_BUCKET = "studioassist";
+    S3_BUCKET = "studioassist",
+    keys = require('../keys/keys')
 
 var s3 = new AWS.S3({
-    accessKeyId: 'AKIAIW2XXSCLJ7HJNGFQ',
-    secretAccessKey: '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'
+    accessKeyId: keys.accessKeyId,
+    secretAccessKey: keys.secretAccessKey
 });
 
 var upload = multer({
