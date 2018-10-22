@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
 import EditBtn from '../../components/EditBtn/EditBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
+import Navbar from '../../components/Navbar/navbar'
 
 class ClassDetails extends Component {
     constructor(props) {
@@ -115,6 +116,7 @@ class ClassDetails extends Component {
         }
         return (
             <div className="container">
+                <Navbar />
                 <div className="card mt-3">
                     {console.log(this.state)}
                     <div className="card-header bg-primary">
