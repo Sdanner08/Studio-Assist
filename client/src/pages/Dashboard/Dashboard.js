@@ -91,7 +91,7 @@ class Dashboard extends Component {
                 <Navbar />
                 <div className="container">
                     <div id="header">
-                        <h1>Welcome to Studio Assist {this.state.name}</h1>
+                        <h1>Welcome to Studio Assist, {this.state.name}!</h1>
                     </div>
                 <div id="main">
                     <Newsletter/>
