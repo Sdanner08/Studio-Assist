@@ -133,7 +133,6 @@ class StudentDetails extends Component {
                 {modal}
 
                 <DeleteBtn onClick={() => this.handleDelete()}>Remove Student</DeleteBtn>
-                <EditBtn>Edit Student</EditBtn>
                 {modal}
             </div>
         )

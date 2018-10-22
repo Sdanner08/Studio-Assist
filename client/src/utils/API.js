@@ -66,6 +66,12 @@ export default {
   },
   // Saves an instructor to the database
   saveInstructor: function (instructorData) {
+    let data = new FormData()
+    data.append('file', instructorData.picture, instructorData.picture.name)
+    data.append('firstName', instructorData.firstName)
+    data.append('lastName', instructorData.lastName)
+    data.append('username', instructorData.username)
+    data.append('password', instructorData.password)
     return axios.post("/api/instructors", instructorData);
   },
   // Gets all Tasks
