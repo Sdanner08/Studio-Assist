@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Classes from './pages/Classes/Classes';
 import Students from './pages/Students/Students'
 import StudentDetails from './pages/Students/studentDetails'
@@ -9,15 +9,68 @@ import ClassDetails from './pages/Classes/ClassDetails';
 import Instructors from './pages/Instructors/Instructors'
 import InstructorDetails from './pages/Instructors/instructorDetails'
 import Login from './pages/Login/Login'
+import API from './utils/API'
 
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoggedIn: localStorage.getItem("jwtToken"),
+      redirect: false,
+      username: "",
+      password: ""
+    }
+  }
+
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleLogin = (event, username, password) => {
+    event.preventDefault();
+
+    if (this.state.username && this.state.password) {
+      API.login({
+        username: this.state.username,
+        password: this.state.password,
+      }).then(data => { //based on response here either redirect or stay in loggin
+
+        if (data.request.status === 200) {
+          localStorage.setItem('jwtToken', data.data.token);
+          // this.props.history.push("/dashboard");
+        } else if (data.request.status === 401) {
+          console.log("BAD")
+        }
+      })
+        .catch(err => console.log(err));
+    }
+  }
+
+  renderRedirect = () => {
+    console.log(this.state.redirect)
+    if (this.state.redirect) {
+      return <Redirect to='/dashboard' />
+    }
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    }, () => {
+    })
+  };
   render() {
     return (
       <Router>
         <div>
-            <Switch>
-              {/* <Route exact path="/" component={Dashboard} /> */}
+          <Switch>
+            {/* <Route exact path="/" component={Dashboard} /> */}
+            {!this.state.isLoggedIn ? <Route exact path="/" render={(props) => (<Login {...props} handleLogin={() => this.handleLogin} handleInputChange={() => this.handleInputChange} />)} /> : <div>
               <Route exact path="/classes" component={Classes} />
               <Route exact path="/classes/:id" component={ClassDetails} />
               <Route exact path="/instructors" component={Instructors} />
@@ -26,8 +79,9 @@ class App extends Component {
               <Route exact path="/students/:id" component={StudentDetails} />
               <Route exact path="/payment" component={Payment} />
               <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/" component={Login} />
-            </Switch>
+              {/* <Route component={Dashboard} /> */}
+            </div>}
+          </Switch>
         </div>
       </Router>
     );
