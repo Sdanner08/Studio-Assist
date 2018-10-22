@@ -12,7 +12,8 @@ class Navbar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: ""
+            name: "",
+            picture: ""
         }
     }
 
@@ -20,7 +21,7 @@ class Navbar extends Component {
         let token = localStorage.getItem('jwtToken')
         let decoded = jwt_decode(token)
         console.log(decoded)
-        this.setState({ name: decoded.name })
+        this.setState({ name: decoded.name, picture: decoded.picture })
     }
 
     render() {
@@ -47,7 +48,9 @@ class Navbar extends Component {
                             </li>
                         </ul>
                         <div className="ml-auto">
-                            <h5 className="text-white d-inline">Howdy! {this.state.name} </h5>
+                            {console.log(this.state)}
+                            <img className="profilePic rounded-circle" src={this.state.picture} alt="profile pic"></img>
+                            <h5 className="text-white d-inline"> {this.state.name} </h5>
                             <a className="btn btn-danger" onClick={logOut} href="/">Log Out</a>
                         </div>
 
