@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Calendar from '../../components/calendar/calendar.js';
-import Profile from '../../components/profile/profile.js'
 import Newsletter from '../../components/Newsletter/newsletter'
 import "./Dashboard.css";
 import API from "../../utils/API";
@@ -13,7 +12,7 @@ class Dashboard extends Component {
     state = {
         title: "",
         start: "",
-        showModal: false
+        showModal: false,
     }
 
     componentDidMount() {
@@ -22,13 +21,12 @@ class Dashboard extends Component {
 
     loadTasks = () => {
         API.getTasks()
-            .then(res =>
-                this.setState({
-                    title: res.data,
-                    start: "",
-                })
-            )
-            .catch(err => console.log(err));
+                .then(res =>
+                        this.setState({
+                                events:res.data
+                        })
+                )
+                .catch(err => console.log(err));
     };
 
     deleteTask = id => {
@@ -43,13 +41,7 @@ class Dashboard extends Component {
             [name]: value
         });
     };
-    componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        if (this.props.title !== prevProps.title) {
-          this.fetchData(this.props.title, this.props.start);
-        }
-      }
-//Added componentDidUpdate here******************* Didn't work but why?
+
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.title && this.state.start) {
@@ -93,11 +85,10 @@ class Dashboard extends Component {
                 </div>
                 
                 <div id="main">
-                    <Profile/>
                     <Newsletter/>
                 </div>
                 <div id="calendar">
-                    <Calendar/>
+                    <Calendar events={this.state.events}/>
                     <AddBtn onClick={this.showModal}>Add Task</AddBtn>
                     {modal}
                 </div>

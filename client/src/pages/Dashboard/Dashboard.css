@@ -1,18 +1,18 @@
 body{
     background: #8e9eab;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #eef2f3, #bdc3c9));  /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #eef2f3, #bdc3c9);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #eef2f3, #bdc3c9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
 }
 #main{
-    float: left;
-    width: 45%;
+ 
+    width: 100%;
 }
 #calendar{
     margin-top: 10px;
     padding: 15px;
-    float: right;
-    width: 50%;
+    clear: both;
+    width: auto;
+    height: auto;
     background: white;
 }
 #dash{
@@ -55,9 +55,6 @@ body{
         width: 100%;
         font-size: 150%;
         text-align: center;
-    }
-    .Profile-image{
-        margin-left: 40px;
     }
     #main{
         width: 100%;
