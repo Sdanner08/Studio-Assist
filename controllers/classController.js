@@ -19,7 +19,7 @@ module.exports = {
             .populate({ path: "instructor", select: "firstName lastName picture" })
             .populate("students")
             .exec((err, classes) => {
-                if(err){
+                if (err) {
                     res.json(err)
                 }
                 res.json(classes)
@@ -63,6 +63,8 @@ module.exports = {
             room: req.body.room,
             ageGroup: req.body.ageGroup,
             cost: req.body.cost,
+            schedule: req.body.schedule,
+            time: req.body.time
         }
         if (req.body.instructor !== "") {
             Class.instructor = req.body.instructor

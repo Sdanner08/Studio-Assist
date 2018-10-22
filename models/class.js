@@ -30,7 +30,12 @@ const classSchema = new Schema({
 
         }
     ],
-    schedule: String //may change to different type
+    schedule: [
+        {
+            type: String
+        }
+    ],
+    time: String
 });
 
 
