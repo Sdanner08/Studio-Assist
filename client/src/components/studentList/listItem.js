@@ -3,7 +3,7 @@ import './listItem.css'
 
 export const ListItem = props => {
   return (
-    <div className="card studentCard">
+    <div className="card mb-2 studentCard">
       <div className="studentImage"><img className="card-img-top" src={props.Student.picture} alt="student" /></div>
       <div className="card-body">
         <h4 className="card-title">{`${props.Student.firstName} ${props.Student.lastName}`}</h4>

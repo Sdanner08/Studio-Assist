@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import ClassesEnrolled from '../../components/singleStudent/classesEnrolled';
 import EnrollModal from '../../components/enrollInClassModal/enrollModal';
 import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
-import EditBtn from '../../components/EditBtn/EditBtn';
+import Navbar from '../../components/Navbar/navbar'
 
 class StudentDetails extends Component {
     constructor(props) {
@@ -14,6 +14,7 @@ class StudentDetails extends Component {
             birthday: "",
             age: "",
             id: "",
+            picture: "",
             classesEnrolled: [],
             parents: [],
             phone: "",
@@ -33,6 +34,7 @@ class StudentDetails extends Component {
                     lastName: studentResp.data.lastName,
                     birthday: studentResp.data.birthday,
                     age: studentResp.data.age,
+                    picture: studentResp.data.picture,
                     parentFirstName: studentResp.data.parents[0].firstName,
                     parentLastName: studentResp.data.parents[0].lastName,
                     phone: studentResp.data.parents[0].phone,
@@ -108,22 +110,29 @@ class StudentDetails extends Component {
         }
 
         return (
-            <div>
-                <div className="card mt-3">
+            <div className="container">
+                <Navbar />
+                <div className="card mt-3 mb-3">
                     {console.log(this.state)}
-                    <div className="card-header bg-secondary">
-                        <h1 className="display-3 text-white">{`${this.state.firstName} ${this.state.lastName}`}</h1>
+                    <div className="card-header bg-primary">
+                        <h3 className="text-white">{`${this.state.firstName} ${this.state.lastName}`}</h3>
                     </div>
                     <div className="card-body">
-                        <h2>{`Birthday: ${this.state.birthday.substring(0,10)} \n`}</h2>
-                        <h2>{`Age: ${this.state.age} \n`}</h2>
-                        <h2>{`Parent: ${this.state.parentFirstName} ${this.state.parentLastName} \n`}</h2>
-                        <h2>{`Phone Number: ${this.state.phone}`}</h2>
-                        <h2>Classes Enrolled: </h2>
+                        <div className="container">
+                            <div className="row">
+                                <div className="detailsImage col-md-4"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt="" /></div>
+                                <div className="col-md-8">
+                                    <h2>{`Birthday: ${this.state.birthday.substring(0, 10)} \n`}</h2>
+                                    <h2>{`Age: ${this.state.age} \n`}</h2>
 
-                        <div className="row">
-                            <div className="col-md-6">
-                                <ClassesEnrolled classes={this.state.classesEnrolled} />
+                                    <h2>Classes Enrolled: </h2>
+                                    <div className="row">
+                                    <ClassesEnrolled classes={this.state.classesEnrolled} />
+                                    </div>
+                                    <h2>Emergency Contact: </h2>
+                                    <h2>{`Parent: ${this.state.parentFirstName} ${this.state.parentLastName} \n`}</h2>
+                                    <h2>{`Phone Number: ${this.state.phone}`}</h2>
+                                </div>
                             </div>
                         </div>
                     </div>

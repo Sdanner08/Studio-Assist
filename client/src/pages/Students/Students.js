@@ -3,7 +3,7 @@ import StudentList from '../../components/studentList/studentList';
 import AddBtn from '../../components/AddBtn/AddBtn';
 import AddStudentModal from '../../components/AddStudentModal/AddStudentModal';
 import API from "../../utils/API";
-import Navbar from "../../components/Navbar/navbar"
+import Navbar from "../../components/Navbar/navbar";
 
 class Students extends Component {
 
@@ -108,13 +108,17 @@ class Students extends Component {
             <div>
                 <Navbar />
                 <div className="container">
+                    <div className="row">
+                        <h1 className="mr-auto">Students</h1>
+                        <AddBtn onClick={this.showModal}>Add Student</AddBtn>
+                    </div>
                     {this.state.students.length ? (
                         <StudentList students={this.state.students} />
                     ) : (<h3>No Students</h3>
 
                         )}
 
-                    <AddBtn onClick={this.showModal}>Add Student</AddBtn>
+
                     {modal}
                 </div>
             </div>

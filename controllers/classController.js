@@ -16,7 +16,7 @@ module.exports = {
     findOne(req, res) {
         let id = req.params.id
         db.Class.findOne({ _id: id })
-            .populate({ path: "instructor", select: "firstName lastName" })
+            .populate({ path: "instructor", select: "firstName lastName picture" })
             .populate("students")
             .exec((err, classes) => {
                 res.json(classes)
