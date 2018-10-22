@@ -19,6 +19,9 @@ module.exports = {
             .populate({ path: "instructor", select: "firstName lastName picture" })
             .populate("students")
             .exec((err, classes) => {
+                if(err){
+                    res.json(err)
+                }
                 res.json(classes)
             })
     },

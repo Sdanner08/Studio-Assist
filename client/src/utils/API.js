@@ -3,30 +3,37 @@ import axios from "axios";
 export default {
   // Gets all classes
   getClasses: function () {
-    return axios.get("/api/classes")
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/classes", { headers: { Authorization: token } })
   },
   getClassesByAge: function (id, age) {
-    return axios.get(`/api/classes/${id}/${age}`)
+    let token = localStorage.getItem('jwtToken')
+    return axios.get(`/api/classes/${id}/${age}`, { headers: { Authorization: token } })
   },
   // Gets the class with the given id
   getClass: function (id) {
-    return axios.get("/api/classes/" + id);
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/classes/" + id, { headers: { Authorization: token } });
   },
   // Deletes the class with the given id
   deleteClass: function (id) {
-    return axios.delete("/api/classes/" + id)
+    let token = localStorage.getItem('jwtToken')
+    return axios.delete("/api/classes/" + id, { headers: { Authorization: token } })
   },
   // Saves a class to the database
   saveClass: function (classData) {
-    return axios.post("/api/classes", classData);
+    let token = localStorage.getItem('jwtToken')
+    return axios.post("/api/classes", classData, { headers: { Authorization: token } });
   },
   // Gets all students
   getStudents: function () {
-    return axios.get("/api/students")
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/students", { headers: { Authorization: token } })
   },
 
   getActiveStudents: function () {
-    return axios.get("/api/students/status/active")
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/students/status/active", { headers: { Authorization: token } })
   },
 
   getInactiveStudents: function () {
@@ -34,7 +41,8 @@ export default {
   },
   // Gets the student with the given id
   getStudent: function (id) {
-    return axios.get("/api/students/" + id);
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/students/" + id, { headers: { Authorization: token } });
   },
   // Deletes the student with the given id
   deleteStudent: function (id) {
@@ -42,6 +50,7 @@ export default {
   },
   // Saves a student to the database
   saveStudent: function (studentData) {
+    let token = localStorage.getItem('jwtToken')
     let data = new FormData()
     data.append('file', studentData.picture, studentData.picture.name)
     data.append('firstName', studentData.firstName)
@@ -50,29 +59,33 @@ export default {
     data.append('parentFirstName', studentData.parentFirstName)
     data.append('parentLastName', studentData.parentLastName)
     data.append('phone', studentData.phone)
-    return axios.post("/api/students/", data);
+    return axios.post("/api/students/", data, { headers: { Authorization: token } });
   },
   // Gets all instructors
   getInstructors: function () {
-    return axios.get("/api/instructors")
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/instructors", { headers: { Authorization: token } })
   },
   // Gets the instructor with the given id
   getInstructor: function (id) {
-    return axios.get("/api/instructors/" + id);
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/instructors/" + id, { headers: { Authorization: token } });
   },
   // Deletes the instructor with the given id
   deleteInstructor: function (id) {
-    return axios.delete("/api/instructors/" + id)
+    let token = localStorage.getItem('jwtToken')
+    return axios.delete("/api/instructors/" + id, { headers: { Authorization: token } })
   },
   // Saves an instructor to the database
   saveInstructor: function (instructorData) {
+    let token = localStorage.getItem('jwtToken')
     let data = new FormData()
     data.append('file', instructorData.picture, instructorData.picture.name)
     data.append('firstName', instructorData.firstName)
     data.append('lastName', instructorData.lastName)
     data.append('username', instructorData.username)
     data.append('password', instructorData.password)
-    return axios.post("/api/instructors", data);
+    return axios.post("/api/instructors", data, { headers: { Authorization: token } });
   },
   // Gets all Tasks
   getTasks: function () {
@@ -91,7 +104,8 @@ export default {
     return axios.post("/api/tasks", taskData);
   },
   enrollAClass: function (classId, studentId) {
-    return axios.post("/api/students/registerClass/", { classId, studentId })
+    let token = localStorage.getItem('jwtToken')
+    return axios.post("/api/students/registerClass/", { classId, studentId }, { headers: { Authorization: token } })
   },
   login: function (loginData) {
     return axios.post("/api/instructors/login/", loginData)

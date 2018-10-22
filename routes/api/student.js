@@ -5,6 +5,7 @@ const path = require('path')
 const multerS3 = require('multer-s3')
 const AWS = require('aws-sdk')
 const upload = require('../../middleware/s3upload')
+const passport = require('passport')
 
 
 
@@ -58,7 +59,7 @@ router.get("/:id", studentController.findOne)
 //@route POST api/student/
 //@desc Creates a new student
 //@acess 
-router.post("/", upload.single('file'), studentController.create)
+router.post("/", passport.authenticate('jwt', { session: false }), upload.single('file'), studentController.create)
 
 
 
