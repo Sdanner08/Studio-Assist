@@ -8,14 +8,19 @@ import AddTaskModal from './../../components/calendar/AddTaskModal';
 import DeleteBtn from './../../components/DeleteBtn/DeleteBtn';
 import DeleteTaskModal from './../../components/calendar/DeleteTaskModal';
 import Navbar from './../../components/Navbar/navbar';
+import jwt_decode from 'jwt-decode'
+
+
 
 class Dashboard extends Component {
 
     state = {
         title: "",
         start: "",
-        showModal: false,
         showDeleteModal: false,
+        name: "",
+        showModal: false
+
     }
 
 
@@ -23,6 +28,8 @@ class Dashboard extends Component {
         let token = localStorage.getItem('jwtToken')
         console.log(token)
         this.loadTasks();
+        let decoded = jwt_decode(token)
+        this.setState({ name: decoded.name })
     }
 
     loadTasks = () => {
@@ -100,8 +107,12 @@ class Dashboard extends Component {
         }
         return (
             <div>
-            <Navbar />
-            <div className="container">
+
+                <Navbar />
+                <div className="container">
+                    <div id="header">
+                        <h1>Welcome to Studio Assist, {this.state.name}!</h1>
+                    </div>
                 <div id="main">
                     <Newsletter/>
                 </div>
@@ -112,9 +123,9 @@ class Dashboard extends Component {
                     {modal}
                 </div>
                 <div id="bottom">
-
                 </div>
-            </div>
+                </div>
+
         );
     }
 }

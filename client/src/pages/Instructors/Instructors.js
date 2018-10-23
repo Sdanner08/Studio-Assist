@@ -74,12 +74,18 @@ class Instructors extends Component {
         this.setState({ showModal: false });
     }
 
+    handleImageChange = event => {
+        let files = event.target.files
+        this.setState({ picture: files[0] })
+    }
+
     render() {
         var modal;
         if (this.state.showModal) {
             modal =
                 <AddInstructorModal
                     onChange={this.handleInputChange}
+                    onImageChange={this.handleImageChange}
                     onClose={this.hideModal}
                     onSave={this.handleFormSubmit}
                     firstName={this.state.firstName}
@@ -95,13 +101,15 @@ class Instructors extends Component {
             <div>
                 <Navbar />
                 <div className="container">
+                <div className="row">
+                    <h1 className="mr-auto">Instructors</h1>
+                    <AddBtn onClick={this.showModal}>Add Instructor</AddBtn>
+                </div>
                     {this.state.instructors.length ? (
                         <InstructorList instructors={this.state.instructors} />
                     ) : (<h3>No Instructors</h3>
 
                         )}
-
-                    <AddBtn onClick={this.showModal}>Add Instructor</AddBtn>
                     {modal}
                 </div>
             </div>

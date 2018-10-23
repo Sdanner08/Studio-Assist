@@ -4,6 +4,7 @@ import AddBtn from '../../components/AddBtn/AddBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
 import API from "../../utils/API";
 import Navbar from './../../components/Navbar/navbar';
+import './classes.css'
 
 class Classes extends Component {
     constructor(props) {
@@ -19,7 +20,15 @@ class Classes extends Component {
             instructor: "",
             schedule: "",
             showModal: false,
-            instructors: []
+            instructors: [],
+            monday: false,
+            tueday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false,
+            sunday: false,
+            time: ""
         }
         this.loadClasses();
     }
@@ -41,7 +50,6 @@ class Classes extends Component {
                     cost: "",
                     students: [],
                     instructor: "",
-                    schedule: ""
                 })
             }
             )
@@ -60,15 +68,36 @@ class Classes extends Component {
     };
 
     handleInputChange = event => {
-        const { name, value } = event.target;
+        const target = event.target;
+        const name = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+
         this.setState({
             [name]: value
         });
+
+
     };
 
     handleFormSubmit = event => {
 
         event.preventDefault();
+        let schedule = []
+        if (this.state.monday)
+            schedule.push("Monday")
+        if (this.state.tuesday)
+            schedule.push("Tuesday")
+        if (this.state.wednesday)
+            schedule.push("Wednesday")
+        if (this.state.thursday)
+            schedule.push("Thursday")
+        if (this.state.friday)
+            schedule.push("Friday")
+        if (this.state.saturday)
+            schedule.push("Saturday")
+        if (this.state.sunday)
+            schedule.push("Sunday")
+
         if (this.state.nameOfClass && this.state.maxCapacity) {
             API.saveClass({
                 nameOfClass: this.state.nameOfClass,
@@ -77,7 +106,8 @@ class Classes extends Component {
                 ageGroup: this.state.ageGroup,
                 cost: this.state.cost,
                 instructor: this.state.instructor,
-                schedule: this.state.schedule
+                schedule: schedule,
+                time: this.state.time
             })
                 .then(res => this.loadClasses())
                 .catch(err => console.log(err));
@@ -116,13 +146,17 @@ class Classes extends Component {
             <div>
                 <Navbar />
                 <div className="container">
+                    <div className="row">
+                        <h1 className="mr-auto display-4">Classes</h1>
+                        <AddBtn onClick={this.showModal}>Add Class</AddBtn>
+                    </div>
                     {this.state.classes.length ? (
-                        <ClassList classes={this.state.classes} />
+                        <div className="whiteBg">
+                            <ClassList classes={this.state.classes} />
+                        </div>
                     ) : (
                             <h3>No results to display</h3>
                         )}
-
-                    <AddBtn onClick={this.showModal}>Add Class</AddBtn>
                     {modal}
                 </div>
             </div>

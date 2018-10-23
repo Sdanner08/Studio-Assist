@@ -123,7 +123,7 @@ module.exports = {
             if (err) {
                 res.json(err)
             } else {
-                db.Class.updateMany({ students: studentId }, { $pull: { students: studentId } }, (err, resp) => {
+                db.Class.updateMany({ students: studentId }, { $pull: { students: studentId } ,$inc: { maxCapacity: +1 }}, (err, resp) => {
                     if (err) {
                         res.json(err)
                     } else {

@@ -3,7 +3,8 @@ import DeleteBtn from '../../components/DeleteBtn/DeleteBtn'
 import API from "../../utils/API";
 import EditBtn from '../../components/EditBtn/EditBtn';
 import AddInstructorModal from '../../components/AddInstructorModal/AddInstructorModal';
-import Navbar from '../../components/Navbar/navbar'
+import Navbar from '../../components/Navbar/navbar';
+import ClassesEnrolled from '../../components/singleStudent/classesEnrolled'
 
 class InstructorDetails extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class InstructorDetails extends Component {
             lastName: "",
             username: "",
             picture: "",
+            classes: [],
             id: ""
         }
     }
@@ -24,6 +26,7 @@ class InstructorDetails extends Component {
                     lastName: instructorResp.data.lastName,
                     username: instructorResp.data.username,
                     picture: instructorResp.data.picture,
+                    classes: instructorResp.data.classes,
                     id: instructorResp.data._id
                 })
                 if (instructorResp.data.instructor) {
@@ -92,24 +95,33 @@ class InstructorDetails extends Component {
         }
 
         return (
-        <div className="container">
-        <Navbar />
-            <div className="card mt-3">
-                <div className="card-header bg-primary">
-                    <h3 className="text-white">{`${this.state.firstName} ${this.state.lastName}`}</h3>
-                </div>
-                <div className="card-body">
-                <div className="container row">
-                <div className="detailsImage"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt=""/></div>
-                    <h2>{`Username: ${this.state.username} \n`}</h2>
-                </div>
-                </div>
-            </div>
+            <div className="container">
+                <Navbar />
+                <div className="card mt-3">
+                    <div className="card-header bg-primary">
+                        <h3 className="text-white">{`${this.state.firstName} ${this.state.lastName}`}</h3>
+                    </div>
+                    <div className="card-body">
+                        <div className="container">
+                            <div className="row">
+                                <div className="detailsImage col-md-4"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt="" /></div>
+                                <div className="col-md-8">
+                                    <h2>{`Username: ${this.state.username} \n`}</h2>
+                                    <h2>Classes Teaching: </h2>
+                                    <div className="row">
+                                        <ClassesEnrolled classes={this.state.classes} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <DeleteBtn onClick={() => this.handleDelete()}>Remove Instructor</DeleteBtn>
-            <EditBtn onClick={this.showModal}>Edit Instructor</EditBtn>
-            {modal}
-        </div>)
+                </div>
+
+                <DeleteBtn onClick={() => this.handleDelete()}>Remove Instructor</DeleteBtn>
+                <EditBtn onClick={this.showModal}>Edit Instructor</EditBtn>
+                {modal}
+            </div>)
     }
 }
 

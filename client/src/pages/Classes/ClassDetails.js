@@ -3,6 +3,8 @@ import API from "../../utils/API";
 import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
 import EditBtn from '../../components/EditBtn/EditBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
+import Navbar from '../../components/Navbar/navbar'
+import Attendance from '../../components/Attendance/Attendance'
 
 class ClassDetails extends Component {
     constructor(props) {
@@ -19,7 +21,17 @@ class ClassDetails extends Component {
             schedule: "",
             showModal: false,
             instructors: [],
-            id: ""
+            picture: "",
+            id: "",
+            absentStudent: []
+        }
+    }
+
+    setAttendance = (event) => {
+        if(this.state.absentStudent.find(student => student == event.target.value)) {
+            this.setState({absentStudent: this.state.absentStudent.filter(student => student !== event.target.value)})
+        } else {
+            this.setState({absentStudent: [...this.state.absentStudent, event.target.value]})
         }
     }
 
@@ -31,10 +43,14 @@ class ClassDetails extends Component {
                     ageGroup: classResp.data.ageGroup,
                     room: classResp.data.room,
                     id: classResp.data._id,
-                    students: classResp.data.students
+                    students: classResp.data.students,
+                    schedule: classResp.data.schedule,
+                    time: classResp.data.time
                 })
                 if (classResp.data.instructor) {
-                    this.setState({ instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName })
+                    this.setState({ instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName, picture: classResp.data.instructor.picture })
+                } else {
+                    this.setState ({ instructor: "", picture: "http://static.asiawebdirect.com/m/phuket/portals/phuket-com/homepage/yourguide/romantic/beaches/pagePropertiesImage/phuket-romantic-beaches.jpg"})
                 }
             })
     }
@@ -75,7 +91,8 @@ class ClassDetails extends Component {
                 ageGroup: this.state.ageGroup,
                 cost: this.state.cost,
                 instructor: this.state.instructor,
-                schedule: this.state.schedule
+                schedule: this.state.schedule,
+                time: this.state.time
             })
                 .then(res => this.loadClasses())
                 .catch(err => console.log(err));
@@ -110,23 +127,37 @@ class ClassDetails extends Component {
         } else {
             modal = "";
         }
-        return (<div>
-            <div className="card mt-3">
-                {console.log(this.state)}
-                <div className="card-header bg-secondary">
-                    <h1 className="display-3 text-white">{this.state.nameOfClass}</h1>
+        return (
+            <div className="container">
+                <Navbar />
+                <div className="card mt-3">
+                    {console.log(this.state)}
+                    <div className="card-header bg-primary">
+                        <h3 className="text-white">{this.state.nameOfClass}</h3>
+                    </div>
+                    <div className="card-body">
+                        <div className="container">
+                            <div className="row">
+                            <div className="detailsImage col-md-4"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt="" /></div>
+                                <div className="col-md-8">
+                                    <h2>Instructor: {this.state.instructor}</h2>
+                                    <h2>Room: {this.state.room}</h2>
+                                    <h2>Age Group: {this.state.ageGroup}</h2>
+                                    <h2>Schedule: {this.state.schedule[0]}</h2>
+                                    <h2>Time: {this.state.time}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="card-body">
-                    <h2>Instructor: {this.state.instructor}</h2>
-                    <h2>Room: {this.state.room}</h2>
-                    <h2>Age Group: {this.state.ageGroup}</h2>
-                </div>
-            </div>
 
-            <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
-            <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
-            {modal}
-        </div>)
+                
+                {modal}
+
+                <Attendance students={this.state.students} onChange={this.setAttendance} />
+                <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
+                <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
+            </div>)
     }
 }
 
