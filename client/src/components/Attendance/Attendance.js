@@ -42,7 +42,7 @@ const Attendance = (props) => {
                             {listItem}
                         </tbody>
                     </table>
-                    {(listItem)? <button className="btn btn-sm btn-success">Submit Attendance</button>: ""}
+                    {(listItem)? <button onClick={props.onClick} className="btn btn-sm btn-success">Submit Attendance</button>: ""}
                     
                 </div>
             </div>

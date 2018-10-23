@@ -87,6 +87,13 @@ export default {
     data.append('password', instructorData.password)
     return axios.post("/api/instructors", data, { headers: { Authorization: token } });
   },
+  // Saves attendance for a class to the database
+  saveAttendance: function (classData) {
+    let token = localStorage.getItem('jwtToken')
+    let data = new FormData()
+    data.append('attendance', classData.absentStudent)
+    return axios.post("/api/classes/attendance/:id", data, { headers: { Authorization: token } });
+  },
   // Gets all Tasks
   getTasks: function () {
     return axios.get("/api/tasks")

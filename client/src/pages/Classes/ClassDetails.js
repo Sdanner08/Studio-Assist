@@ -94,6 +94,7 @@ class ClassDetails extends Component {
                 cost: this.state.cost,
                 instructor: this.state.instructor,
                 schedule: this.state.schedule,
+                absentStudent: this.state.absentStudent,
                 time: this.state.time
             })
                 .then(res => this.loadClasses())
@@ -156,7 +157,7 @@ class ClassDetails extends Component {
 
                 {modal}
 
-                <Attendance students={this.state.students} onChange={this.setAttendance} />
+                <Attendance students={this.state.students} onChange={this.setAttendance} onClick={() => this.handleFormSubmit()} />
                 <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
                 <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
             </div>)
