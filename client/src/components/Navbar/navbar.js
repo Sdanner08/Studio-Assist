@@ -49,7 +49,7 @@ class Navbar extends Component {
                         <div className="ml-auto">
                             <img className="profilePic rounded-circle" src={this.state.picture} alt="profile pic"></img>
                             <h5 className="text-white d-inline"> {this.state.name} </h5>
-                            <a className="btn btn-danger" onClick={logOut} href="/">Log Out</a>
+                            <a className="btn btn-danger ml-4" onClick={logOut} href="/">Log Out</a>
                         </div>
 
                     </div>
