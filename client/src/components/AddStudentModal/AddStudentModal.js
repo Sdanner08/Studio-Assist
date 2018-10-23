@@ -45,7 +45,8 @@ const AddStudentModal = props => (
                     <div className="form-group">
                         <input className="form-control" type="tel" value={props.phone}
                             onChange={props.onChange}
-                            name="phone"
+                            name="phone" 
+                            maxlength="10"
                             placeholder="Parent Phone" />
                     </div>
                     <div className="form-group">

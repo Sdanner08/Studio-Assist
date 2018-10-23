@@ -20,7 +20,6 @@ class Navbar extends Component {
     componentWillMount() {
         let token = localStorage.getItem('jwtToken')
         let decoded = jwt_decode(token)
-        console.log(decoded)
         this.setState({ name: decoded.name, picture: decoded.picture })
     }
 
@@ -48,7 +47,6 @@ class Navbar extends Component {
                             </li>
                         </ul>
                         <div className="ml-auto">
-                            {console.log(this.state)}
                             <img className="profilePic rounded-circle" src={this.state.picture} alt="profile pic"></img>
                             <h5 className="text-white d-inline"> {this.state.name} </h5>
                             <a className="btn btn-danger" onClick={logOut} href="/">Log Out</a>

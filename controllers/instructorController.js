@@ -45,7 +45,6 @@ module.exports = {
         const username = req.body.username
         const password = req.body.password
 
-        console.log(username + " " + password)
         db.Instructor.findOne({ username })
             .then(
                 instructor => {
@@ -87,8 +86,6 @@ module.exports = {
     //@desc Create instructor 
     //@acess 
     create(req, res) {
-        console.log(req.body)
-        console.log("got to controller")
         //check to see if the username give already exists
         db.Instructor.findOne({ username: req.body.username }).then(
             user => {
@@ -103,7 +100,6 @@ module.exports = {
                         password: req.body.password,
                         picture: `https://s3.amazonaws.com/studioassist/${req.file.originalname}`
                     }
-                    console.log(newInstructor)
                     //Encrypt the passworkd and replace it i the newInstructor object
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newInstructor.password, salt, (err, hash) => {
