@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import './navbar.css'
 import jwt_decode from 'jwt-decode'
-import { decode } from "punycode";
 
 
 const logOut = () => {

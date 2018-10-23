@@ -24,7 +24,6 @@ const classSchema = new Schema({
             absentStudents: [
                 {
                     type: String,
-                    ref: "Student"
                 }
             ]
 

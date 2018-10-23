@@ -8,3 +8,9 @@
     overflow: hidden;
 }
 
+
+.studentprofileImage {
+    height: 300px;
+    max-width: 350px; 
+    overflow: hidden;
+}

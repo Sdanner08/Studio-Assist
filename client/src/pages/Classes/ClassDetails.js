@@ -30,7 +30,7 @@ class ClassDetails extends Component {
 
 
     setAttendance = (event) => {
-        if (this.state.absentStudent.find(student => student == event.target.value)) {
+        if (this.state.absentStudent.find(student => student === event.target.value)) {
             this.setState({ absentStudent: this.state.absentStudent.filter(student => student !== event.target.value) })
         } else {
             this.setState({ absentStudent: [...this.state.absentStudent, event.target.value] })
@@ -146,9 +146,8 @@ class ClassDetails extends Component {
             <div className="container">
                 <Navbar />
                 <div className="card mt-3">
-                    {console.log(this.state)}
                     <div className="card-header bg-primary">
-                        <h3 className="text-white">{this.state.nameOfClass}</h3>
+                        <h2 className="text-white">{this.state.nameOfClass}</h2>
                     </div>
                     <div className="card-body">
                         <div className="container">

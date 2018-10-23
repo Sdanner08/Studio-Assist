@@ -99,14 +99,14 @@ class InstructorDetails extends Component {
                 <Navbar />
                 <div className="card mt-3">
                     <div className="card-header bg-primary">
-                        <h3 className="text-white">{`${this.state.firstName} ${this.state.lastName}`}</h3>
+                        <h2 className="text-white">{`${this.state.firstName} ${this.state.lastName}`}</h2>
                     </div>
                     <div className="card-body">
                         <div className="container">
                             <div className="row">
                                 <div className="detailsImage col-md-4"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt="" /></div>
                                 <div className="col-md-8">
-                                    <h2>{`Username: ${this.state.username} \n`}</h2>
+                                    {/* <h2>{`Username: ${this.state.username} \n`}</h2> */}
                                     <h2>Classes Teaching: </h2>
                                     <div className="row">
                                         <ClassesEnrolled classes={this.state.classes} />
@@ -119,7 +119,7 @@ class InstructorDetails extends Component {
                 </div>
 
                 <DeleteBtn onClick={() => this.handleDelete()}>Remove Instructor</DeleteBtn>
-                <EditBtn onClick={this.showModal}>Edit Instructor</EditBtn>
+                {/* <EditBtn onClick={this.showModal}>Edit Instructor</EditBtn> */}
                 {modal}
             </div>)
     }

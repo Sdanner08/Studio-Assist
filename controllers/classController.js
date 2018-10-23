@@ -94,7 +94,7 @@ module.exports = {
 
     //@route DELETE api/classes/:id
     //@desc Delete a class by id and unenroll the students who are enrolles in it
-    //@acess 
+    //@acess private
     deleteClass(req, res) {
         let id = req.params.id
         db.Instructor.updateMany({ classes: id }, { $pull: { classes: id } }, (err, instructorResp) => {
@@ -114,6 +114,23 @@ module.exports = {
 
     },
 
+    //@route GET api/classes/getabsences/:id
+    //@desc find what classes a student has been absent to
+    //@acess private
+    getAbsences(req, res) {
+        console.log("this with", req.params.id)
+        let id = req.params.id
+
+        db.Class.find({ 'attendance.absentStudents': id }, 'nameOfClass attendance', (err, resp) => {
+            // if (err) { res.json(err) }
+            res.json(resp)
+        })
+
+    },
+
+    //@route POST api/classes/
+    //@desc Delete a class by id and unenroll the students who are enrolles in it
+    //@acess private
     submitAttendance(req, res) {
         let today = new Date();
         let dd = today.getDate();

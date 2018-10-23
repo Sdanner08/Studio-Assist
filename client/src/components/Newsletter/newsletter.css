@@ -24,7 +24,7 @@
     width: 80%;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 5%;
+    border-radius: 5px;
     font-size: 10px;
     color: white;
     float: left;
@@ -47,8 +47,8 @@
 }
 #studentJumbo{
     background: #09f8a5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #0ef1a2, #0ef1a2);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right,  #0ef1a2, #0ef1a2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right, #3EC182, #0ef1a2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,  #3EC182, #0ef1a2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   
 }
 #instructorsJumbo{

@@ -92,6 +92,11 @@ export default {
     let token = localStorage.getItem('jwtToken')
     return axios.post("/api/classes/attendance/" + id, attendance, { headers: { Authorization: token } });
   },
+
+  getAbsences: function (id) {
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/classes/getAbsences/" + id, { headers: { Authorization: token } })
+  },
   // Gets all Tasks
   getTasks: function () {
     return axios.get("/api/tasks")
