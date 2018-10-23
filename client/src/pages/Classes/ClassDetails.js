@@ -94,7 +94,19 @@ class ClassDetails extends Component {
                 cost: this.state.cost,
                 instructor: this.state.instructor,
                 schedule: this.state.schedule,
+                absentStudent: this.state.absentStudent,
                 time: this.state.time
+            })
+                .then(res => this.loadClasses())
+                .catch(err => console.log(err));
+        }
+    }
+
+    handleAttendanceSubmit = event => {
+        event.preventDefault();
+        if (this.state.absentStudent) {
+            API.saveAttendance({   
+                absentStudent: this.state.absentStudent
             })
                 .then(res => this.loadClasses())
                 .catch(err => console.log(err));
@@ -156,7 +168,7 @@ class ClassDetails extends Component {
 
                 {modal}
 
-                <Attendance students={this.state.students} onChange={this.setAttendance} />
+                <Attendance students={this.state.students} onChange={this.setAttendance} onClick={(id, absentStudent) => this.handleAttendanceSubmit(id, absentStudent)} />
                 <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
                 <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
             </div>)
