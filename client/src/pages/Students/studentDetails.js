@@ -49,7 +49,6 @@ class StudentDetails extends Component {
     loadClasses() {
         API.getClassesByAge(this.state.id, this.state.age)
             .then(classes => {
-                console.log(classes)
                 this.setState({ classes: classes.data })
             })
     }
@@ -113,7 +112,6 @@ class StudentDetails extends Component {
             <div className="container">
                 <Navbar />
                 <div className="card mt-3 mb-3">
-                    {console.log(this.state)}
                     <div className="card-header bg-primary">
                         <h3 className="text-white">{`${this.state.firstName} ${this.state.lastName}`}</h3>
                     </div>
