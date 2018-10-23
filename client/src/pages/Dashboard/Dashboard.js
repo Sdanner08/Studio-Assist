@@ -10,7 +10,7 @@ import DeleteTaskModal from './../../components/calendar/DeleteTaskModal';
 import Navbar from './../../components/Navbar/navbar';
 
 class Dashboard extends Component {
-    
+
     state = {
         title: "",
         start: "",
@@ -18,7 +18,10 @@ class Dashboard extends Component {
         showDeleteModal: false,
     }
 
+
     componentDidMount() {
+        let token = localStorage.getItem('jwtToken')
+        console.log(token)
         this.loadTasks();
     }
 
@@ -51,7 +54,7 @@ class Dashboard extends Component {
             API.saveTask({
                 title: this.state.title,
                 start: this.state.start,
-            
+
             })
                 .then(res => this.loadTasks(), this.componentDidUpdate)
                 .catch(err => console.log(err));
@@ -74,7 +77,7 @@ class Dashboard extends Component {
         this.setState({ showModal: false });
     }
     render() {
-    var modal;
+        var modal;
         if (this.state.showModal) {
             modal =
                 <AddTaskModal
@@ -109,8 +112,8 @@ class Dashboard extends Component {
                     {modal}
                 </div>
                 <div id="bottom">
+
                 </div>
-            </div>
             </div>
         );
     }

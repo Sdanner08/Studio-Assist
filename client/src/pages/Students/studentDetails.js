@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
-import ClassesEnrolled from '../../components/singleStudent/classesEnrolled'
-import EnrollModal from '../../components/enrollInClassModal/enrollModal'
-import DeleteBtn from '../../components/DeleteBtn/DeleteBtn'
+import ClassesEnrolled from '../../components/singleStudent/classesEnrolled';
+import EnrollModal from '../../components/enrollInClassModal/enrollModal';
+import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
+import EditBtn from '../../components/EditBtn/EditBtn';
 
 class StudentDetails extends Component {
     constructor(props) {
@@ -132,6 +133,7 @@ class StudentDetails extends Component {
                 {modal}
 
                 <DeleteBtn onClick={() => this.handleDelete()}>Remove Student</DeleteBtn>
+                {modal}
             </div>
         )
     }

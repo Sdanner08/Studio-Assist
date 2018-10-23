@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import DeleteBtn from '../../components/DeleteBtn/DeleteBtn'
 import API from "../../utils/API";
+import EditBtn from '../../components/EditBtn/EditBtn';
+import AddInstructorModal from '../../components/AddInstructorModal/AddInstructorModal';
+import Navbar from '../../components/Navbar/navbar'
 
 class InstructorDetails extends Component {
     constructor(props) {
@@ -41,18 +44,71 @@ class InstructorDetails extends Component {
     componentWillMount() {
         this.loadInstructor()
     }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.nameOfClass && this.state.maxCapacity) {
+            API.saveInstructor({
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                username: this.state.username,
+                picture: this.state.picture
+            })
+                .then(res => this.loadClasses())
+                .catch(err => console.log(err));
+        }
+    }
+
+    showModal = event => {
+        this.setState({ showModal: true });
+    }
+
+    hideModal = event => {
+        this.setState({ showModal: false });
+    }
+
     render() {
-        return (<div>
+        var modal;
+        if (this.state.showModal) {
+            modal =
+                <AddInstructorModal
+                    onChange={this.handleInputChange}
+                    onClose={this.hideModal}
+                    onSave={this.handleFormSubmit}
+                    firstName={this.state.firstName}
+                    lastName={this.state.lastName}
+                    username={this.state.username}
+
+                />;
+        } else {
+            modal = "";
+        }
+
+        return (
+        <div className="container">
+        <Navbar />
             <div className="card mt-3">
-                <div className="card-header bg-secondary">
-                    <h1 className="display-3 text-white">{`${this.state.firstName} ${this.state.lastName}`}</h1>
+                <div className="card-header bg-primary">
+                    <h3 className="text-white">{`${this.state.firstName} ${this.state.lastName}`}</h3>
                 </div>
                 <div className="card-body">
+                <div className="container row">
+                <div className="detailsImage"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt=""/></div>
                     <h2>{`Username: ${this.state.username} \n`}</h2>
+                </div>
                 </div>
             </div>
 
             <DeleteBtn onClick={() => this.handleDelete()}>Remove Instructor</DeleteBtn>
+            <EditBtn onClick={this.showModal}>Edit Instructor</EditBtn>
+            {modal}
         </div>)
     }
 }

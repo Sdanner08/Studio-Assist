@@ -44,7 +44,12 @@ export default {
   saveStudent: function (studentData) {
     let data = new FormData()
     data.append('file', studentData.picture, studentData.picture.name)
-
+    data.append('firstName', studentData.firstName)
+    data.append('lastName', studentData.lastName)
+    data.append('birthday', studentData.birthday)
+    data.append('parentFirstName', studentData.parentFirstName)
+    data.append('parentLastName', studentData.parentLastName)
+    data.append('phone', studentData.phone)
     return axios.post("/api/students/", data);
   },
   // Gets all instructors
@@ -61,6 +66,12 @@ export default {
   },
   // Saves an instructor to the database
   saveInstructor: function (instructorData) {
+    let data = new FormData()
+    data.append('file', instructorData.picture, instructorData.picture.name)
+    data.append('firstName', instructorData.firstName)
+    data.append('lastName', instructorData.lastName)
+    data.append('username', instructorData.username)
+    data.append('password', instructorData.password)
     return axios.post("/api/instructors", instructorData);
   },
   // Gets all Tasks

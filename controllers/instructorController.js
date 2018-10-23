@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken")
 
 module.exports = {
 
-
     //@route GET api/instructor/
     //@desc find all instructors
     findAll(req, res) {
@@ -13,7 +12,6 @@ module.exports = {
         })
 
     },
-
 
     //@route GET api/instructor/
     //@desc Find One Instructor by ID
@@ -26,6 +24,20 @@ module.exports = {
             })
     },
 
+
+    //@route GET api/instructor/
+    //@desc Find One Instructor by ID
+    //@acess 
+    deleteInstructor(req, res) {
+        let instructorId = req.params.id
+        db.Instructor.deleteOne({ _id: instructorId }).then(ins => {
+            db.Class.updateMany({ instructor: instructorId }, { $set: { instructor: " " } }).then(classResp => {
+                res.json("done")
+            })
+
+        })
+    },
+
     //@route POST api/instructor/login
     //@desc Login instructor/return JWT Token
     //@acess 
@@ -33,11 +45,12 @@ module.exports = {
         const username = req.body.username
         const password = req.body.password
 
+        console.log(username + " " + password)
         db.Instructor.findOne({ username })
             .then(
                 instructor => {
                     if (!instructor) {
-                        res.status(404).json({ Username: "Username not found" })
+                        res.status(400).json({ Username: "Username not found" })
                     }
 
                     //Check Password
@@ -46,32 +59,37 @@ module.exports = {
                             if (isMatch) {
 
                                 const payload = { id: instructor.id, name: `${instructor.firstName} ${instructor.lastName}` }
-                                //user matched, sign tokeb
+                                //user matched, sign token
                                 jwt.sign(
                                     payload,
                                     process.env.SECRETORKEY,
-                                    { expiresIn: 3600 },
+                                    { expiresIn: 360000 },
                                     (err, token) => {
-                                        res.json({
+                                        console.log(token + " ", err)
+                                        res.status(200).json({
                                             sucess: true,
                                             token: 'Bearer ' + token
                                         })
-
                                     })
                             }
                             else {
-                                return res.status(400).json({ password: "Password incorrect" })
+                                return res.status(401).json({ password: "Password incorrect" })
                             }
                         })
 
                 }
             )
+            .catch(() => {
+
+            })
     },
 
     //@route POST api/instructor/
     //@desc Create instructor 
     //@acess 
     create(req, res) {
+        console.log(req.body)
+        console.log("got to controller")
         //check to see if the username give already exists
         db.Instructor.findOne({ username: req.body.username }).then(
             user => {
@@ -84,8 +102,9 @@ module.exports = {
                         lastName: req.body.lastName,
                         username: req.body.username,
                         password: req.body.password,
-                        picture: req.body.picture
+                        picture: `https://s3.amazonaws.com/studioassist/${req.file.originalname}`
                     }
+                    console.log(newInstructor)
                     //Encrypt the passworkd and replace it i the newInstructor object
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newInstructor.password, salt, (err, hash) => {
