@@ -4,6 +4,7 @@ import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
 import EditBtn from '../../components/EditBtn/EditBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
 import Navbar from '../../components/Navbar/navbar'
+import Attendance from '../../components/Attendance/Attendance'
 
 class ClassDetails extends Component {
     constructor(props) {
@@ -21,20 +22,30 @@ class ClassDetails extends Component {
             showModal: false,
             instructors: [],
             picture: "",
-            id: ""
+            id: "",
+            absentStudent: []
+        }
+    }
+
+    setAttendance = (event) => {
+        if(this.state.absentStudent.find(student => student == event.target.value)) {
+            this.setState({absentStudent: this.state.absentStudent.filter(student => student !== event.target.value)})
+        } else {
+            this.setState({absentStudent: [...this.state.absentStudent, event.target.value]})
         }
     }
 
     loadClass() {
         API.getClass(this.props.match.params.id)
             .then(classResp => {
-                console.log("Class", classResp)
                 this.setState({
                     nameOfClass: classResp.data.nameOfClass,
                     ageGroup: classResp.data.ageGroup,
                     room: classResp.data.room,
                     id: classResp.data._id,
                     students: classResp.data.students,
+                    schedule: classResp.data.schedule,
+                    time: classResp.data.time
                 })
                 if (classResp.data.instructor) {
                     this.setState({ instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName, picture: classResp.data.instructor.picture })
@@ -80,7 +91,8 @@ class ClassDetails extends Component {
                 ageGroup: this.state.ageGroup,
                 cost: this.state.cost,
                 instructor: this.state.instructor,
-                schedule: this.state.schedule
+                schedule: this.state.schedule,
+                time: this.state.time
             })
                 .then(res => this.loadClasses())
                 .catch(err => console.log(err));
@@ -131,15 +143,20 @@ class ClassDetails extends Component {
                                     <h2>Instructor: {this.state.instructor}</h2>
                                     <h2>Room: {this.state.room}</h2>
                                     <h2>Age Group: {this.state.ageGroup}</h2>
+                                    <h2>Schedule: {this.state.schedule[0]}</h2>
+                                    <h2>Time: {this.state.time}</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                
+                {modal}
+
+                <Attendance students={this.state.students} onChange={this.setAttendance} />
                 <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
                 <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
-                {modal}
             </div>)
     }
 }
