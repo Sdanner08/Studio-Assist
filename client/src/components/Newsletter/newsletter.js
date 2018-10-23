@@ -53,9 +53,9 @@ class Newsletter extends Component {
     render() {
         return (
             <div id="dashSumm" className="row d-flex justify-content-around">
-               <div id="classJumbo" className="jumbotron jumbotron-fluid col-md-3">
+                <div id="classJumbo" className="jumbotron jumbotron-fluid col-md-3">
                     <div className="container">
-                        <h1 id="jumboName" className="display-4 text-center">Classes</h1>
+                        <h1 id="jumboName">Classes</h1>
                         <hr id="decoration" />
                         <i className="fas fa-chalkboard fa-3x"></i>
                         <p className="lead text-right">{this.state.classes.length} Classes</p>
@@ -66,7 +66,7 @@ class Newsletter extends Component {
                 </div>
                 <div id="studentJumbo" className="jumbotron jumbotron-fluid col-md-3">
                     <div className="container">
-                        <h1 id="jumboName" className="display-4 text-center">Students</h1>
+                        <h1 id="jumboName">Students</h1>
                         <hr id="decoration" />
                         <i className="fas fa-child fa-3x"></i>
                         <p className="lead text-right">{this.state.students.length} Students </p>
@@ -76,7 +76,7 @@ class Newsletter extends Component {
                 </div>
                 <div id="instructorsJumbo" className="jumbotron jumbotron-fluid col-md-3">
                     <div className="container">
-                        <h1 id="jumboName" className="display-4 text-center">Instructors</h1>
+                        <h1 id="jumboName">Instructors</h1>
                         <hr id="decoration" />
                         <i className="fas fa-user-ninja fa-3x"></i>
                         <p className="lead text-right" >{this.state.instructors.length} Instructors</p>

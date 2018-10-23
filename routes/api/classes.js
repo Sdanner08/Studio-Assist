@@ -3,6 +3,8 @@ const classController = require("../../controllers/classController");
 const passport = require('passport')
 
 
+
+
 //@route GET api/classes/
 //@desc Finds all the classes
 //@acess 
@@ -12,6 +14,8 @@ router.get("/", passport.authenticate('jwt', { session: false }), classControlle
 //@desc Create a new class
 //@acess 
 router.post("/", passport.authenticate('jwt', { session: false }), classController.create)
+
+router.get("/getAbsences/:id", classController.getAbsences)
 
 //@route GET api/classes/:id
 //@desc Get a specific class by ID
@@ -36,6 +40,8 @@ router.put("/:id/:insId", passport.authenticate('jwt', { session: false }), clas
 //@desc DELETE a specific class by ID
 //@acess 
 router.delete("/:id", passport.authenticate('jwt', { session: false }), classController.deleteClass)
+
+
 
 router.post("/attendance/:id", passport.authenticate('jwt', { session: false }), classController.submitAttendance)
 
