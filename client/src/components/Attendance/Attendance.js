@@ -26,11 +26,11 @@ const Attendance = (props) => {
     }
     return (
         <div className="card mx-auto attendanceTable mt-4 mb-4">
-            <div class="row p-3">
-                <div class="col-md-12">
+            <div className="row p-3">
+                <div className="col-md-12">
                     <h1 className="display-4 text-center">Attendance</h1>
                     <h5 className="mt-4 text-center">Today's Date: {today}</h5>
-                    <table class="table table-striped">
+                    <table className="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">First Name</th>
