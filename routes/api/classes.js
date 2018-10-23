@@ -37,6 +37,6 @@ router.put("/:id/:insId", passport.authenticate('jwt', { session: false }), clas
 //@acess 
 router.delete("/:id", passport.authenticate('jwt', { session: false }), classController.deleteClass)
 
-
+router.post("/attendance/:id", classController.submitAttendance)
 
 module.exports = router;    

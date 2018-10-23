@@ -112,6 +112,15 @@ module.exports = {
 
 
 
+    },
+
+    submitAttendance(req, res) {
+        let id = req.params.id
+        let attendance = {
+            date: Date.now(),
+            absentStudents: req.body.attendance
+        }
+        db.Class.updateOne({ id: id }, { $push: { attendance: attendance } })
     }
 
 }
