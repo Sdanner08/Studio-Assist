@@ -38,7 +38,6 @@ class ClassDetails extends Component {
     loadClass() {
         API.getClass(this.props.match.params.id)
             .then(classResp => {
-                console.log(classResp.data)
                 this.setState({
                     nameOfClass: classResp.data.nameOfClass,
                     ageGroup: classResp.data.ageGroup,
