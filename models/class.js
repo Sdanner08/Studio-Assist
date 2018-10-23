@@ -20,7 +20,7 @@ const classSchema = new Schema({
     },
     attendance: [
         {
-            date: Date,
+            date: String,
             absentStudents: [
                 {
                     type: String,

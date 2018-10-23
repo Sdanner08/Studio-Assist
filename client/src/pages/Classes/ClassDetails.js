@@ -105,10 +105,11 @@ class ClassDetails extends Component {
     handleAttendanceSubmit = event => {
         event.preventDefault();
         if (this.state.absentStudent) {
-            API.saveAttendance({   
-                absentStudent: this.state.absentStudent
-            })
-                .then(res => this.loadClasses())
+            let attendance = {
+                attendance: this.state.absentStudent
+            }
+            API.saveAttendance(this.state.id, attendance)
+                .then(res => "")
                 .catch(err => console.log(err));
         }
     }
