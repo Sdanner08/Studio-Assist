@@ -4,8 +4,10 @@ import Newsletter from '../../components/Newsletter/newsletter'
 import "./Dashboard.css";
 import API from "../../utils/API";
 import AddBtn from '../../components/AddBtn/AddBtn';
-import AddTaskModal from './../../components/calendar/AddTaskModal'
-import Navbar from './../../components/Navbar/navbar'
+import AddTaskModal from './../../components/calendar/AddTaskModal';
+import DeleteBtn from './../../components/DeleteBtn/DeleteBtn';
+import DeleteTaskModal from './../../components/calendar/DeleteTaskModal';
+import Navbar from './../../components/Navbar/navbar';
 
 class Dashboard extends Component {
     
@@ -13,6 +15,7 @@ class Dashboard extends Component {
         title: "",
         start: "",
         showModal: false,
+        showDeleteModal: false,
     }
 
     componentDidMount() {
@@ -55,6 +58,14 @@ class Dashboard extends Component {
         }
     }
 
+    showDeleteModal = event => {
+        this.setState({ showDeleteModal: true});
+    }
+    hideDeleteModal = event => {
+        this.setState({ showDeleteModal: false});
+    }
+
+
     showModal = event => {
         this.setState({ showModal: true });
     }
@@ -73,23 +84,28 @@ class Dashboard extends Component {
                     title={this.state.title}
                     start={this.state.start}
                 />;
+        } else if (this.state.showDeleteModal){
+            modal=
+            <DeleteTaskModal
+                onChange={this.handleInputChange}
+                onClose={this.hideDeleteModal}
+                onSave={this.deleteTask}
+                />;
         } else {
             modal = "";
+
         }
         return (
             <div>
             <Navbar />
             <div className="container">
-                <div id="header">
-                    <h1>Welcome to Studio Assist</h1>
-                </div>
-                
                 <div id="main">
                     <Newsletter/>
                 </div>
                 <div id="calendar">
                     <Calendar events={this.state.events}/>
                     <AddBtn onClick={this.showModal}>Add Task</AddBtn>
+                    <DeleteBtn onClick={this.showDeleteModal}>Delete Task</DeleteBtn>
                     {modal}
                 </div>
                 <div id="bottom">
