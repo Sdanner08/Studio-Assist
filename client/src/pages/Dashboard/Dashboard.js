@@ -4,12 +4,9 @@ import Newsletter from '../../components/Newsletter/newsletter'
 import "./Dashboard.css";
 import API from "../../utils/API";
 import AddBtn from '../../components/AddBtn/AddBtn';
-import AddTaskModal from './../../components/calendar/AddTaskModal';
-import DeleteBtn from './../../components/DeleteBtn/DeleteBtn';
-import DeleteTaskModal from './../../components/calendar/DeleteTaskModal';
-import Navbar from './../../components/Navbar/navbar';
+import AddTaskModal from './../../components/calendar/AddTaskModal'
+import Navbar from './../../components/Navbar/navbar'
 import jwt_decode from 'jwt-decode'
-
 
 
 class Dashboard extends Component {
@@ -17,16 +14,13 @@ class Dashboard extends Component {
     state = {
         title: "",
         start: "",
-        showDeleteModal: false,
         name: "",
         showModal: false
-
     }
 
 
     componentDidMount() {
         let token = localStorage.getItem('jwtToken')
-        console.log(token)
         this.loadTasks();
         let decoded = jwt_decode(token)
         this.setState({ name: decoded.name })
@@ -34,12 +28,12 @@ class Dashboard extends Component {
 
     loadTasks = () => {
         API.getTasks()
-                .then(res =>
-                        this.setState({
-                                events:res.data
-                        })
-                )
-                .catch(err => console.log(err));
+            .then(res =>
+                this.setState({
+                    events: res.data
+                })
+            )
+            .catch(err => console.log(err));
     };
 
     deleteTask = id => {
@@ -68,14 +62,6 @@ class Dashboard extends Component {
         }
     }
 
-    showDeleteModal = event => {
-        this.setState({ showDeleteModal: true});
-    }
-    hideDeleteModal = event => {
-        this.setState({ showDeleteModal: false});
-    }
-
-
     showModal = event => {
         this.setState({ showModal: true });
     }
@@ -94,38 +80,29 @@ class Dashboard extends Component {
                     title={this.state.title}
                     start={this.state.start}
                 />;
-        } else if (this.state.showDeleteModal){
-            modal=
-            <DeleteTaskModal
-                onChange={this.handleInputChange}
-                onClose={this.hideDeleteModal}
-                onSave={this.deleteTask}
-                />;
         } else {
             modal = "";
-
         }
         return (
             <div>
-
                 <Navbar />
                 <div className="container">
                     <div id="header">
                         <h1>Welcome to Studio Assist, {this.state.name}!</h1>
                     </div>
-                <div id="main">
-                    <Newsletter/>
+                    <div id="main">
+                        <Newsletter />
+                    </div>
+                    <div id="calendar">
+                        <Calendar events={this.state.events} />
+                        <AddBtn onClick={this.showModal}>Add Task</AddBtn>
+                        {modal}
+                    </div>
+                    <div id="bottom">
+                    </div>
                 </div>
-                <div id="calendar">
-                    <Calendar events={this.state.events}/>
-                    <AddBtn onClick={this.showModal}>Add Task</AddBtn>
-                    <DeleteBtn onClick={this.showDeleteModal}>Delete Task</DeleteBtn>
-                    {modal}
-                </div>
-                <div id="bottom">
-                </div>
-                </div>
-                </div>
+            </div>
+
 
         );
     }

@@ -20,7 +20,7 @@ module.exports = {
             .populate("students")
             .exec((err, classes) => {
                 if (err) {
-                    res.json(err)
+                    return res.json(err)
                 }
                 res.json(classes)
             })

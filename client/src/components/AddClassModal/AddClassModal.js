@@ -24,19 +24,19 @@ const AddClassModal = props => {
                             <input className="form-control" type="text" value={props.nameOfClass}
                                 onChange={props.onChange}
                                 name="nameOfClass"
-                                placeholder="Name of Class (required)" />
+                                placeholder="Name of Class (Required)" />
                         </div>
                         <div className="form-group">
                             <input className="form-control" type="number" value={props.maxCapacity}
                                 onChange={props.onChange}
                                 name="maxCapacity"
-                                placeholder="Maximum Capacity (required)" />
+                                placeholder="Maximum Capacity (Required)" />
                         </div>
                         <div className="form-group">
                             <input className="form-control" type="text" value={props.room}
                                 onChange={props.onChange}
                                 name="room"
-                                placeholder="Room" />
+                                placeholder="Room (Required)" />
                         </div>
                         <div className="form-group">
                             <select className="form-control" name="ageGroup" onChange={props.onChange}>
@@ -47,19 +47,24 @@ const AddClassModal = props => {
                                 <option value="13-16">13-16</option>
                                 <option value="17-18">17-18</option>
                             </select>
+                            <small class="form-text text-muted">Required</small>
                         </div>
                         <div className="form-group">
                             <input className="form-control" type="number" step="any" min="1" value={props.cost}
                                 onChange={props.onChange}
                                 name="cost"
-                                placeholder="Cost (required)" />
+                                placeholder="Cost per month (Required)" />
                         </div>
                         <div className="form-group">
                             <select className="form-control" name="instructor" onChange={props.onChange}>
                                 <option disabled selected>Please choose an Instructor</option>
                                 {instructors}
                             </select>
+                            <small class="form-text text-muted">Required</small>
                         </div>
+
+                        <label className="d-block">Schedule</label>
+                        <small class="form-text text-muted">Required</small>
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" onChange={props.onChange} name="monday" type="checkbox" id="monday" value="monday" />
                             <label className="form-check-label" htmlFor="monday">Mon</label>
@@ -89,9 +94,13 @@ const AddClassModal = props => {
                             <label className="form-check-label" htmlFor="sunday">Sun</label>
                         </div>
 
+
                         <div className="form-group pt-3">
+                            <label className="d-block">Time</label>
+                            <small class="form-text text-muted">Required</small>
                             <input type="time" className="form-control" onChange={props.onChange} name="time"></input>
                         </div>
+
 
                     </div>
                     <div className="modal-footer">

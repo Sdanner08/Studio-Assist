@@ -18,20 +18,22 @@ class ClassDetails extends Component {
             cost: "",
             students: [],
             instructor: "",
-            schedule: "",
+            schedule: [],
             showModal: false,
             instructors: [],
             picture: "",
             id: "",
             absentStudent: []
         }
+        this.scheduleFormatted = []
     }
 
+
     setAttendance = (event) => {
-        if(this.state.absentStudent.find(student => student == event.target.value)) {
-            this.setState({absentStudent: this.state.absentStudent.filter(student => student !== event.target.value)})
+        if (this.state.absentStudent.find(student => student == event.target.value)) {
+            this.setState({ absentStudent: this.state.absentStudent.filter(student => student !== event.target.value) })
         } else {
-            this.setState({absentStudent: [...this.state.absentStudent, event.target.value]})
+            this.setState({ absentStudent: [...this.state.absentStudent, event.target.value] })
         }
     }
 
@@ -50,7 +52,7 @@ class ClassDetails extends Component {
                 if (classResp.data.instructor) {
                     this.setState({ instructor: classResp.data.instructor.firstName + " " + classResp.data.instructor.lastName, picture: classResp.data.instructor.picture })
                 } else {
-                    this.setState ({ instructor: "", picture: "http://static.asiawebdirect.com/m/phuket/portals/phuket-com/homepage/yourguide/romantic/beaches/pagePropertiesImage/phuket-romantic-beaches.jpg"})
+                    this.setState({ instructor: "", picture: "http://static.asiawebdirect.com/m/phuket/portals/phuket-com/homepage/yourguide/romantic/beaches/pagePropertiesImage/phuket-romantic-beaches.jpg" })
                 }
             })
     }
@@ -72,8 +74,8 @@ class ClassDetails extends Component {
 
     componentWillMount() {
         this.loadClass()
+        this.scheduleFormatted = this.state.schedule.map(day => `${day},`)
     }
-
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -138,12 +140,12 @@ class ClassDetails extends Component {
                     <div className="card-body">
                         <div className="container">
                             <div className="row">
-                            <div className="detailsImage col-md-4"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt="" /></div>
+                                <div className="detailsImage col-md-4"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt="" /></div>
                                 <div className="col-md-8">
                                     <h2>Instructor: {this.state.instructor}</h2>
                                     <h2>Room: {this.state.room}</h2>
                                     <h2>Age Group: {this.state.ageGroup}</h2>
-                                    <h2>Schedule: {this.state.schedule[0]}</h2>
+                                    <h2>Schedule: {this.state.schedule.map(day => `${day}, `)}</h2>
                                     <h2>Time: {this.state.time}</h2>
                                 </div>
                             </div>
@@ -151,7 +153,7 @@ class ClassDetails extends Component {
                     </div>
                 </div>
 
-                
+
                 {modal}
 
                 <Attendance students={this.state.students} onChange={this.setAttendance} />

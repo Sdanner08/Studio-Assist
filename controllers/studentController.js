@@ -86,7 +86,6 @@ module.exports = {
     //@desc Add a student to a class, updates both class and student
     //@acess 
     registerAClass(req, res) {
-        console.log("Route Hit", req.body)
         let classId = req.body.classId
         let studentId = req.body.studentId
 
