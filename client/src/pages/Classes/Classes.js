@@ -146,9 +146,8 @@ class Classes extends Component {
             <div>
                 <Navbar />
                 <div className="container">
-                    {console.log(this.state)}
                     <div className="row">
-                        <h1 className="mr-auto">Classes</h1>
+                        <h1 className="mr-auto display-4">Classes</h1>
                         <AddBtn onClick={this.showModal}>Add Class</AddBtn>
                     </div>
                     {this.state.classes.length ? (

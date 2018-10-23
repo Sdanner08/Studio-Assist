@@ -30,7 +30,6 @@ module.exports = {
     //@desc find classes by id and age
     //@acess 
     findByAgeAndEnrollment(req, res) {
-        console.log("this")
         let id = req.params.id;
         let age = req.params.age;
         let ageQuery = "";
@@ -56,7 +55,6 @@ module.exports = {
     //@desc Create a new class
     //@acess 
     create(req, res) {
-        console.log(req.body)
         const Class = {
             nameOfClass: req.body.nameOfClass,
             maxCapacity: req.body.maxCapacity,
@@ -71,7 +69,6 @@ module.exports = {
         }
 
         db.Class.create(Class, (err, Class) => {
-            console.log(Class)
             db.Instructor.updateOne({ _id: Class.instructor }, { $push: { classes: Class.id } }).then(updated => {
                 res.json({ Class, updated })
             })
