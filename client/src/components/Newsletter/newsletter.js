@@ -57,7 +57,8 @@ loadClasses = () => {
                     <div className="container">
                         <h1 id="jumboName" className="display-4 text-center">Classes</h1>
                         <hr id="decoration"/>
-                        <p className="lead text-center">{this.state.classes.length} of Classes</p>
+                        <i className="fas fa-chalkboard fa-3x"></i>
+                        <p className="lead text-right">{this.state.classes.length} Classes</p>
                     </div>
                 </div>
 
@@ -67,7 +68,8 @@ loadClasses = () => {
                     <div className="container">
                         <h1 id="jumboName" className="display-4 text-center">Students</h1>
                         <hr id="decoration"/>
-                        <p className="lead text-center">{this.state.students.length} of Students </p>
+                        <i className="fas fa-child fa-3x"></i>
+                        <p className="lead text-right">{this.state.students.length} Students </p>
                     </div>
                 </div>
                 <div className="col-md-1">
@@ -76,7 +78,8 @@ loadClasses = () => {
                     <div className="container">
                         <h1 id="jumboName" className="display-4 text-center">Instructors</h1>
                         <hr id="decoration"/>
-                        <p className="lead text-center">{this.state.instructors.length} of Instructors</p>
+                        <i className="fas fa-user-ninja fa-3x"></i>
+                        <p className="lead text-right" >{this.state.instructors.length} Instructors</p>
                     </div>
                 </div>
             </div>

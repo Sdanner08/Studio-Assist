@@ -1,5 +1,5 @@
 import React from "react";
-// import "./AddClassModal.css";
+
 
 const AddTaskModal = props => (
     <div className="modal fade show" role="dialog" style={{ display: "block" }}>

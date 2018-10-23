@@ -15,9 +15,12 @@
     height: auto;
     clear: both;
 }
+.lead{
+
+    margin-top: -30px;
+}
 
  #classJumbo, #studentJumbo, #instructorsJumbo{
-
     height: 50px;
     width: 80%;
     padding-left: 10px;
@@ -29,6 +32,8 @@
 }
 #decoration{
     background-color: white;
+    margin-left: -25px;
+    width: 280px;
 }
 #jumboName{
     padding: 5px;

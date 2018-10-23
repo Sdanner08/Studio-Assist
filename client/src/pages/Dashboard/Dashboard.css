@@ -4,7 +4,6 @@ body{
     /* background: linear-gradient(white); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 #main{
- 
     width: 100%;
 }
 #calendar{
@@ -33,11 +32,6 @@ body{
 }
 
 @media  only screen and (max-width: 768px) {
-    #header, h1{
-        width: 100%;
-        font-size: 200%;
-        text-align: center;
-    }
     #main{
         width: 100%;
     }
@@ -46,16 +40,20 @@ body{
         width: 100%;
         clear: both;
     }
+    #classJumbo, #studentJumbo, #instructorsJumbo{
+        height: auto;
+        align-content: center;
+    }
+    #jumboName{
+        font-size: 40px;
+        margin-top: 20px;
+    }
 
 
 }
 
 @media  only screen and (max-width: 640px) {
-    #header, h1{
-        width: 100%;
-        font-size: 150%;
-        text-align: center;
-    }
+
     #main{
         width: 100%;
     }
@@ -69,5 +67,14 @@ body{
         height: auto;
 
     }
+    #decoration{
+        position: relative;
+
+        width: 120%;
+    }
+    /* .fc-prev-button, .fc-next-button, .fc-icon, .fc-today-button, .fc-month-button{
+        width: 20px;
+        float: left;
+    } */
 
 }
