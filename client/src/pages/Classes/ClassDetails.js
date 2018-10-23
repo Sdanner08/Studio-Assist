@@ -3,8 +3,9 @@ import API from "../../utils/API";
 import DeleteBtn from '../../components/DeleteBtn/DeleteBtn';
 import EditBtn from '../../components/EditBtn/EditBtn';
 import AddClassModal from '../../components/AddClassModal/AddClassModal';
-import Navbar from '../../components/Navbar/navbar'
-import Attendance from '../../components/Attendance/Attendance'
+import Navbar from '../../components/Navbar/navbar';
+import Attendance from '../../components/Attendance/Attendance';
+import AttendanceAlert from '../../components/AttendanceAlert/AttendanceAlert'
 
 class ClassDetails extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class ClassDetails extends Component {
             instructor: "",
             schedule: [],
             showModal: false,
+            showAlert: false,
             instructors: [],
             picture: "",
             id: "",
@@ -104,6 +106,7 @@ class ClassDetails extends Component {
 
     handleAttendanceSubmit = event => {
         event.preventDefault();
+        this.showAlert();
         if (this.state.absentStudent) {
             let attendance = {
                 attendance: this.state.absentStudent
@@ -120,6 +123,14 @@ class ClassDetails extends Component {
 
     hideModal = event => {
         this.setState({ showModal: false });
+    }
+
+    showAlert = event => {
+        this.setState({ showAlert: true });
+    }
+
+    hideAlert = event => {
+        this.setState({ showAlert: false });
     }
 
     render() {
@@ -142,6 +153,17 @@ class ClassDetails extends Component {
         } else {
             modal = "";
         }
+
+        var alert;
+        if(this.state.showAlert) {
+            alert = 
+            <AttendanceAlert 
+                onClose={this.hideAlert}
+            />
+        } else {
+            alert = "";
+        }
+
         return (
             <div className="container">
                 <Navbar />
@@ -170,6 +192,9 @@ class ClassDetails extends Component {
                 {modal}
 
                 <Attendance students={this.state.students} onChange={this.setAttendance} onClick={(id, absentStudent) => this.handleAttendanceSubmit(id, absentStudent)} />
+
+                {alert}
+
                 <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
                 <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
             </div>)
