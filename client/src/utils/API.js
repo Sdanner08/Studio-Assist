@@ -88,11 +88,9 @@ export default {
     return axios.post("/api/instructors", data, { headers: { Authorization: token } });
   },
   // Saves attendance for a class to the database
-  saveAttendance: function (id, classData) {
+  saveAttendance: function (id, attendance) {
     let token = localStorage.getItem('jwtToken')
-    let data = new FormData()
-    data.append('attendance', classData)
-    return axios.post("/api/classes/attendance/" + id, data, { headers: { Authorization: token } });
+    return axios.post("/api/classes/attendance/" + id, attendance, { headers: { Authorization: token } });
   },
   // Gets all Tasks
   getTasks: function () {
