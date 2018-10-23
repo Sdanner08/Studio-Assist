@@ -102,6 +102,17 @@ class ClassDetails extends Component {
         }
     }
 
+    handleAttendanceSubmit = event => {
+        event.preventDefault();
+        if (this.state.absentStudent) {
+            API.saveAttendance({   
+                absentStudent: this.state.absentStudent
+            })
+                .then(res => this.loadClasses())
+                .catch(err => console.log(err));
+        }
+    }
+
     showModal = event => {
         this.setState({ showModal: true });
     }
@@ -157,7 +168,7 @@ class ClassDetails extends Component {
 
                 {modal}
 
-                <Attendance students={this.state.students} onChange={this.setAttendance} onClick={() => this.handleFormSubmit()} />
+                <Attendance students={this.state.students} onChange={this.setAttendance} onClick={(id, absentStudent) => this.handleAttendanceSubmit(id, absentStudent)} />
                 <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
                 <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
             </div>)
