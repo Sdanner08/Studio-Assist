@@ -2,7 +2,7 @@ const AWS = require('aws-sdk'),
     multer = require('multer'),
     multerS3 = require('multer-s3'),
     S3_BUCKET = "studioassist",
-    keys = require('../keys/keys')
+    keys = require('../keys_prod/keys_prod')
 
 var s3 = new AWS.S3({
     accessKeyId: keys.accessKeyId,
