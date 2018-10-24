@@ -5,9 +5,11 @@ const AWS = require('aws-sdk'),
     keys = require('../keys_prod/keys_prod')
 
 var s3 = new AWS.S3({
-    accessKeyId: keys.accessKeyId,
-    secretAccessKey: keys.secretAccessKey
+    accessKeyId: keys.ACCESSKEYID,
+    secretAccessKey: keys.SECRETACCESSKEY
 });
+
+console.log(process.env.SECRETACCESSKEY)
 
 var upload = multer({
     storage: multerS3({

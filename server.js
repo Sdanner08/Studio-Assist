@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 //server.js
 const express = require('express'),
     app = express(),
@@ -7,9 +9,9 @@ const express = require('express'),
     routes = require("./routes/index"),
     path = require("path"),//temp for testing only
     passport = require('passport'),
-    cors = require('cors')
+    cors = require('cors');
 
-require('dotenv').config()
+
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://manuel:studio1@ds131313.mlab.com:31313/studioassist", { useNewUrlParser: true });
 

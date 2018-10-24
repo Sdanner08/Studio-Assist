@@ -1,4 +1,4 @@
 module.exports = {
-    accessKeyId: process.env.accessKeyId,
-    secretAccessKey: process.env.secretAccessKey
+    ACCESSKEYID: process.env.ACCESSKEYID,
+    SECRETACCESSKEY: process.env.SECRETACCESSKEY
 }
