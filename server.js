@@ -29,6 +29,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
+
+app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 //passport middleware
 app.use(passport.initialize());
 
