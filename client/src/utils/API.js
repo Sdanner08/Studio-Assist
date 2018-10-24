@@ -46,7 +46,8 @@ export default {
   },
   // Deletes the student with the given id
   deleteStudent: function (id) {
-    return axios.delete("/api/students/" + id)
+    let token = localStorage.getItem('jwtToken')
+    return axios.delete("/api/students/" + id, { headers: { Authorization: token } })
   },
   // Saves a student to the database
   saveStudent: function (studentData) {
