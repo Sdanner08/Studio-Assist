@@ -6,7 +6,7 @@ import AddClassModal from '../../components/AddClassModal/AddClassModal';
 import Navbar from '../../components/Navbar/navbar';
 import Attendance from '../../components/Attendance/Attendance';
 import AttendanceAlert from '../../components/AttendanceAlert/AttendanceAlert'
-
+import '../Classes/classes.css'
 class ClassDetails extends Component {
     constructor(props) {
         super(props)
@@ -155,11 +155,11 @@ class ClassDetails extends Component {
         }
 
         var alert;
-        if(this.state.showAlert) {
-            alert = 
-            <AttendanceAlert 
-                onClose={this.hideAlert}
-            />
+        if (this.state.showAlert) {
+            alert =
+                <AttendanceAlert
+                    onClose={this.hideAlert}
+                />
         } else {
             alert = "";
         }
@@ -174,14 +174,33 @@ class ClassDetails extends Component {
                     <div className="card-body">
                         <div className="container">
                             <div className="row">
-                                <div className="detailsImage col-md-4"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt="" /></div>
                                 <div className="col-md-8">
-                                    <h2>Instructor: {this.state.instructor}</h2>
-                                    <h2>Room: {this.state.room}</h2>
+                                    {/* <h2>Instructor: {this.state.instructor}</h2> */}
+                                    <h1>Class Details</h1>
+                                    <ul className="list-group">
+                                        <li className="list-group-item"><h3 className="d-inline mr-3">Room:</h3> {this.state.room}</li>
+                                        <li className="list-group-item"><h3 className="d-inline mr-3">Age Group: </h3>{this.state.ageGroup}</li>
+                                        <li className="list-group-item"><h3 className="d-inline mr-3">Schedule:</h3> {this.state.schedule.map(day => `${day}, `)}</li>
+                                        <li className="list-group-item"><h3 className="d-inline mr-3">Time:</h3> {this.state.time}</li>
+
+                                    </ul>
+                                    {/* <h2>Room: {this.state.room}</h2>
                                     <h2>Age Group: {this.state.ageGroup}</h2>
                                     <h2>Schedule: {this.state.schedule.map(day => `${day}, `)}</h2>
-                                    <h2>Time: {this.state.time}</h2>
+                                    <h2>Time: {this.state.time}</h2> */}
                                 </div>
+                                <div className="col-md-4">
+                                    <h2>Instructor</h2>
+                                    <div className="card">
+                                        <div className="instructorprofileImage"><img className="card-img-top pr-4" src={`${this.state.picture}`} alt="" /></div>
+                                        <div className="body">
+                                            <ul className="list-group list-group-flush">
+                                                <li className="list-group-item"><h4>{this.state.instructor}</h4></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -196,7 +215,7 @@ class ClassDetails extends Component {
 
                 <DeleteBtn onClick={() => this.handleDelete()} >Delete Class</DeleteBtn>
                 <EditBtn onClick={this.showModal}>Edit Class</EditBtn>
-            </div>)
+            </div >)
     }
 }
 
