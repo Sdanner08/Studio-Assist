@@ -99,19 +99,23 @@ export default {
   },
   // Gets all Tasks
   getTasks: function () {
-    return axios.get("/api/tasks")
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/tasks", { headers: { Authorization: token } })
   },
   // Gets the Tasks with the given id
   getTask: function (id) {
-    return axios.get("/api/tasks/" + id);
+    let token = localStorage.getItem('jwtToken')
+    return axios.get("/api/tasks/" + id, { headers: { Authorization: token } });
   },
   // Deletes the Tasks with the given id
   deleteTask: function (id) {
-    return axios.delete("/api/tasks/" + id)
+    let token = localStorage.getItem('jwtToken')
+    return axios.delete("/api/tasks/" + id, { headers: { Authorization: token } })
   },
   // Saves a Tasks to the database
   saveTask: function (taskData) {
-    return axios.post("/api/tasks", taskData);
+    let token = localStorage.getItem('jwtToken')
+    return axios.post("/api/tasks", taskData, { headers: { Authorization: token } });
   },
   enrollAClass: function (classId, studentId) {
     let token = localStorage.getItem('jwtToken')

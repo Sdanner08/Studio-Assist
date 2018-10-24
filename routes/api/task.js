@@ -1,14 +1,15 @@
 const router = require("express").Router();
 const taskController = require("../../controllers/taskController");
+const passport = require('passport')
 
-router.get("/", taskController.findAll)
-
-
-router.post("/", taskController.create)
-
-router.get("/delete",taskController.delete);
+router.get("/", passport.authenticate('jwt', { session: false }), taskController.findAll)
 
 
-router.delete("/:id", taskController.deleteTask)
+router.post("/", passport.authenticate('jwt', { session: false }), taskController.create)
+
+router.get("/delete", passport.authenticate('jwt', { session: false }), taskController.delete);
+
+
+router.delete("/:id", passport.authenticate('jwt', { session: false }), taskController.deleteTask)
 
 module.exports = router;

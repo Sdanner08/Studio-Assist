@@ -2,3 +2,9 @@
     background-color: white;
     border-radius: 5px;
 }
+
+.instructorprofileImage {
+    height: 300px;
+    min-width: 350px; 
+    overflow: hidden;
+}

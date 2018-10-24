@@ -118,7 +118,6 @@ module.exports = {
     //@desc find what classes a student has been absent to
     //@acess private
     getAbsences(req, res) {
-        console.log("this with", req.params.id)
         let id = req.params.id
 
         db.Class.find({ 'attendance.absentStudents': id }, 'nameOfClass attendance', (err, resp) => {
