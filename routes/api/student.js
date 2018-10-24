@@ -1,9 +1,5 @@
 const router = require("express").Router();
 const studentController = require("../../controllers/studentController");
-const multer = require('multer');
-const path = require('path')
-const multerS3 = require('multer-s3')
-const AWS = require('aws-sdk')
 const upload = require('../../middleware/s3upload')
 const passport = require('passport')
 
@@ -21,40 +17,18 @@ const passport = require('passport')
 // var upload = multer({ storage: storage });
 
 
-// var s3 = new AWS.S3({
-//     accessKeyId: 'AKIAIW2XXSCLJ7HJNGFQ',
-//     secretAccessKey: '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'
-// });
-
-
-// var upload = multer({
-//     storage: multerS3({
-//         s3: s3,
-//         ACL: "public-read",
-//         bucket: S3_BUCKET,
-//         metadata: function (req, file, cb) {
-//             cb(null, { fieldName: file.fieldname });
-//             req.body.file = file.originalname //adds file name to req.body.file name to later store in db 
-//         },
-//         key: function (req, file, cb) {
-//             cb(null, file.originalname)
-//         }
-//     })
-// })
-
-
 
 //@route GET api/student/
 //@desc gets all students
 //@acess 
-router.get("/", studentController.findAll)
+router.get("/",passport.authenticate('jwt', { session: false }), studentController.findAll)
 
-router.get("/status/:status", studentController.findAllByStatus)
+router.get("/status/:status",passport.authenticate('jwt', { session: false }), studentController.findAllByStatus)
 
 //@route GET api/student/
 //@desc gets one student
 //@acess 
-router.get("/:id", studentController.findOne)
+router.get("/:id",passport.authenticate('jwt', { session: false }), studentController.findOne)
 
 //@route POST api/student/
 //@desc Creates a new student
@@ -66,9 +40,9 @@ router.post("/", passport.authenticate('jwt', { session: false }), upload.single
 //@route POST api/student/registerClass
 //@desc Register a student for a class
 //@acess 
-router.post("/registerClass", studentController.registerAClass)
+router.post("/registerClass", passport.authenticate('jwt', { session: false }), studentController.registerAClass)
 
 
-router.delete("/:id", studentController.deleteStudent)
+router.delete("/:id", passport.authenticate('jwt', { session: false }), studentController.deleteStudent)
 
 module.exports = router;
